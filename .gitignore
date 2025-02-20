@@ -1,0 +1,11 @@
+.idea/
+*.iml
+.vscode/
+**/venv/
+**/__pycache__/
+**/*.egg-info/
+build/
+dist/
+*.log
+*.pyc
+.coverage

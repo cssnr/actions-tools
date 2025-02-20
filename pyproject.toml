@@ -1,0 +1,38 @@
+# Project
+
+[project]
+name = "actions-tools"
+description = "GitHub Actions Tools for Python"
+authors = [{ name="Shane" }]
+readme = "README.md"
+dynamic = ["version"]
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3 :: Only",
+    "Operating System :: OS Independent",
+    "License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)",
+    "Natural Language :: English",
+]
+license = { text = "GPL-3.0" }
+#license = { file = "LICENSE" }
+
+[project.urls]
+Homepage = "https://cssnr.com/"
+Source = "https://github.com/cssnr/actions-tools"
+Issues = "https://github.com/cssnr/actions-tools/issues"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+#[tool.setuptools.packages.find]
+#where = ["src"]
+#include = ["actions*"]
+
+[tool.setuptools.dynamic]
+version = { attr = "actions.__version__" }
+
+# Tools
+
+[tool.black]
+line-length = 119
