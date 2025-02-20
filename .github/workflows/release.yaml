@@ -1,4 +1,4 @@
-name: "Build"
+name: "Release"
 
 on:
   release:
@@ -9,6 +9,8 @@ jobs:
     name: "Build"
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    permissions:
+      contents: write
 
     steps:
       - name: "Checkout"
@@ -28,15 +30,39 @@ jobs:
       - name: "Upload to Actions"
         uses: actions/upload-artifact@v4
         with:
-          name: artifacts
-          path: dist/
+          name: release
+          path: dist
 
       - name: "Upload to Release"
         if: ${{ github.event_name == 'release' }}
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: dist/*
           tag: ${{ github.ref }}
           overwrite: true
           file_glob: true
+          file: dist/*
+
+  pypi:
+    name: "PyPI"
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    needs: [build]
+    permissions:
+      id-token: write # IMPORTANT: this permission is mandatory
+    environment:
+      name: pypi
+      url: https://pypi.org/p/actions-tools
+
+    steps:
+      - name: "Download Artifact"
+        uses: actions/download-artifact@v4
+        with:
+          name: release
+          path: dist
+
+      - name: "Debug"
+        run: ls -lAh dist
+
+      - name: "Publish to PyPI"
+        uses: pypa/gh-action-pypi-publish@release/v1

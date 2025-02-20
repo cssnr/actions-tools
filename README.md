@@ -37,10 +37,24 @@ print(f'name: {name}')
 
 # Development
 
+## Install
+
+Install the package from source:
+
 ```shell
 python -m pip install -U pip
 python -m pip install -Ur requirements.txt
 python -m pip install -e .
+```
+
+## Building
+
+Build the project locally:
+
+```shell
+python -m pip install -U pip
+python -m pip install -Ur requirements.txt
+python -m pip build
 ```
 
 # Contributing

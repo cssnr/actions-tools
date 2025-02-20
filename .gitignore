@@ -8,3 +8,4 @@ dist/
 *.log
 *.pyc
 .coverage
+coverage.xml
