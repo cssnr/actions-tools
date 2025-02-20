@@ -11,13 +11,22 @@
 
 # Actions Tools
 
+- [Install](#Install)
+- [Usage](#Usage)
 - [Development](#Development)
+- [Contributing](#Contributing)
 
 GitHub Actions Tools for Python.
 
+## Install
+
 ```shell
-python -m pip install actions-tools
+#python -m pip install actions-tools
+git clone https://github.com/cssnr/actions-tools
+python -m pip install -e actions-tools
 ```
+
+## Usage
 
 ```python
 from actions import core

@@ -36,3 +36,7 @@ version = { attr = "actions.__version__" }
 
 [tool.black]
 line-length = 119
+
+[tool.ruff]
+line-length = 119
+select = ["E4", "E7", "E9", "F", "W", "C901"]
