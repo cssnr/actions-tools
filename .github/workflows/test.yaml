@@ -22,10 +22,11 @@ jobs:
           python-version: "3.13"
           cache: "pip"
 
-      - name: "Coverage"
+      - name: "Install Requirements"
         run: |
           python -m pip install -U pip
           python -m pip install -Ur requirements.txt
+          python -m pip install -e .
 
       - name: "Ruff"
         uses: astral-sh/ruff-action@v3
@@ -43,38 +44,18 @@ jobs:
           coverage xml
           coverage report -m
 
+      - name: "SonarQube"
+        uses: SonarSource/sonarqube-scan-action@v4
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
   build:
     name: "Build"
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
+    uses: ./.github/workflows/build.yaml
     permissions:
-      contents: read
-
-    steps:
-      - name: "Checkout"
-        uses: actions/checkout@v4
-
-      - name: "Setup Python 3.11"
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-          cache: "pip"
-
-      - name: "Build Dist"
-        run: |
-          python -m pip install -U pip
-          python -m pip install -Ur requirements.txt
-          python -m build
-
-      - name: "Debug"
-        run: |
-          ls -lAh dist
-
-      - name: "Upload to Actions"
-        uses: actions/upload-artifact@v4
-        with:
-          name: build
-          path: dist/
+      contents: write
+    with:
+      NAME: test
 
   test:
     runs-on: ubuntu-latest
@@ -84,8 +65,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        #version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
-        version: ["3.10", "3.11"]
+        version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
+        #version: ["3.10", "3.11"]
     name: "Test ${{ matrix.version }}"
     permissions:
       contents: read
@@ -97,7 +78,7 @@ jobs:
       - name: "Download Artifact"
         uses: actions/download-artifact@v4
         with:
-          name: build
+          name: test
           path: dist
 
       - name: "Debug"
@@ -113,9 +94,8 @@ jobs:
       - name: "Install ${{ matrix.version }}"
         run: |
           python -m pip install -U pip
+          python -m pip install -Ur requirements.txt
           python -m pip install dist/actions_tools-*.whl
-          #python -m pip install -Ur requirements.txt
-          #python -m pip install -e .
 
       - name: "Test ${{ matrix.version }}"
         run: |

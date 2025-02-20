@@ -17,5 +17,6 @@ if ($args[0] -eq "clean") {
 }
 
 python.exe -m build
+python -m pip install .\dist\actions_tools-0.0.1-py3-none-any.whl
 
 Write-Output "Success."
