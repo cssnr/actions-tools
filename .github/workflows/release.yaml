@@ -16,10 +16,10 @@ jobs:
       - name: "Checkout"
         uses: actions/checkout@v4
 
-      - name: "Setup Python 3.11"
-        uses: actions/setup-python@v4
+      - name: "Setup Python 3.13"
+        uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: "3.13"
 
       - name: "Build"
         run: |
@@ -48,11 +48,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     needs: [build]
-    permissions:
-      id-token: write # IMPORTANT: this permission is mandatory
     environment:
       name: pypi
       url: https://pypi.org/p/actions-tools
+    permissions:
+      id-token: write # IMPORTANT: this permission is mandatory
 
     steps:
       - name: "Download Artifact"
@@ -62,7 +62,8 @@ jobs:
           path: dist
 
       - name: "Debug"
-        run: ls -lAh dist
+        run: |
+          ls -lAh dist
 
       - name: "Publish to PyPI"
         uses: pypa/gh-action-pypi-publish@release/v1
