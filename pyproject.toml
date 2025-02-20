@@ -25,18 +25,18 @@ Issues = "https://github.com/cssnr/actions-tools/issues"
 requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
-#[tool.setuptools.packages.find]
-#where = ["src"]
-#include = ["actions*"]
+# Setup Tools
 
 [tool.setuptools.dynamic]
 version = { attr = "actions.__version__" }
 
-# Tools
+# Other Tools
 
 [tool.black]
 line-length = 119
 
 [tool.ruff]
 line-length = 119
-select = ["E4", "E7", "E9", "F", "W", "C901"]
+
+[tool.coverage.run]
+omit = ["*/*.egg-info/*"]

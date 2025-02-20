@@ -28,10 +28,10 @@ def get_input(name: str, req=False, low=False, strip=True, boolean=False, split=
         return False
 
     if split:
-        l = []
+        result = []
         for x in re.split(split, value):
-            l.append(_get_str_value(x, low, strip))
-        return l
+            result.append(_get_str_value(x, low, strip))
+        return result
 
     value = _get_str_value(value, low, strip)
     if req and not value:
