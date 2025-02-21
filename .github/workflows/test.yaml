@@ -28,6 +28,7 @@ jobs:
           python -m pip install -U pip
           python -m pip install -Ur requirements.txt
           python -m pip install -e .
+          exit 1 # test fail
 
       - name: "Debug 1"
         run: |
