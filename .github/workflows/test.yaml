@@ -51,12 +51,12 @@ jobs:
           #files: ./coverage.xml
           #flags: unittests # optional
           #name: github-actions # optional
-          verbose: true
+          #verbose: true
 
-      - name: "SonarQube"
-        uses: SonarSource/sonarqube-scan-action@v4
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      #- name: "SonarQube"
+      #  uses: SonarSource/sonarqube-scan-action@v4
+      #  env:
+      #    SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   build:
     name: "Build"
@@ -74,8 +74,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
-        #version: ["3.10", "3.11"]
+        version: ["3.10", "3.11", "3.12", "3.13"]
     name: "Test ${{ matrix.version }}"
     permissions:
       contents: read

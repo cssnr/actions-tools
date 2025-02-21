@@ -6,9 +6,15 @@ description = "GitHub Actions Tools for Python"
 authors = [{ name="Shane" }]
 readme = "README.md"
 dynamic = ["version"]
-requires-python = ">=3.8"
+requires-python = ">=3.10"
 classifiers = [
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.13",
     "Operating System :: OS Independent",
     "License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)",
     "Natural Language :: English",
@@ -21,11 +27,11 @@ Homepage = "https://cssnr.com/"
 Source = "https://github.com/cssnr/actions-tools"
 Issues = "https://github.com/cssnr/actions-tools/issues"
 
+# Setup Tools
+
 [build-system]
 requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
-
-# Setup Tools
 
 [tool.setuptools.dynamic]
 version = { attr = "actions.__version__" }
