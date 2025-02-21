@@ -39,9 +39,11 @@ jobs:
         #  src: "src"
 
       - name: "Mypy"
-        uses: jpetrucciani/mypy-check@master
+        #uses: jpetrucciani/mypy-check@master
         #with:
         #  src: "src"
+        run: |
+          mypy src
 
       - name: "Isort"
         uses: isort/isort-action@v1
