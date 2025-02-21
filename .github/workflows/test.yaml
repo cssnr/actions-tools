@@ -30,25 +30,16 @@ jobs:
 
       - name: "Ruff"
         uses: astral-sh/ruff-action@v3
-        #with:
-        #  src: "src"
 
       - name: "Black"
         uses: psf/black@stable
-        #with:
-        #  src: "src"
 
       - name: "Mypy"
-        #uses: jpetrucciani/mypy-check@master
-        #with:
-        #  src: "src"
         run: |
           mypy src
 
       - name: "Isort"
         uses: isort/isort-action@v1
-        #with:
-        #  requirements-files: "requirements.txt"
 
       - name: "Coverage"
         run: |
@@ -60,10 +51,6 @@ jobs:
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          #files: ./coverage.xml
-          #flags: unittests # optional
-          #name: github-actions # optional
-          #verbose: true
 
       #- name: "SonarQube"
       #  uses: SonarSource/sonarqube-scan-action@v4
