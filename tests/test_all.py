@@ -9,6 +9,7 @@ os.environ["INPUT_TEST"] = " TRUE "
 
 
 def test_print():
+    core.debug("test")
     core.info("test")
     core.warn("test")
     with pytest.raises(SystemExit):

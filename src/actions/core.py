@@ -7,6 +7,10 @@ true = ["y", "yes", "true", "on"]
 false = ["n", "no", "false", "off"]
 
 
+def debug(message: str):
+    print(f"::debug::{message}")
+
+
 def info(message: str):
     print(f"::notice::{message}")
 

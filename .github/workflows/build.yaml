@@ -3,7 +3,7 @@ name: "Build"
 on:
   workflow_call:
     inputs:
-      NAME:
+      name:
         required: true
         type: string
 
@@ -31,12 +31,12 @@ jobs:
           python -m pip install -Ur requirements.txt
           python -m build
 
-      - name: "Debug"
+      - name: "List Results"
         run: |
           ls -lAh dist
 
       - name: "Upload to Actions"
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ inputs.NAME }}
+          name: ${{ inputs.name }}
           path: dist

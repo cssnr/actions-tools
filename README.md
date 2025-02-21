@@ -20,6 +20,9 @@
 
 GitHub Actions Tools for Python.
 
+> [!WARNING]  
+> This project is in development and is NOT stable!
+
 ## Install
 
 ```shell
@@ -33,15 +36,28 @@ python -m pip install -e actions-tools
 ```python
 from actions import core
 
+# Get Input
 name = core.get_input('name')
-print(f'name: {name}')
 
-core.set_output('name', name)
-
+# Logging Levels
+core.debug("debug")
 core.info("info")
 core.warn("warn")
 core.error("error")
 
+# Folding Blocks
+core.start_group("Test")
+print('This is really cool but folded up...')
+core.end_group()
+
+# Set Output
+core.set_env('MY_VAR', 'my-value')
+core.set_output('name', name)
+
+# Summary
+core.summary('## My Action')
+
+# Abort
 core.set_failed("Mayday!")
 ```
 
