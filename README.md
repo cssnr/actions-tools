@@ -37,6 +37,12 @@ name = core.get_input('name')
 print(f'name: {name}')
 
 core.set_output('name', name)
+
+core.info("info")
+core.warn("warn")
+core.error("error")
+
+core.set_failed("Mayday!")
 ```
 
 # Development

@@ -7,6 +7,23 @@ true = ["y", "yes", "true", "on"]
 false = ["n", "no", "false", "off"]
 
 
+def info(message: str):
+    print(f"::notice::{message}")
+
+
+def warn(message: str):
+    print(f"::warning::{message}")
+
+
+def error(message: str):
+    print(f"::error::{message}")
+
+
+def set_failed(message: str):
+    error(message)
+    raise SystemExit
+
+
 def get_input(name: str, req=False, low=False, strip=True, boolean=False, split="") -> Union[str, bool, list]:
     """
     Get Input by Name

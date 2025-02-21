@@ -1,9 +1,17 @@
 import os
+import pytest
 
 from actions import core
 
 
 os.environ["INPUT_TEST"] = " TRUE "
+
+
+def test_print():
+    core.info("test")
+    core.warn("test")
+    with pytest.raises(SystemExit):
+        core.set_failed("test")
 
 
 def test_inputs():
