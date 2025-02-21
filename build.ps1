@@ -5,6 +5,11 @@ if (Test-Path $egg_dir) {
     Write-Output "Removing: $egg_dir"
     Remove-Item -Force -Recurse $egg_dir
 }
+$cache_dir = ".\src\actions\__pycache__"
+if (Test-Path $cache_dir) {
+    Write-Output "Removing: $cache_dir"
+    Remove-Item -Force -Recurse $cache_dir
+}
 if (Test-Path ".\dist") {
     Write-Output "Removing: .\dist"
     Remove-Item -Force -Recurse ".\dist"

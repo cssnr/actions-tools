@@ -39,6 +39,11 @@ def get_input(name: str, req=False, low=False, strip=True, boolean=False, split=
     return value
 
 
+def set_output(output: str, value: str):
+    with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+        print(f"{output}={value}", file=f)
+
+
 def _get_str_value(value, low=False, strip=True):
     if strip:
         value = value.strip()

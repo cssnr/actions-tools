@@ -9,3 +9,4 @@ dist/
 *.pyc
 .coverage
 coverage.xml
+output.txt

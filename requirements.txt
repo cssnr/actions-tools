@@ -1,5 +1,8 @@
 build
 coverage
+isort
+mypy
 pytest
 ruff
+setuptools
 twine
