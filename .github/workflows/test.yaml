@@ -28,11 +28,6 @@ jobs:
           python -m pip install -U pip
           python -m pip install -Ur requirements.txt
           python -m pip install -e .
-          exit 1 # test fail
-
-      - name: "Debug 1"
-        run: |
-          echo "steps.install.outcome: ${{ steps.install.outcome }}"
 
       - name: "Ruff"
         if: ${{ steps.install.outcome == 'success' }}
@@ -58,10 +53,6 @@ jobs:
           coverage run --source=src -m pytest
           coverage xml
           coverage report -m
-
-      - name: "Debug 2"
-        run: |
-          echo "steps.coverage.outcome: ${{ steps.coverage.outcome }}"
 
       - name: "Codecov"
         if: ${{ steps.coverage.outcome == 'success' }}
