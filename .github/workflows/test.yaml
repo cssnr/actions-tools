@@ -44,6 +44,15 @@ jobs:
           coverage xml
           coverage report -m
 
+      - name: "Codecov"
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          #files: ./coverage.xml
+          #flags: unittests # optional
+          #name: github-actions # optional
+          verbose: true
+
       - name: "SonarQube"
         uses: SonarSource/sonarqube-scan-action@v4
         env:
