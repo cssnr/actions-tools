@@ -6,7 +6,8 @@
 [![GitHub Release Version](https://img.shields.io/github/v/release/cssnr/actions-tools?logo=github)](https://github.com/cssnr/actions-tools/releases/latest)
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/cssnr/actions-tools?logo=github&logoColor=white&label=updated)](https://github.com/cssnr/actions-tools/graphs/commit-activity)
 [![GitHub Top Language](https://img.shields.io/github/languages/top/cssnr/actions-tools?logo=htmx&logoColor=white)](https://github.com/cssnr/actions-tools)
-[![GitHub Org Stars](https://img.shields.io/github/stars/cssnr?style=flat&logo=github&logoColor=white)](https://cssnr.github.io/)
+[![GitHub Repo Stars](https://img.shields.io/github/stars/cssnr/actions-tools?style=flat&logo=github&logoColor=white)](https://github.com/cssnr/actions-tools/stargazers)
+[![GitHub Org Stars](https://img.shields.io/github/stars/cssnr?style=flat&logo=github&logoColor=white&label=org%20stars)](https://cssnr.github.io/)
 [![Discord](https://img.shields.io/discord/899171661457293343?logo=discord&logoColor=white&label=discord&color=7289da)](https://discord.gg/wXy6m2X8wY)
 
 # Actions Tools
@@ -37,7 +38,7 @@ print(f'name: {name}')
 
 # Development
 
-## Install
+### Install
 
 Install the package from source:
 
@@ -47,7 +48,22 @@ python -m pip install -Ur requirements.txt
 python -m pip install -e .
 ```
 
-## Building
+To Uninstall:
+
+```shell
+python -m pip uninstall actions-tools
+```
+
+### Test
+
+First [Install](#Install), then run:
+
+```shell
+coverage run --source=src -m pytest
+coverage report -m
+```
+
+### Building
 
 Build the project locally:
 
