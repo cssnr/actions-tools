@@ -5,7 +5,7 @@
 [![PyPI](https://img.shields.io/pypi/v/actions-tools?logo=python&logoColor=white&label=PyPI)](https://pypi.org/project/actions-tools/)
 [![GitHub Release Version](https://img.shields.io/github/v/release/cssnr/actions-tools?logo=github)](https://github.com/cssnr/actions-tools/releases/latest)
 [![GitHub Top Language](https://img.shields.io/github/languages/top/cssnr/actions-tools?logo=htmx&logoColor=white)](https://github.com/cssnr/actions-tools)
-[![TOML Python Version](https://img.shields.io/badge/dynamic/toml?url=https%3A%2F%2Fraw.githubusercontent.com%2Fcssnr%2Factions-tools%2Frefs%2Fheads%2Fmaster%2Fpyproject.toml&query=%24.project.requires-python&logo=python&logoColor=white&label=version)]()
+[![TOML Python Version](https://img.shields.io/badge/dynamic/toml?url=https%3A%2F%2Fraw.githubusercontent.com%2Fcssnr%2Factions-tools%2Frefs%2Fheads%2Fmaster%2Fpyproject.toml&query=%24.project.requires-python&logo=python&logoColor=white&label=version)](https://github.com/cssnr/actions-tools)
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/cssnr/actions-tools?logo=github&logoColor=white&label=updated)](https://github.com/cssnr/actions-tools/graphs/commit-activity)
 [![GitHub Repo Stars](https://img.shields.io/github/stars/cssnr/actions-tools?style=flat&logo=github&logoColor=white)](https://github.com/cssnr/actions-tools/stargazers)
 [![GitHub Org Stars](https://img.shields.io/github/stars/cssnr?style=flat&logo=github&logoColor=white&label=org%20stars)](https://cssnr.github.io/)
@@ -62,7 +62,7 @@ python -m pip uninstall actions-tools
 First [Install](#Install), then run:
 
 ```shell
-coverage run --source=src -m pytest
+coverage run -m pytest
 coverage report -m
 ```
 
@@ -74,6 +74,12 @@ Build the project locally:
 python -m pip install -U pip
 python -m pip install -Ur requirements.txt
 python -m pip build
+```
+
+Install the built package:
+
+```shell
+python -m pip install dist/actions_tools-0.0.1-py3-none-any.whl
 ```
 
 # Contributing

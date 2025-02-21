@@ -50,7 +50,7 @@ jobs:
         if: ${{ steps.install.outcome == 'success' }}
         id: coverage
         run: |
-          coverage run --source=src -m pytest
+          coverage run -m pytest
           coverage xml
           coverage report -m
 
