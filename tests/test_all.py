@@ -11,3 +11,11 @@ def test_inputs():
     assert core.get_input("test", boolean=True) == True
     assert isinstance(core.get_input("test", split="\n"), list)
     assert len(core.get_input("test", split="\n")) == 1
+
+
+def test_outputs():
+    if not os.environ.get("GITHUB_OUTPUT"):
+        os.environ["GITHUB_OUTPUT"] = "output.txt"
+        if os.path.exists(os.environ["GITHUB_OUTPUT"]):
+            os.remove(os.environ["GITHUB_OUTPUT"])
+    core.set_output("test", "winning")
