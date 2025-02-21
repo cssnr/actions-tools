@@ -54,6 +54,7 @@ select = ["E4", "E7", "E9", "F", "B", "Q"]
 
 [tool.coverage.run]
 omit = ["*/*.egg-info/*"]
+source = ["src"]
 
 # Isort
 
