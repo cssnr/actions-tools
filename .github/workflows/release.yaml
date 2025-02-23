@@ -18,12 +18,12 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     needs: [build]
-    environment:
-      name: pypi
-      url: https://pypi.org/p/actions-tools
     permissions:
       contents: read
-      id-token: write # IMPORTANT: this permission is mandatory
+      id-token: write
+    environment:
+      name: testpypi
+      url: https://test.pypi.org/p/actions-tools
 
     steps:
       - name: "Download Artifact"
@@ -34,6 +34,7 @@ jobs:
 
       - name: "Debug"
         run: |
+          echo ${GITHUB_REF_NAME}
           ls -lAh dist
 
       - name: "Upload to Release"
@@ -44,5 +45,8 @@ jobs:
           file_glob: true
           file: dist/*
 
-      - name: "Publish to PyPI"
-        uses: pypa/gh-action-pypi-publish@release/v1
+      # TODO: Manually publish the package first
+      #- name: "Publish to Test PyPI"
+      #  uses: pypa/gh-action-pypi-publish@release/v1
+      #  with:
+      #    repository-url: https://test.pypi.org/legacy/
