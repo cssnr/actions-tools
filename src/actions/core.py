@@ -11,7 +11,11 @@ def debug(message: str):
     print(f"::debug::{message}")
 
 
-def info(message: str):
+def info(message: str, **kwargs):
+    print(message, **kwargs)
+
+
+def notice(message: str):
     print(f"::notice::{message}")
 
 
