@@ -1,0 +1,33 @@
+name: "Publish"
+
+on:
+  workflow_dispatch:
+
+jobs:
+  publish:
+    name: "Publish"
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      id-token: write
+    environment:
+      name: pypi
+      url: https://pypi.org/p/actions-tools
+
+    steps:
+      - name: "Download Release"
+        uses: robinraju/release-downloader@v1.10
+        with:
+          fileName: "actions_tools-*"
+          out-file-path: "dist"
+          latest: true
+
+      - name: "Debug"
+        run: |
+          echo ${GITHUB_REF_NAME}
+          ls -lAh dist
+
+      # TODO: Verify dist and GITHUB_REF_NAME first
+      #- name: "Publish to PyPI"
+      #  uses: pypa/gh-action-pypi-publish@release/v1
