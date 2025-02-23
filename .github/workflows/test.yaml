@@ -25,6 +25,7 @@ jobs:
       - name: "Install"
         id: install
         run: |
+          npm install prettier
           python -m pip install -U pip
           python -m pip install -Ur requirements.txt
           python -m pip install -e .
@@ -45,6 +46,11 @@ jobs:
       - name: "Isort"
         if: ${{ steps.install.outcome == 'success' }}
         uses: isort/isort-action@v1
+
+      - name: "Prettier"
+        if: ${{ steps.install.outcome == 'success' }}
+        run: |
+          npx prettier --check .
 
       - name: "Coverage"
         if: ${{ steps.install.outcome == 'success' }}

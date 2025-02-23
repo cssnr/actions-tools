@@ -33,25 +33,27 @@ python -m pip install -e actions-tools
 
 ## Usage
 
+Functionality from @actions/toolkit
+
 ```python
 from actions import core
 
-# Get Input
+# Input
 name = core.get_input('name')
 
-# Logging Levels
+# Logging
 core.debug("debug")
 core.info("info")
 core.warn("warn")
 core.error("error")
 
-# Folding Blocks
+# Blocks
 core.start_group("Test")
-print('This is really cool but folded up...')
+core.info('This folded.')
 core.end_group()
 
-# Set Output
-core.set_env('MY_VAR', 'my-value')
+# Output
+core.set_env('VAR', 'value')
 core.set_output('name', name)
 
 # Summary
@@ -71,6 +73,12 @@ Install the package from source:
 python -m pip install -U pip
 python -m pip install -Ur requirements.txt
 python -m pip install -e .
+```
+
+Prettier is used to format yaml, json and md.
+
+```shell
+npm install -g prettier
 ```
 
 To Uninstall:
