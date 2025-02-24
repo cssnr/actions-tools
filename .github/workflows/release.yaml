@@ -22,8 +22,8 @@ jobs:
       contents: read
       id-token: write
     environment:
-      name: testpypi
-      url: https://test.pypi.org/p/actions-tools
+      name: ${{ github.event.release.prerelease && 'test' || 'pypi' }}
+      url: https://${{ github.event.release.prerelease && 'test.' || '' }}pypi.org/p/actions-tools
 
     steps:
       - name: "Download Artifact"
@@ -33,12 +33,15 @@ jobs:
           path: dist
 
       #- name: "Debug event.json"
+      #  if: ${{ always() }}
       #  run: |
       #    cat "${GITHUB_EVENT_PATH}"
 
       - name: "Debug"
         run: |
-          echo ${GITHUB_REF_NAME}
+          echo name: "${{ github.event.release.prerelease && 'test' || 'pypi' }}"
+          echo url: "https://${{ github.event.release.prerelease && 'test.' || '' }}pypi.org/p/actions-tools"
+          echo GITHUB_REF_NAME: "${GITHUB_REF_NAME}"
           ls -lAh dist
 
       - name: "Upload to Release"
@@ -49,8 +52,28 @@ jobs:
           file_glob: true
           file: dist/*
 
-      # TODO: Manually publish the package first
+      - name: "Would run: Test PyPI"
+        if: ${{ github.event.release.prerelease }}
+        run: |
+          echo yes
+
+      ## TODO: Manually publish the package first
       #- name: "Publish to Test PyPI"
+      #  if: ${{ github.event.release.prerelease }}
       #  uses: pypa/gh-action-pypi-publish@release/v1
       #  with:
       #    repository-url: https://test.pypi.org/legacy/
+
+      - name: "Would run: Official PyPI"
+        if: ${{ !github.event.release.prerelease }}
+        run: |
+          echo yes
+
+      ## TODO: Verify dist and GITHUB_REF_NAME first
+      #- name: "Publish to PyPI"
+      #  if: ${{ !github.event.release.prerelease }}
+      #  uses: pypa/gh-action-pypi-publish@release/v1
+
+      - name: "Update Release Notes"
+        run: |
+          echo TODO: update release notes with useful shit

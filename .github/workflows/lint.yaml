@@ -17,6 +17,7 @@ jobs:
         uses: actions/checkout@v4
 
       #- name: "Debug event.json"
+      #  if: ${{ always() }}
       #  run: |
       #    cat "${GITHUB_EVENT_PATH}"
 
@@ -65,7 +66,7 @@ jobs:
           coverage report -m
 
       - name: "Codecov"
-        if: ${{ steps.coverage.outcome == 'success' }}
+        if: ${{ always() && steps.coverage.outcome == 'success' }}
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
