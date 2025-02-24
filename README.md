@@ -1,5 +1,6 @@
 [![Release](https://img.shields.io/github/actions/workflow/status/cssnr/actions-tools/release.yaml?logo=github&logoColor=white&label=release)](https://github.com/cssnr/actions-tools/actions/workflows/release.yaml)
 [![Test](https://img.shields.io/github/actions/workflow/status/cssnr/actions-tools/test.yaml?logo=github&logoColor=white&label=test)](https://github.com/cssnr/actions-tools/actions/workflows/test.yaml)
+[![Lint](https://img.shields.io/github/actions/workflow/status/cssnr/actions-tools/lint.yaml?logo=github&logoColor=white&label=lint)](https://github.com/cssnr/actions-tools/actions/workflows/lint.yaml)
 [![Codecov](https://codecov.io/gh/cssnr/actions-tools/graph/badge.svg?token=A8NDHZ393X)](https://codecov.io/gh/cssnr/actions-tools)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=cssnr_actions-tools&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=cssnr_actions-tools)
 [![PyPI](https://img.shields.io/pypi/v/actions-tools?logo=python&logoColor=white&label=PyPI)](https://pypi.org/project/actions-tools/)
@@ -43,7 +44,7 @@ name = core.get_input('name')
 
 # Logging
 core.debug("debug")
-core.info("info")
+core.info("info") # print
 core.warn("warn")
 core.error("error")
 
@@ -53,7 +54,7 @@ core.info('This folded.')
 core.end_group()
 
 # Summary
-core.summary('## My Action')
+core.summary('## Test Action')
 
 # Output
 core.set_env('VAR', 'value')
@@ -61,6 +62,17 @@ core.set_output('name', 'god')
 
 # Abort
 core.set_failed("Mayday!")
+```
+
+Functionality new in actions-tools
+
+```python
+from actions import core
+
+# Indent
+core.start_indent(4)
+core.info('Indented') # only works with core.info
+core.end_indent()
 ```
 
 # Development

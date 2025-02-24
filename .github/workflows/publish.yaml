@@ -23,6 +23,10 @@ jobs:
           out-file-path: "dist"
           latest: true
 
+      #- name: "Debug event.json"
+      #  run: |
+      #    cat "${GITHUB_EVENT_PATH}"
+
       - name: "Debug"
         run: |
           echo ${GITHUB_REF_NAME}

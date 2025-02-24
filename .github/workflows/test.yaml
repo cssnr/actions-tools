@@ -5,72 +5,6 @@ on:
   push:
 
 jobs:
-  lint:
-    name: "Lint"
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    permissions:
-      contents: read
-
-    steps:
-      - name: "Checkout"
-        uses: actions/checkout@v4
-
-      - name: "Setup Python 3.13"
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.13"
-          cache: "pip"
-
-      - name: "Install"
-        id: install
-        run: |
-          npm install prettier
-          python -m pip install -U pip
-          python -m pip install -Ur requirements.txt
-          python -m pip install -e .
-
-      - name: "Ruff"
-        if: ${{ steps.install.outcome == 'success' }}
-        uses: astral-sh/ruff-action@v3
-
-      - name: "Black"
-        if: ${{ steps.install.outcome == 'success' }}
-        uses: psf/black@stable
-
-      - name: "Mypy"
-        if: ${{ steps.install.outcome == 'success' }}
-        run: |
-          mypy src
-
-      - name: "Isort"
-        if: ${{ steps.install.outcome == 'success' }}
-        uses: isort/isort-action@v1
-
-      - name: "Prettier"
-        if: ${{ steps.install.outcome == 'success' }}
-        run: |
-          npx prettier --check .
-
-      - name: "Coverage"
-        if: ${{ steps.install.outcome == 'success' }}
-        id: coverage
-        run: |
-          coverage run -m pytest
-          coverage xml
-          coverage report -m
-
-      - name: "Codecov"
-        if: ${{ steps.coverage.outcome == 'success' }}
-        uses: codecov/codecov-action@v5
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-
-      #- name: "SonarQube"
-      #  uses: SonarSource/sonarqube-scan-action@v4
-      #  env:
-      #    SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
   build:
     name: "Build"
     uses: ./.github/workflows/build.yaml
@@ -95,6 +29,10 @@ jobs:
     steps:
       - name: "Checkout"
         uses: actions/checkout@v4
+
+      #- name: "Debug event.json"
+      #  run: |
+      #    cat "${GITHUB_EVENT_PATH}"
 
       - name: "Download Artifact"
         uses: actions/download-artifact@v4
