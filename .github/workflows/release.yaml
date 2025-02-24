@@ -19,7 +19,7 @@ jobs:
     timeout-minutes: 5
     needs: [build]
     permissions:
-      contents: read
+      contents: write
       id-token: write
     environment:
       name: ${{ github.event.release.prerelease && 'test' || 'pypi' }}
