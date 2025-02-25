@@ -26,8 +26,17 @@ GitHub Actions Tools for Python.
 
 ## Install
 
+From PyPI: https://pypi.org/p/actions-tools
+
 ```shell
 python -m pip install actions-tools
+```
+
+From source:
+
+```shell
+git clone https://github.com/cssnr/actions-tools
+python -m pip install -e actions-tools
 ```
 
 ## Usage
