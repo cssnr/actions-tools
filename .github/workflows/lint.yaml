@@ -4,7 +4,12 @@ on:
   workflow_dispatch:
   pull_request:
     paths-ignore:
-      - "LICENSE"
+      - ".gitignore"
+      - "pyproject.toml"
+      - "requirements.txt"
+  push:
+    branches: [master]
+    paths-ignore:
       - ".gitignore"
       - "pyproject.toml"
       - "requirements.txt"
