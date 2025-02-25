@@ -57,6 +57,13 @@ jobs:
         if: ${{ !github.event.release.prerelease }}
         uses: pypa/gh-action-pypi-publish@release/v1
 
+      - name: "Update Latest Tag"
+        uses: cssnr/update-version-tags-action@v1
+        with:
+          major: false
+          minor: false
+          tags: latest
+
       #- name: "Update Release Notes"
       #  run: |
       #    echo TODO: update release notes with useful shit
