@@ -98,9 +98,14 @@ If you are experiencing an issue/bug or getting unexpected results, you can:
 
 # Contributing
 
+> [!TIP]
 > See the [CONTRIBUTING.md](CONTRIBUTING.md) for instructions on testing and building.
 
-Currently, the best way to contribute to this project is to star this project on GitHub.
+Currently, the best way to contribute to this project is to star this project on GitHub,
+open a [feature request](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests)
+or report any [issues](https://github.com/cssnr/actions-tools/issues) you find.
+
+However, PRs are welcome; see the [CONTRIBUTING.md](CONTRIBUTING.md).
 
 Additionally, you can support other GitHub Actions I have published:
 
