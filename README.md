@@ -27,9 +27,7 @@ GitHub Actions Tools for Python.
 ## Install
 
 ```shell
-#python -m pip install actions-tools
-git clone https://github.com/cssnr/actions-tools
-python -m pip install -e actions-tools
+python -m pip install actions-tools
 ```
 
 ## Usage
