@@ -2,7 +2,12 @@ name: "Lint"
 
 on:
   workflow_dispatch:
-  push:
+  pull_request:
+    paths-ignore:
+      - "LICENSE"
+      - ".gitignore"
+      - "pyproject.toml"
+      - "requirements.txt"
 
 jobs:
   lint:

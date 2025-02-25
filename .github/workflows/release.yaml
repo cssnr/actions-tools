@@ -32,11 +32,6 @@ jobs:
           name: release
           path: dist
 
-      #- name: "Debug event.json"
-      #  if: ${{ always() }}
-      #  run: |
-      #    cat "${GITHUB_EVENT_PATH}"
-
       - name: "Debug"
         run: |
           echo name: "${{ github.event.release.prerelease && 'test' || 'pypi' }}"
