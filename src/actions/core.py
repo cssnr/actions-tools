@@ -62,11 +62,13 @@ def end_indent():
 
 def set_output(output: str, value: str):
     with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+        # noinspection PyTypeChecker
         print(f"{output}={value}", file=f)
 
 
 def set_env(var: str, value: str):
     with open(os.environ["GITHUB_ENV"], "a") as f:
+        # noinspection PyTypeChecker
         print(f"{var}={value}", file=f)
 
 
@@ -79,6 +81,7 @@ def summary(text: str, nlc=1):
     """
     new_lines = "\n" * nlc
     with open(os.environ["GITHUB_STEP_SUMMARY"], "a") as f:
+        # noinspection PyTypeChecker
         print(f"{text}{new_lines}", file=f)
 
 
