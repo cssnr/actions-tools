@@ -59,6 +59,7 @@ jobs:
       - name: "Requirements ${{ matrix.version }}"
         continue-on-error: ${{ matrix.version == '3.14' }}
         run: |
+          python -V
           python -m pip install -U pip pytest
 
       - name: "Install ${{ matrix.version }}"
