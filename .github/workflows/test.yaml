@@ -29,7 +29,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: ["3.10", "3.11", "3.12", "3.13"]
+        version: ["3.10", "3.11", "3.12", "3.13", "3.14"]
     name: "Test ${{ matrix.version }}"
     permissions:
       contents: read
@@ -50,16 +50,19 @@ jobs:
           path: dist
 
       - name: "Setup Python ${{ matrix.version }}"
+        continue-on-error: ${{ matrix.version == '3.14' }}
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.version }}
           cache: "pip"
 
       - name: "Requirements ${{ matrix.version }}"
+        continue-on-error: ${{ matrix.version == '3.14' }}
         run: |
           python -m pip install -U pip pytest
 
       - name: "Install ${{ matrix.version }}"
+        continue-on-error: ${{ matrix.version == '3.14' }}
         run: |
           python -m pip install dist/*.whl
 
@@ -68,5 +71,6 @@ jobs:
       #    ls -lAhR dist/
 
       - name: "Test ${{ matrix.version }}"
+        continue-on-error: ${{ matrix.version == '3.14' }}
         run: |
           pytest -v
