@@ -8,7 +8,7 @@ on:
     paths:
       - "src/**"
       - "tests/**"
-      - "workflows/test.yaml"
+      - ".github/workflows/test.yaml"
       - "pyproject.toml"
       - "requirements.txt"
 
@@ -16,8 +16,8 @@ jobs:
   build:
     name: "Build"
     uses: ./.github/workflows/build.yaml
-    permissions:
-      contents: write
+    #permissions:
+    #  contents: write
     with:
       name: test
 

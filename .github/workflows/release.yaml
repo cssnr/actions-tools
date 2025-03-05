@@ -8,8 +8,8 @@ jobs:
   build:
     name: "Build"
     uses: ./.github/workflows/build.yaml
-    permissions:
-      contents: write
+    #permissions:
+    #  contents: write
     with:
       name: release
 
