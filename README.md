@@ -81,17 +81,17 @@ with core.with_group("Test") as info:
 core.summary('## Test Action')
 
 # Environment
-core.set_env('VAR', 'value')
+core.set_env('NAME', 'value')
 
 # State
-name = core.set_state('VAR', 'value')
-value = core.get_state('VAR')
+stateName = core.set_state('NAME', 'value')
+stateValue = core.get_state('NAME')
 
 # System Path
 core.add_path('/dev/null')
 
 # Outputs
-core.set_output('name', 'god')
+core.set_output('name', 'cssnr')
 
 # Abort
 core.set_failed("Mayday!")
@@ -110,7 +110,7 @@ myRandom = core.get_random(32)
 
 # Indent
 core.start_indent(4)
-core.info('Indented') # only works with core.info
+core.info('Indented')  # only works with core.info
 core.end_indent()
 ```
 
@@ -136,8 +136,6 @@ If you are experiencing an issue/bug or getting unexpected results, you can:
 Currently, the best way to contribute to this project is to star this project on GitHub, open a
 [feature request](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests)
 or report any [issues](https://github.com/cssnr/actions-tools/issues) you find.
-
-However, PRs are welcome; see the [CONTRIBUTING.md](CONTRIBUTING.md).
 
 Additionally, you can support other GitHub Actions I have published:
 
