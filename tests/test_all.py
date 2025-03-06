@@ -9,6 +9,7 @@ os.environ["INPUT_TEST"] = " TRUE "
 os.environ["GITHUB_OUTPUT"] = os.environ.get("GITHUB_OUTPUT") or "output.txt"
 os.environ["GITHUB_ENV"] = os.environ.get("GITHUB_ENV") or "output.txt"
 os.environ["GITHUB_PATH"] = os.environ.get("GITHUB_PATH") or "output.txt"
+os.environ["GITHUB_STATE"] = os.environ.get("GITHUB_STATE") or "output.txt"
 os.environ["GITHUB_STEP_SUMMARY"] = os.environ.get("GITHUB_STEP_SUMMARY") or "output.txt"
 
 
@@ -30,9 +31,10 @@ def test_print():
     core.info("::warning::Just kidding")
     core.start_commands()
     with core.with_group("With Group") as p:
-        print("with group")
+        core.info("with group")
         p("core.info")
-    print("no group")
+    core.info("no group")
+    core.command("debug", "test")
 
 
 def test_outputs():
@@ -40,6 +42,8 @@ def test_outputs():
     core.set_env("test", "value")
     core.summary("test")
     core.add_path("/dev/null")
+    core.set_state("STATE_test", "value")
+    os.environ["STATE_test"] = "value"
 
 
 def test_inputs():
@@ -54,4 +58,6 @@ def test_inputs():
 
 
 def test_getters():
+    assert core.get_state("STATE_test") == "value"
     assert len(core.get_random(20)) == 20
+    assert not core.is_debug()

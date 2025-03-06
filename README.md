@@ -60,7 +60,7 @@ myBoolean = core.get_input('myBoolean', boolean=1)
 myList = core.get_input('myList', split="[,|\n]")
 
 # Logging
-core.info("info") # alias for print
+core.info("info")  # alias for print
 core.debug("debug")
 
 # Annotations
@@ -83,6 +83,10 @@ core.summary('## Test Action')
 # Environment
 core.set_env('VAR', 'value')
 
+# State
+name = core.set_state('VAR', 'value')
+value = core.get_state('VAR')
+
 # System Path
 core.add_path('/dev/null')
 
@@ -97,6 +101,9 @@ Functionality new in actions-tools
 
 ```python
 from actions import core
+
+# Commands
+core.command('warning', 'Warned!')
 
 # Random
 myRandom = core.get_random(32)

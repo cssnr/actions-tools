@@ -3,7 +3,7 @@ import random
 import re
 import string
 from contextlib import contextmanager
-from typing import Union
+from typing import Optional, Union
 
 
 # https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/workflow-commands-for-github-actions
@@ -19,28 +19,28 @@ _endtoken = ""
 # Core
 
 
-def debug(message: str):
-    print(f"::debug::{message}")
+def debug(message: str, *args, **kwargs):
+    print(f"::debug::{message}", *args, **kwargs)
 
 
-def info(message: str, **kwargs):
-    print(" " * _indent + message, **kwargs)
+def info(message: str, *args, **kwargs):
+    print(" " * _indent + message, *args, **kwargs)
 
 
-def notice(message: str):
-    print(f"::notice::{message}")
+def notice(message: str, *args, **kwargs):
+    print(f"::notice::{message}", *args, **kwargs)
 
 
-def warn(message: str):
-    print(f"::warning::{message}")
+def warn(message: str, *args, **kwargs):
+    print(f"::warning::{message}", *args, **kwargs)
 
 
-def error(message: str):
-    """
-    TODO: Add error options
-    https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/workflow-commands-for-github-actions#setting-an-error-message
-    """
-    print(f"::error::{message}")
+def error(message: str, *args, **kwargs):
+    print(f"::error::{message}", *args, **kwargs)
+
+
+def is_debug() -> bool:
+    return bool(os.getenv("RUNNER_DEBUG"))
 
 
 def set_failed(message: str):
@@ -91,16 +91,31 @@ def set_output(output: str, value: str):
         print(f"{output}={value}", file=f)
 
 
-def set_env(var: str, value: str):
+def set_env(name: str, value: str):
     with open(os.environ["GITHUB_ENV"], "a") as f:
         # noinspection PyTypeChecker
-        print(f"{var}={value}", file=f)
+        print(f"{name}={value}", file=f)
 
 
 def add_path(path: str):
     with open(os.environ["GITHUB_PATH"], "a") as f:
         # noinspection PyTypeChecker
         print(path, file=f)
+
+
+def set_state(name: str, value: str) -> str:
+    if name.startswith("STATE_"):
+        name = name[6:]
+    with open(os.environ["GITHUB_STATE"], "a") as f:
+        # noinspection PyTypeChecker
+        print(f"{name}={value}", file=f)
+    return f"STATE_{name}"
+
+
+def get_state(name: str) -> str:
+    if name.startswith("STATE_"):
+        name = name[6:]
+    return os.getenv(f"STATE_{name}", "")
 
 
 def summary(text: str, nlc=1):
@@ -130,7 +145,7 @@ def get_input(name: str, req=False, low=False, strip=True, boolean=False, split=
     :param split: str: To Split
     :return: Union[str, bool, list]
     """
-    value = os.environ.get(f"INPUT_{name.upper()}", "")
+    value = os.getenv(f"INPUT_{name.upper()}", "")
     if boolean:
         value = value.strip().lower()
         if req and value not in true + false:
@@ -160,6 +175,10 @@ def _get_str_value(value, low=False, strip=True):
 
 
 # Additional
+
+
+def command(name: str, value: Optional[str] = ""):
+    print(f"::{name}::{value}")
 
 
 def get_random(length: int = 16):
