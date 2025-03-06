@@ -61,16 +61,21 @@ myList = core.get_input('myList', split="[,|\n]")
 
 # Logging
 core.info("info") # alias for print
+core.debug("debug")
 
 # Annotations
-core.debug("debug")
+core.notice("notice")
 core.warn("warn")
 core.error("error")
 
 # Blocks
 core.start_group("Test")
-core.info('This folded.')
+core.info('This is folded.')
 core.end_group()
+
+with core.with_group("Test") as info:
+    info('This is folded.')
+    core.info('Also folded.')
 
 # Summary
 core.summary('## Test Action')

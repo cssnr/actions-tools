@@ -29,6 +29,10 @@ def test_print():
     core.stop_commands()
     core.info("::warning::Just kidding")
     core.start_commands()
+    with core.with_group("With Group") as p:
+        print("with group")
+        p("core.info")
+    print("no group")
 
 
 def test_outputs():

@@ -2,6 +2,7 @@ import os
 import random
 import re
 import string
+from contextlib import contextmanager
 from typing import Union
 
 
@@ -59,6 +60,15 @@ def end_group():
     print("::endgroup::")
 
 
+@contextmanager
+def with_group(title: str):
+    print(f"::group::{title}")
+    try:
+        yield info
+    finally:
+        print("::endgroup::")
+
+
 def stop_commands(endtoken: str = ""):
     global _endtoken
     if not endtoken:
@@ -100,7 +110,7 @@ def summary(text: str, nlc=1):
     :param nlc:int: New Line Count
     :return:
     """
-    new_lines = "\n" * nlc
+    new_lines = os.linesep * nlc
     with open(os.environ["GITHUB_STEP_SUMMARY"], "a") as f:
         # noinspection PyTypeChecker
         print(f"{text}{new_lines}", file=f)
