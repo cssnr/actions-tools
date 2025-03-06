@@ -60,29 +60,38 @@ myBoolean = core.get_input('myBoolean', boolean=1)
 myList = core.get_input('myList', split="[,|\n]")
 
 # Logging
-core.info("info") # alias for print
+core.info("info")  # alias for print
+core.debug("debug")
 
 # Annotations
-core.debug("debug")
+core.notice("notice")
 core.warn("warn")
 core.error("error")
 
 # Blocks
 core.start_group("Test")
-core.info('This folded.')
+core.info('This is folded.')
 core.end_group()
+
+with core.with_group("Test") as info:
+    info('This is folded.')
+    core.info('Also folded.')
 
 # Summary
 core.summary('## Test Action')
 
 # Environment
-core.set_env('VAR', 'value')
+core.set_env('NAME', 'value')
+
+# State
+stateName = core.set_state('NAME', 'value')
+stateValue = core.get_state('NAME')
 
 # System Path
 core.add_path('/dev/null')
 
 # Outputs
-core.set_output('name', 'god')
+core.set_output('name', 'cssnr')
 
 # Abort
 core.set_failed("Mayday!")
@@ -93,12 +102,15 @@ Functionality new in actions-tools
 ```python
 from actions import core
 
+# Commands
+core.command('warning', 'Warned!')
+
 # Random
 myRandom = core.get_random(32)
 
 # Indent
 core.start_indent(4)
-core.info('Indented') # only works with core.info
+core.info('Indented')  # only works with core.info
 core.end_indent()
 ```
 
@@ -124,8 +136,6 @@ If you are experiencing an issue/bug or getting unexpected results, you can:
 Currently, the best way to contribute to this project is to star this project on GitHub, open a
 [feature request](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests)
 or report any [issues](https://github.com/cssnr/actions-tools/issues) you find.
-
-However, PRs are welcome; see the [CONTRIBUTING.md](CONTRIBUTING.md).
 
 Additionally, you can support other GitHub Actions I have published:
 
