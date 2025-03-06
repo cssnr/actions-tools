@@ -6,6 +6,7 @@ from actions import core
 
 
 os.environ["INPUT_TEST"] = " TRUE "
+os.environ["INPUT_FALSE"] = " untrue "
 os.environ["GITHUB_OUTPUT"] = os.environ.get("GITHUB_OUTPUT") or "output.txt"
 os.environ["GITHUB_ENV"] = os.environ.get("GITHUB_ENV") or "output.txt"
 os.environ["GITHUB_PATH"] = os.environ.get("GITHUB_PATH") or "output.txt"
@@ -53,8 +54,11 @@ def test_inputs():
     assert core.get_input("test", boolean=True)
     with pytest.raises(ValueError):
         core.get_input("asdf", boolean=True, req=True)
+    with pytest.raises(ValueError):
+        core.get_input("asdf", req=True)
     assert isinstance(core.get_input("test", split="\n"), list)
     assert len(core.get_input("test", split="\n")) == 1
+    assert not core.get_input("false", boolean=True)
 
 
 def test_getters():
