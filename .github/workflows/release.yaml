@@ -8,8 +8,8 @@ jobs:
   build:
     name: "Build"
     uses: ./.github/workflows/build.yaml
-    permissions:
-      contents: write
+    #permissions:
+    #  contents: write
     with:
       name: release
 
@@ -40,7 +40,7 @@ jobs:
           ls -lAh dist
 
       - name: "Upload to Release"
-        if: ${{ github.event_name == 'release' }}
+        #if: ${{ github.event_name == 'release' }}
         uses: svenstaro/upload-release-action@v2
         with:
           overwrite: true
@@ -48,7 +48,7 @@ jobs:
           file: dist/*
 
       - name: "Publish to Test PyPI"
-        if: ${{ github.event.release.prerelease }}
+        #if: ${{ github.event.release.prerelease }}
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           repository-url: https://test.pypi.org/legacy/
@@ -57,6 +57,14 @@ jobs:
         if: ${{ !github.event.release.prerelease }}
         uses: pypa/gh-action-pypi-publish@release/v1
 
+      - name: "Update Latest Tag"
+        if: ${{ !github.event.release.prerelease }}
+        uses: cssnr/update-version-tags-action@v1
+        with:
+          major: false
+          minor: false
+          tags: latest
+
       #- name: "Update Release Notes"
       #  run: |
-      #    echo TODO: update release notes with useful shit
+      #    echo update release notes with useful shit
