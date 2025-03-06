@@ -16,13 +16,13 @@
 
 - [Install](#Install)
 - [Usage](#Usage)
-- [Development](#Development)
+- [Support](#Support)
 - [Contributing](#Contributing)
-
-GitHub Actions Tools for Python.
 
 > [!WARNING]  
 > This project is in development and is NOT stable!
+
+GitHub Actions Tools for Python.
 
 ## Install
 
@@ -39,6 +39,12 @@ git clone https://github.com/cssnr/actions-tools
 python -m pip install -e actions-tools
 ```
 
+Uninstall:
+
+```shell
+python -m pip uninstall actions-tools
+```
+
 ## Usage
 
 Functionality from @actions/toolkit
@@ -47,11 +53,17 @@ Functionality from @actions/toolkit
 from actions import core
 
 # Input
-name = core.get_input('name')
+myStr = core.get_input('myStr')
+myLowerString = core.get_input('myLowerStr', low=1)
+myRequiredStr = core.get_input('myRequiredStr', req=1)
+myBoolean = core.get_input('myBoolean', boolean=1)
+myList = core.get_input('myList', split="[,|\n]")
 
 # Logging
+core.info("info") # alias for print
+
+# Annotations
 core.debug("debug")
-core.info("info") # print
 core.warn("warn")
 core.error("error")
 
@@ -63,8 +75,13 @@ core.end_group()
 # Summary
 core.summary('## Test Action')
 
-# Output
+# Environment
 core.set_env('VAR', 'value')
+
+# System Path
+core.add_path('/dev/null')
+
+# Outputs
 core.set_output('name', 'god')
 
 # Abort
@@ -76,64 +93,39 @@ Functionality new in actions-tools
 ```python
 from actions import core
 
+# Random
+myRandom = core.get_random(32)
+
 # Indent
 core.start_indent(4)
 core.info('Indented') # only works with core.info
 core.end_indent()
 ```
 
-# Development
+# Support
 
-### Install
+For general help or to request a feature, see:
 
-Install the package from source:
+- Q&A Discussion: https://github.com/cssnr/actions-tools/discussions/categories/q-a
+- Request a Feature: https://github.com/cssnr/actions-tools/discussions/categories/feature-requests
+- Chat with us on Discord: https://discord.gg/wXy6m2X8wY
 
-```shell
-python -m pip install -U pip
-python -m pip install -Ur requirements.txt
-python -m pip install -e .
-```
+If you are experiencing an issue/bug or getting unexpected results, you can:
 
-Prettier is used to format yaml, json and md.
-
-```shell
-npm install -g prettier
-```
-
-To Uninstall:
-
-```shell
-python -m pip uninstall actions-tools
-```
-
-### Test
-
-First [Install](#Install), then run:
-
-```shell
-coverage run -m pytest
-coverage report -m
-```
-
-### Building
-
-Build the project locally:
-
-```shell
-python -m pip install -U pip
-python -m pip install -Ur requirements.txt
-python -m pip build
-```
-
-Install the built package:
-
-```shell
-python -m pip install dist/actions_tools-0.0.1-py3-none-any.whl
-```
+- Report an Issue: https://github.com/cssnr/actions-tools/issues
+- Provide General Feedback: [https://cssnr.github.io/feedback/](https://cssnr.github.io/feedback/?app=actions-tools)
+- Chat with us on Discord: https://discord.gg/wXy6m2X8wY
 
 # Contributing
 
-Currently, the best way to contribute to this project is to star this project on GitHub.
+> [!TIP]
+> See the [CONTRIBUTING.md](CONTRIBUTING.md) for instructions on testing and building.
+
+Currently, the best way to contribute to this project is to star this project on GitHub, open a
+[feature request](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests)
+or report any [issues](https://github.com/cssnr/actions-tools/issues) you find.
+
+However, PRs are welcome; see the [CONTRIBUTING.md](CONTRIBUTING.md).
 
 Additionally, you can support other GitHub Actions I have published:
 
