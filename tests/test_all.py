@@ -31,7 +31,7 @@ def test_print():
     core.stop_commands()
     core.info("::warning::Just kidding")
     core.start_commands()
-    with core.with_group("With Group") as p:
+    with core.group("Title") as p:
         core.info("with group")
         p("core.info")
     core.info("no group")

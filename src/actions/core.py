@@ -61,7 +61,7 @@ def end_group():
 
 
 @contextmanager
-def with_group(title: str):
+def group(title: str):
     print(f"::group::{title}")
     try:
         yield info

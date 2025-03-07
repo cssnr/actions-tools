@@ -54,9 +54,9 @@ Functionality from @actions/toolkit
 from actions import core
 
 # Input
-myString = core.get_input('myString')
-myBoolean = core.get_bool('myBoolean')
-myList = core.get_list('myList')
+in_str = core.get_input('string')
+in_bool = core.get_bool('boolean')
+in_list = core.get_list('list')
 
 # Logging
 core.info("info")  # alias for print
@@ -68,12 +68,12 @@ core.warn("warn")
 core.error("error")
 
 # Blocks
-core.start_group("Test")
+core.start_group("Title")
 core.info('This is folded.')
 core.end_group()
 
-with core.with_group("Test") as info:
-    info('This is folded.')
+with core.group("Title") as p:
+    p('This is folded.')
     core.info('Also folded.')
 
 # Summary
@@ -83,8 +83,8 @@ core.summary('## Test Action')
 core.set_env('VAR_NAME', 'value')
 
 # State
-stateName = core.set_state('name', 'value')
-stateValue = core.get_state('name')
+name = core.set_state('name', 'value')
+value = core.get_state('name')
 
 # System Path
 core.add_path('/dev/null')
