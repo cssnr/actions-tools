@@ -42,7 +42,7 @@ jobs:
           set -e
           echo github.ref_name: "${{ github.ref_name }}"
           ls -lAh dist
-          ls dist | grep -- "-${{ github.ref_name }}-"
+          ls dist | grep -- "-${{ github.ref_name }}-" > /dev/null
 
       - name: "Upload to Release"
         uses: svenstaro/upload-release-action@v2

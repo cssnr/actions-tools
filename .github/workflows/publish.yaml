@@ -4,8 +4,12 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: "Tag Name (blank for latest)"
+        description: "Release Tag (blank for latest)"
         type: string
+      latest:
+        description: "Update latest tag."
+        type: boolean
+        default: true
 
 env:
   latest: ${{ inputs.tag == '' && 'true' || 'false' }}
@@ -32,6 +36,7 @@ jobs:
         run: |
           echo inputs.tag: ${{ inputs.tag }}
           echo env.latest: ${{ env.latest }}
+          echo inputs.latest: ${{ inputs.latest }}
 
       - name: "Download Release"
         uses: robinraju/release-downloader@v1
@@ -52,7 +57,7 @@ jobs:
           results="$(ls -lAh ${LS_DIR}/* | awk '{print $9" - "$5}')"
           markdown='Artifacts:\n```text\n'"${results}"'\n```'
           echo -e "${markdown}" >> $GITHUB_STEP_SUMMARY
-          ls ${LS_DIR} | grep -- "-${TAG_NAME}-"
+          ls ${LS_DIR} | grep -- "-${TAG_NAME}-" > /dev/null
 
       - name: "Verify Input Tag"
         if: ${{ inputs.tag }}
@@ -83,6 +88,7 @@ jobs:
           echo -e "${markdown}" >> $GITHUB_STEP_SUMMARY
 
       - name: "Update Latest Tag"
+        if: ${{ inputs.latest }}
         uses: cssnr/update-version-tags-action@v1
         continue-on-error: true
         with:
