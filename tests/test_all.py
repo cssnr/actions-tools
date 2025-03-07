@@ -31,7 +31,7 @@ def test_print():
     core.stop_commands()
     core.info("::warning::Just kidding")
     core.start_commands()
-    with core.with_group("With Group") as p:
+    with core.group("Title") as p:
         core.info("with group")
         p("core.info")
     core.info("no group")
@@ -51,14 +51,16 @@ def test_inputs():
     assert core.get_input("test") == os.environ["INPUT_TEST"].strip()
     assert core.get_input("test", low=True) == os.environ["INPUT_TEST"].strip().lower()
     assert core.get_input("test", strip=False) == os.environ["INPUT_TEST"]
-    assert core.get_input("test", boolean=True)
-    with pytest.raises(ValueError):
-        core.get_input("asdf", boolean=True, req=True)
+    assert core.get_bool("test")
     with pytest.raises(ValueError):
         core.get_input("asdf", req=True)
-    assert isinstance(core.get_input("test", split="\n"), list)
-    assert len(core.get_input("test", split="\n")) == 1
-    assert not core.get_input("false", boolean=True)
+    with pytest.raises(ValueError):
+        core.get_bool("asdf", req=True)
+    with pytest.raises(ValueError):
+        core.get_list("asdf", req=True)
+    assert isinstance(core.get_list("test", split="\n"), list)
+    assert len(core.get_list("test", split="\n")) == 1
+    assert not core.get_bool("false")
 
 
 def test_getters():

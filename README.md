@@ -54,11 +54,9 @@ Functionality from @actions/toolkit
 from actions import core
 
 # Input
-myStr = core.get_input('myStr')
-myLowerString = core.get_input('myLowerStr', low=1)
-myRequiredStr = core.get_input('myRequiredStr', req=1)
-myBoolean = core.get_input('myBoolean', boolean=1)
-myList = core.get_input('myList', split="[,|\n]")
+my_str = core.get_input('string')
+my_bool = core.get_bool('boolean')
+my_list = core.get_list('list')
 
 # Logging
 core.info("info")  # alias for print
@@ -70,12 +68,12 @@ core.warn("warn")
 core.error("error")
 
 # Blocks
-core.start_group("Test")
+core.start_group("Title")
 core.info('This is folded.')
 core.end_group()
 
-with core.with_group("Test") as info:
-    info('This is folded.')
+with core.group("Title") as p:
+    p('This is folded.')
     core.info('Also folded.')
 
 # Summary
@@ -85,8 +83,8 @@ core.summary('## Test Action')
 core.set_env('NAME', 'value')
 
 # State
-stateName = core.set_state('NAME', 'value')
-stateValue = core.get_state('NAME')
+name = core.set_state('name', 'value')
+value = core.get_state('name')
 
 # System Path
 core.add_path('/dev/null')
@@ -107,7 +105,7 @@ from actions import core
 core.command('warning', 'Warned!')
 
 # Random
-myRandom = core.get_random(32)
+rand = core.get_random(32)
 
 # Indent
 core.start_indent(4)

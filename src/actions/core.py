@@ -3,14 +3,14 @@ import random
 import re
 import string
 from contextlib import contextmanager
-from typing import Optional, Union
+from typing import List, Optional
 
 
 # https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/workflow-commands-for-github-actions
 
 
-true = ["y", "yes", "true", "on"]
-false = ["n", "no", "false", "off"]
+_true = ["y", "yes", "true", "on"]
+_false = ["n", "no", "false", "off"]
 
 _indent = 0
 _endtoken = ""
@@ -61,7 +61,7 @@ def end_group():
 
 
 @contextmanager
-def with_group(title: str):
+def group(title: str):
     print(f"::group::{title}")
     try:
         yield info
@@ -134,39 +134,58 @@ def summary(text: str, nlc=1):
 # Inputs
 
 
-def get_input(name: str, req=False, low=False, strip=True, boolean=False, split="") -> Union[str, bool, list]:
+def get_input(name: str, req=False, low=False, strip=True) -> str:
     """
     Get Input by Name
     :param name: str: Input Name
     :param req: bool: If Required
     :param low: bool: To Lower
     :param strip: bool: To Strip
-    :param boolean: bool: If Boolean
-    :param split: str: To Split
-    :return: Union[str, bool, list]
+    :return: str
     """
     value = os.getenv(f"INPUT_{name.upper()}", "")
-    if boolean:
-        value = value.strip().lower()
-        if req and value not in true + false:
-            raise ValueError(f"Error Validating a Required Boolean Input: {name}")
-        if value in ["y", "yes", "true", "on"]:
-            return True
-        return False
-
-    if split:
-        result = []
-        for x in re.split(split, value):
-            result.append(_get_str_value(x, low, strip))
-        return result
-
-    value = _get_str_value(value, low, strip)
+    value = _get_str_value(value, strip, low)
     if req and not value:
-        raise ValueError(f"Error Parsing a Required Input: {name}")
+        raise ValueError(f"Error Parsing Required Input: {name} -> {value}")
     return value
 
 
-def _get_str_value(value, low=False, strip=True):
+def get_list(name: str, split: str = "[,|\n]", req=False, low=False, strip=True) -> List[str]:
+    """
+    Get Input by Name
+    :param name: str: Input Name
+    :param split: str: Split Regex
+    :param req: bool: If Required
+    :param strip: bool: To Strip
+    :param low: bool: To Lowercase
+    :return: list
+    """
+    value = os.getenv(f"INPUT_{name.upper()}", "")
+    value = _get_str_value(value, strip, low)
+    if req and not value.strip():
+        raise ValueError(f"Error Parsing Required Input: {name} -> {value}")
+    results = []
+    for x in re.split(split, value):
+        results.append(_get_str_value(x, strip, low))
+    return results
+
+
+def get_bool(name: str, req=False) -> bool:
+    """
+    Get Boolean Input by Name
+    :param name: str: Input Name
+    :param req: bool: If Required
+    :return: bool
+    """
+    value = os.getenv(f"INPUT_{name.upper()}", "").strip().lower()
+    if req and value not in _true + _false:
+        raise ValueError(f"Error Parsing Required Input: {name} -> {value}")
+    if value in _true:
+        return True
+    return False
+
+
+def _get_str_value(value, strip=True, low=False) -> str:
     if strip:
         value = value.strip()
     if low:
@@ -181,7 +200,7 @@ def command(name: str, value: Optional[str] = ""):
     print(f"::{name}::{value}")
 
 
-def get_random(length: int = 16):
+def get_random(length: int = 16) -> str:
     r = random.choices(string.ascii_uppercase + string.ascii_lowercase + string.digits, k=length)  # NOSONAR
     return "".join(r)
 
