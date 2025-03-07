@@ -39,11 +39,13 @@ jobs:
           python -m build
 
       - name: "List Artifacts"
+        env:
+          LS_DIR: ${{ inputs.path }}
         run: |
-          ls -lAh ${{ inputs.path }}/*
-          results="$(ls -lAh ${{ inputs.path }}/* | awk '{print $9" - "$5}')"
-          markdown='Build Artifacts:\n```text\n'"${results}"'\n```'
-          echo -en "${markdown}" >> $GITHUB_STEP_SUMMARY
+          ls -lAh ${LS_DIR}/*
+          results="$(ls -lAh ${LS_DIR}/* | awk '{print $9" - "$5}')"
+          markdown='Artifacts:\n```text\n'"${results}"'\n```'
+          echo -e "${markdown}" >> $GITHUB_STEP_SUMMARY
 
       - name: "Upload to Actions"
         uses: actions/upload-artifact@v4
