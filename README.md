@@ -80,11 +80,11 @@ with core.with_group("Test") as info:
 core.summary('## Test Action')
 
 # Environment
-core.set_env('NAME', 'value')
+core.set_env('VAR_NAME', 'value')
 
 # State
-stateName = core.set_state('NAME', 'value')
-stateValue = core.get_state('NAME')
+stateName = core.set_state('name', 'value')
+stateValue = core.get_state('name')
 
 # System Path
 core.add_path('/dev/null')
