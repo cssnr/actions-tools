@@ -60,6 +60,13 @@ jobs:
       #  run: |
       #    echo update release notes with useful shit
 
+      #- name: "Trigger Publish Workflow"
+      #  if: ${{ !github.event.release.prerelease }}
+      #  uses: benc-uk/workflow-dispatch@v1
+      #  with:
+      #    workflow: publish.yaml
+      #    inputs: '{"tag": "${{ github.ref_name }}"}'
+
       - name: "Send Failure Notification"
         if: ${{ failure() }}
         uses: sarisia/actions-status-discord@v1
