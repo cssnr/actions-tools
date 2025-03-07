@@ -1,0 +1,99 @@
+name: "Publish"
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag (default: latest)"
+        default: ""
+
+jobs:
+  publish:
+    name: "Publish"
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+      id-token: write
+    environment:
+      name: pypi
+      url: https://pypi.org/p/actions-tools
+
+    steps:
+      #- name: "Debug event.json"
+      #  if: ${{ always() }}
+      #  run: |
+      #    cat "${GITHUB_EVENT_PATH}"
+
+      - name: "Debug"
+        run: |
+          echo tag: ${{ inputs.tag }}
+          echo latest: ${{ inputs.tag == '' && true || false }}
+
+      - name: "Download Release"
+        uses: robinraju/release-downloader@v1
+        id: release
+        with:
+          tag: ${{ inputs.tag }}
+          latest: ${{ inputs.tag == '' && true || false }}
+          fileName: "*"
+          out-file-path: "dist"
+
+      - name: "List Artifacts"
+        env:
+          LS_DIR: "dist"
+        run: |
+          set -e
+          ls -lAh ${LS_DIR}/*
+          results="$(ls -lAh ${LS_DIR}/* | awk '{print $9" - "$5}')"
+          markdown='Artifacts:\n```text\n'"${results}"'\n```'
+          echo -e "${markdown}" >> $GITHUB_STEP_SUMMARY
+          ls dist | grep -- "-${{ steps.release.outputs.tag_name }}-"
+
+      - name: "Verify Input Tag"
+        if: ${{ inputs.tag }}
+        run: |
+          set -e
+          if [[ "${{ inputs.tag }}" != "${{ steps.release.outputs.tag_name }}" ]];then
+            echo "Input tag ${{ inputs.tag }} != downloaded tag: ${{ steps.release.outputs.tag_name }}"
+            exit 1
+          fi
+
+      - name: "Publish to PyPI"
+        id: publish
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          attestations: false
+
+      - name: "Summary"
+        if: ${{ always() }}
+        env:
+          OUTCOME: ${{ steps.publish.outcome }}
+          TAG: ${{ steps.release.outputs.tag_name }}
+          URL: "https://pypi.org/p/actions-tools"
+        run: |
+          if [ ${OUTCOME} == "success" ];then
+            markdown="🎉 Published Version: \`${TAG}\`\n\n[${URL}](${URL})"
+          else
+            markdown="⛔ Error Publishing Version: \`${TAG}\`"
+          fi
+          echo -e "${markdown}" >> $GITHUB_STEP_SUMMARY
+
+      - name: "Update Latest Tag"
+        if: ${{ !github.event.release.prerelease }}
+        uses: cssnr/update-version-tags-action@v1
+        continue-on-error: true
+        with:
+          major: false
+          minor: false
+          tags: latest
+
+      #- name: "Update Release Notes"
+      #  run: |
+      #    echo update release notes with useful shit
+
+      - name: "Send Failure Notification"
+        if: ${{ failure() }}
+        uses: sarisia/actions-status-discord@v1
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
