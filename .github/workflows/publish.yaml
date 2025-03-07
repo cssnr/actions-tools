@@ -4,8 +4,11 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: "Tag (default: latest)"
-        default: ""
+        description: "Tag Name (blank for latest)"
+        type: string
+
+env:
+  latest: ${{ inputs.tag == '' && 'true' || 'false' }}
 
 jobs:
   publish:
@@ -27,28 +30,29 @@ jobs:
 
       - name: "Debug"
         run: |
-          echo tag: ${{ inputs.tag }}
-          echo latest: ${{ inputs.tag == '' && true || false }}
+          echo inputs.tag: ${{ inputs.tag }}
+          echo env.latest: ${{ env.latest }}
 
       - name: "Download Release"
         uses: robinraju/release-downloader@v1
         id: release
         with:
           tag: ${{ inputs.tag }}
-          latest: ${{ inputs.tag == '' && true || false }}
+          latest: ${{ env.latest }}
           fileName: "*"
           out-file-path: "dist"
 
       - name: "List Artifacts"
         env:
           LS_DIR: "dist"
+          TAG_NAME: ${{ steps.release.outputs.tag_name }}
         run: |
           set -e
           ls -lAh ${LS_DIR}/*
           results="$(ls -lAh ${LS_DIR}/* | awk '{print $9" - "$5}')"
           markdown='Artifacts:\n```text\n'"${results}"'\n```'
           echo -e "${markdown}" >> $GITHUB_STEP_SUMMARY
-          ls dist | grep -- "-${{ steps.release.outputs.tag_name }}-"
+          ls ${LS_DIR} | grep -- "-${TAG_NAME}-"
 
       - name: "Verify Input Tag"
         if: ${{ inputs.tag }}
@@ -68,19 +72,17 @@ jobs:
       - name: "Summary"
         if: ${{ always() }}
         env:
-          OUTCOME: ${{ steps.publish.outcome }}
-          TAG: ${{ steps.release.outputs.tag_name }}
           URL: "https://pypi.org/p/actions-tools"
+          TAG_NAME: ${{ steps.release.outputs.tag_name }}
         run: |
-          if [ ${OUTCOME} == "success" ];then
-            markdown="🎉 Published Version: \`${TAG}\`\n\n[${URL}](${URL})"
+          if [ "${{ steps.publish.outcome }}" == "success" ];then
+            markdown="🎉 Published Version: \`${TAG_NAME}\`\n\n[${URL}](${URL})"
           else
-            markdown="⛔ Error Publishing Version: \`${TAG}\`"
+            markdown="⛔ Error Publishing Version: \`${TAG_NAME}\`"
           fi
           echo -e "${markdown}" >> $GITHUB_STEP_SUMMARY
 
       - name: "Update Latest Tag"
-        if: ${{ !github.event.release.prerelease }}
         uses: cssnr/update-version-tags-action@v1
         continue-on-error: true
         with:
