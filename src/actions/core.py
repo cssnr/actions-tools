@@ -167,8 +167,6 @@ def get_list(name: str, split: str = "[,|\n]", req=False, low=False, strip=True)
     results = []
     for x in re.split(split, value):
         results.append(_get_str_value(x, strip, low))
-    if req and not results:
-        raise ValueError(f"Error Parsing Required Input: {name} -> {value}")
     return results
 
 
