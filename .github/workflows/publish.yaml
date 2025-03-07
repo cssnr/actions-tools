@@ -87,6 +87,7 @@ jobs:
           major: false
           minor: false
           tags: latest
+          tag: ${{ steps.release.outputs.tag_name }}
 
       #- name: "Update Release Notes"
       #  run: |
