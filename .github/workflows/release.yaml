@@ -37,11 +37,12 @@ jobs:
           name: release
           path: dist
 
-      - name: "Debug Artifacts"
+      - name: "List Artifacts"
         run: |
-          echo GITHUB_REF_NAME: "${GITHUB_REF_NAME}"
+          set -e
           echo github.ref_name: "${{ github.ref_name }}"
           ls -lAh dist
+          ls dist | grep -- "-${{ github.ref_name }}-"
 
       - name: "Upload to Release"
         uses: svenstaro/upload-release-action@v2
@@ -59,6 +60,11 @@ jobs:
       #- name: "Update Release Notes"
       #  run: |
       #    echo update release notes with useful shit
+
+      - name: "Debug Trigger Publish Workflow"
+        if: ${{ !github.event.release.prerelease }}
+        run: |
+          echo 🚀 Miles and miles and miles...
 
       #- name: "Trigger Publish Workflow"
       #  if: ${{ !github.event.release.prerelease }}
