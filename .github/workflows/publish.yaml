@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: "Release Tag (blank for latest)"
+        description: "Release Tag (leave blank for latest)"
         type: string
       latest:
         description: "Update latest tag."
