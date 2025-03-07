@@ -54,11 +54,9 @@ Functionality from @actions/toolkit
 from actions import core
 
 # Input
-myStr = core.get_input('myStr')
-myLowerString = core.get_input('myLowerStr', low=1)
-myRequiredStr = core.get_input('myRequiredStr', req=1)
-myBoolean = core.get_input('myBoolean', boolean=1)
-myList = core.get_input('myList', split="[,|\n]")
+myString = core.get_input('myString')
+myBoolean = core.get_bool('myBoolean')
+myList = core.get_list('myList')
 
 # Logging
 core.info("info")  # alias for print
