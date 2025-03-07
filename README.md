@@ -54,9 +54,9 @@ Functionality from @actions/toolkit
 from actions import core
 
 # Input
-in_str = core.get_input('string')
-in_bool = core.get_bool('boolean')
-in_list = core.get_list('list')
+my_str = core.get_input('string')
+my_bool = core.get_bool('boolean')
+my_list = core.get_list('list')
 
 # Logging
 core.info("info")  # alias for print
@@ -80,7 +80,7 @@ with core.group("Title") as p:
 core.summary('## Test Action')
 
 # Environment
-core.set_env('VAR_NAME', 'value')
+core.set_env('NAME', 'value')
 
 # State
 name = core.set_state('name', 'value')
@@ -105,7 +105,7 @@ from actions import core
 core.command('warning', 'Warned!')
 
 # Random
-myRandom = core.get_random(32)
+rand = core.get_random(32)
 
 # Indent
 core.start_indent(4)
