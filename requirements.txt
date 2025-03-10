@@ -10,3 +10,4 @@ pytest
 ruff
 setuptools
 twine
+yamllint
