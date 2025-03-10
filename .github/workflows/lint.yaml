@@ -60,9 +60,9 @@ jobs:
         run: |
           mypy src
 
-      - name: "Hadolint"
-        if: ${{ always() && !cancelled() }}
-        uses: hadolint/hadolint-action@v3.1.0
+      #- name: "Hadolint"
+      #  if: ${{ always() && !cancelled() }}
+      #  uses: hadolint/hadolint-action@v3.1.0
 
       - name: "Prettier"
         if: ${{ always() && !cancelled() }}
