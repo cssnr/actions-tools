@@ -129,7 +129,7 @@ If you are experiencing an issue/bug or getting unexpected results, you can:
 
 # Contributing
 
-> [!TIP]
+> [!TIP]  
 > See the [CONTRIBUTING.md](CONTRIBUTING.md) for instructions on testing and building.
 
 Currently, the best way to contribute to this project is to star this project on GitHub, open a
