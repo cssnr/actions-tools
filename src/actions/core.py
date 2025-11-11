@@ -6,7 +6,7 @@ import string
 from contextlib import contextmanager
 from typing import List, Optional
 
-from yaml import Loader, load
+from yaml import Loader, YAMLError, load
 
 
 # from . import context as ctx
@@ -196,14 +196,14 @@ def get_dict(name: str, req=False) -> dict:
     value = _get_input_str(name, True)
     try:
         return json.loads(value)
-    except Exception as e:
-        print(f"::debug::{e}")
+    except json.JSONDecodeError:
+        pass
     try:
         res = load(value, Loader=Loader)
         if res:
             return res
-    except Exception as e:
-        print(f"::debug::{e}")
+    except YAMLError:
+        pass
     if req:
         raise ValueError(f"Error Parsing Required Input: {name} -> {repr(value)}")
     return {}
