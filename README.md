@@ -56,9 +56,16 @@ from actions import core
 
 # Input
 my_str = core.get_input('string')
+my_req = core.get_input('string', True)  # required
 my_bool = core.get_bool('boolean')
 my_list = core.get_list('list')  # -> list - split and trim
 my_data = core.get_data('name')  # -> dict - from json or yaml
+
+# Input Arguments
+my_str = core.get_input('string', req=False, strip=True)
+my_bool = core.get_bool('boolean', req=False)
+my_list = core.get_list('list', req=False, strip=True, split="[,|\n]")
+my_data = core.get_data('name', req=False)
 
 # Logging
 core.info("info")  # alias for print
@@ -95,7 +102,7 @@ core.add_path('/dev/null')
 core.set_output('name', 'cssnr')
 
 # Abort
-core.set_failed("Mayday!")
+core.set_failed("Mayday!")  # raise SystemExit
 ```
 
 Functionality new in actions-tools
@@ -104,13 +111,13 @@ Functionality new in actions-tools
 from actions import core
 
 # Commands
-core.command('warning', 'Warned!')
+core.command('warning', 'Warned!')  # core.warn()
+
+# Action Version
+version = core.get_version()  # from GITHUB_WORKFLOW_REF
 
 # Random
 rand = core.get_random(32)
-
-# Action Version
-version = core.get_version()
 
 # Indent
 core.start_indent(4)

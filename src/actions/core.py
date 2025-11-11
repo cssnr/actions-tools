@@ -137,39 +137,37 @@ def summary(text: str, nlc: int = 1):
 # Inputs
 
 
-def get_input(name: str, req: bool = False, low: bool = False, strip: bool = True) -> str:
+def get_input(name: str, req: bool = False, strip: bool = True) -> str:
     """
     Get Input by Name
     :param name: str: Input Name
     :param req: bool: If Required
-    :param low: bool: To Lower
     :param strip: bool: To Strip
     :return: str
     """
     value = os.getenv(f"INPUT_{name.upper()}", "")
-    value = _get_str_value(value, strip, low)
+    value = _get_str_value(value, strip)
     if req and not value:
         raise ValueError(f"Error Parsing Required Input: {name} -> {value}")
     return value
 
 
-def get_list(name: str, split: str = "[,|\n]", req: bool = False, low: bool = False, strip: bool = True) -> List[str]:
+def get_list(name: str, req: bool = False, strip: bool = True, split: str = "[,|\n]") -> List[str]:
     """
     Get Input by Name
     :param name: str: Input Name
-    :param split: str: Split Regex
     :param req: bool: If Required
     :param strip: bool: To Strip
-    :param low: bool: To Lowercase
+    :param split: str: Split Regex
     :return: list
     """
     value = os.getenv(f"INPUT_{name.upper()}", "")
-    value = _get_str_value(value, strip, low)
+    value = _get_str_value(value, strip)
     if req and not value.strip():
         raise ValueError(f"Error Parsing Required Input: {name} -> {value}")
     results = []
     for x in re.split(split, value):
-        results.append(_get_str_value(x, strip, low))
+        results.append(_get_str_value(x, strip))
     return results
 
 
@@ -188,11 +186,9 @@ def get_bool(name: str, req: bool = False) -> bool:
     return False
 
 
-def _get_str_value(value, strip: bool = True, low: bool = False) -> str:
+def _get_str_value(value, strip: bool = True) -> str:
     if strip:
         value = value.strip()
-    if low:
-        value = value.lower()
     return value
 
 

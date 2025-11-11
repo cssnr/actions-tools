@@ -57,23 +57,25 @@ def test_outputs():
 
 def test_inputs():
     assert core.get_input("test") == os.environ["INPUT_TEST"].strip()
-    assert core.get_input("test", low=True) == os.environ["INPUT_TEST"].strip().lower()
     assert core.get_input("test", strip=False) == os.environ["INPUT_TEST"]
+    with pytest.raises(ValueError):
+        core.get_input("asdf", True)
+
     assert core.get_bool("test")
-    with pytest.raises(ValueError):
-        core.get_input("asdf", req=True)
-    with pytest.raises(ValueError):
-        core.get_bool("asdf", req=True)
-    with pytest.raises(ValueError):
-        core.get_list("asdf", req=True)
-    assert isinstance(core.get_list("test", split="\n"), list)
-    assert len(core.get_list("test", split="\n")) == 1
     assert not core.get_bool("false")
     with pytest.raises(ValueError):
-        core.get_data("asdf", req=True)
+        core.get_bool("asdf", True)
+
+    assert isinstance(core.get_list("test", split="\n"), list)
+    assert len(core.get_list("test", split="\n")) == 1
+    with pytest.raises(ValueError):
+        core.get_list("asdf", True)
+
     assert core.get_data("data1") == {"status": "broken", "by": "ralf"}
     assert core.get_data("data2") == {"status": "broken", "by": "ralf"}
     assert core.get_data("data3") == {}
+    with pytest.raises(ValueError):
+        core.get_data("asdf", True)
 
 
 def test_getters():
