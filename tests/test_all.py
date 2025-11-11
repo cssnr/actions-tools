@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from actions import core
+from actions import core, context
 
 
 cwd = Path(__file__).resolve().parent
