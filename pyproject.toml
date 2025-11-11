@@ -5,6 +5,7 @@ description = "GitHub Actions Tools for Python"
 authors = [{ name="Shane" }]
 readme = "README.md"
 dynamic = ["version"]
+dependencies = ["PyYAML"]
 requires-python = ">=3.10"
 classifiers = [
     "Programming Language :: Python",
