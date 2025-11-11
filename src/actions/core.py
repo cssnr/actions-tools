@@ -1,3 +1,4 @@
+import json
 import os
 import random
 import re
@@ -5,8 +6,10 @@ import string
 from contextlib import contextmanager
 from typing import List, Optional
 
+from yaml import Loader, load
 
-# https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/workflow-commands-for-github-actions
+
+# https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands
 
 
 _true = ["y", "yes", "true", "on"]
@@ -120,7 +123,7 @@ def get_state(name: str) -> str:
 
 def summary(text: str, nlc=1):
     """
-    TODO: Make this its own module
+    NOTE: Make this its own module
     :param text:str: Raw Text
     :param nlc:int: New Line Count
     :return:
@@ -194,6 +197,35 @@ def _get_str_value(value, strip=True, low=False) -> str:
 
 
 # Additional
+
+
+def get_data(name: str, req=False) -> dict:
+    """
+    Get JSON/YAML Data by Name
+    :param name: str: Input Name
+    :param req: bool: If Required
+    :return: dict
+    """
+    value = os.getenv(f"INPUT_{name.upper()}", "")
+    value = _get_str_value(value)
+    try:
+        return json.loads(value)
+    except Exception as e:
+        print(f"::debug::{e}")
+    try:
+        res = load(value, Loader=Loader)
+        if res:
+            return res
+    except Exception as e:
+        print(f"::debug::{e}")
+    if req:
+        raise ValueError(f"Error Parsing Required Input: {name} -> {repr(value)}")
+    return {}
+
+
+def event(path: Optional[str] = None) -> dict:
+    with open(path or os.environ["GITHUB_EVENT_PATH"]) as f:
+        return json.load(f)
 
 
 def command(name: str, value: Optional[str] = ""):

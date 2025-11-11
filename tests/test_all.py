@@ -1,17 +1,24 @@
 import os
+from pathlib import Path
 
 import pytest
 
 from actions import core
 
 
+cwd = Path(__file__).resolve().parent
+
 os.environ["INPUT_TEST"] = " TRUE "
 os.environ["INPUT_FALSE"] = " untrue "
-os.environ["GITHUB_OUTPUT"] = os.environ.get("GITHUB_OUTPUT") or "output.txt"
-os.environ["GITHUB_ENV"] = os.environ.get("GITHUB_ENV") or "output.txt"
-os.environ["GITHUB_PATH"] = os.environ.get("GITHUB_PATH") or "output.txt"
-os.environ["GITHUB_STATE"] = os.environ.get("GITHUB_STATE") or "output.txt"
-os.environ["GITHUB_STEP_SUMMARY"] = os.environ.get("GITHUB_STEP_SUMMARY") or "output.txt"
+os.environ["INPUT_DATA1"] = "status: broken\nby: ralf"
+os.environ["INPUT_DATA2"] = '{"status": "broken", "by": "ralf"}'
+os.environ["INPUT_DATA3"] = "{asdf"
+os.environ["GITHUB_OUTPUT"] = os.environ.get("GITHUB_OUTPUT") or os.path.join(cwd, "output.txt")
+os.environ["GITHUB_ENV"] = os.environ.get("GITHUB_ENV") or os.path.join(cwd, "output.txt")
+os.environ["GITHUB_PATH"] = os.environ.get("GITHUB_PATH") or os.path.join(cwd, "output.txt")
+os.environ["GITHUB_STATE"] = os.environ.get("GITHUB_STATE") or os.path.join(cwd, "output.txt")
+os.environ["GITHUB_STEP_SUMMARY"] = os.environ.get("GITHUB_STEP_SUMMARY") or os.path.join(cwd, "output.txt")
+os.environ["GITHUB_EVENT_PATH"] = os.environ.get("GITHUB_EVENT_PATH") or os.path.join(cwd, "event.json")
 
 
 def test_print():
@@ -61,9 +68,15 @@ def test_inputs():
     assert isinstance(core.get_list("test", split="\n"), list)
     assert len(core.get_list("test", split="\n")) == 1
     assert not core.get_bool("false")
+    with pytest.raises(ValueError):
+        core.get_data("asdf", req=True)
+    assert core.get_data("data1") == {"status": "broken", "by": "ralf"}
+    assert core.get_data("data2") == {"status": "broken", "by": "ralf"}
+    assert core.get_data("data3") == {}
 
 
 def test_getters():
     assert core.get_state("STATE_test") == "value"
     assert len(core.get_random(20)) == 20
     assert not core.is_debug()
+    assert core.event()

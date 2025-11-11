@@ -31,7 +31,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: ["3.10", "3.11", "3.12", "3.13", "3.14-dev"]
+        version: ["3.11", "3.12", "3.13", "3.14"]
     name: "Test ${{ matrix.version }}"
     permissions:
       contents: read
@@ -40,10 +40,18 @@ jobs:
       - name: "Checkout"
         uses: actions/checkout@v4
 
-      #- name: "Debug event.json"
-      #  if: ${{ always() }}
-      #  run: |
-      #    cat "${GITHUB_EVENT_PATH}"
+      - name: "Debug event.json"
+        if: ${{ !github.event.act }}
+        continue-on-error: true
+        run: |
+          cat "${GITHUB_EVENT_PATH}"
+
+      - name: "Debug CTX github"
+        if: ${{ !github.event.act }}
+        continue-on-error: true
+        env:
+          GITHUB_CTX: ${{ toJSON(github) }}
+        run: echo "$GITHUB_CTX"
 
       - name: "Download Artifact"
         uses: actions/download-artifact@v4

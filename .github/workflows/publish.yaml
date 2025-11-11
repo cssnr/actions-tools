@@ -28,7 +28,8 @@ jobs:
 
     steps:
       #- name: "Debug event.json"
-      #  if: ${{ always() }}
+      #  if: ${{ !github.event.act }}
+      #  continue-on-error: true
       #  run: |
       #    cat "${GITHUB_EVENT_PATH}"
 

@@ -27,7 +27,8 @@ jobs:
 
     steps:
       #- name: "Debug event.json"
-      #  if: ${{ always() }}
+      #  if: ${{ !github.event.act }}
+      #  continue-on-error: true
       #  run: |
       #    cat "${GITHUB_EVENT_PATH}"
 
@@ -57,9 +58,11 @@ jobs:
           repository-url: https://test.pypi.org/legacy/
           attestations: false
 
-      #- name: "Update Release Notes"
-      #  run: |
-      #    echo update release notes with useful shit
+      - name: "Update Release Notes Action"
+        continue-on-error: true
+        uses: smashedr/update-release-notes-action@master
+        with:
+          location: tail
 
       - name: "Debug Trigger Publish Workflow"
         if: ${{ !github.event.release.prerelease }}
