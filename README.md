@@ -63,8 +63,9 @@ my_data = core.get_dict('dict')  # -> dict - from json or yaml
 
 # Context
 # https://docs.github.com/en/actions/reference/workflows-and-actions/variables
-event_name = context.event_name
-ref_name = context.ref_name
+core.info(f'event_name: {context.event_name}')
+core.info(f'ref_name: {context.ref_name}')
+core.info(f'runner_temp: {context.runner_temp}')
 
 # Logging
 core.info("info")  # alias for print
