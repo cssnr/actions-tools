@@ -1,37 +1,106 @@
 name: "Publish"
 
 on:
-  workflow_dispatch:
+  workflow_call:
+    inputs:
+      name:
+        description: "Artifact Name"
+        type: string
+        required: true
+      path:
+        description: "Download Path"
+        type: string
+        default: dist
+
+env:
+  url: "https://${{ github.event.release.prerelease && 'test.' || '' }}pypi.org/p/actions-tools"
+  repository-url: "https://${{ github.event.release.prerelease && 'test' || 'upload' }}.pypi.org/legacy/"
 
 jobs:
   publish:
     name: "Publish"
     runs-on: ubuntu-latest
     timeout-minutes: 5
+
     permissions:
-      contents: read
+      contents: write
       id-token: write
+
     environment:
-      name: pypi
-      url: https://pypi.org/p/actions-tools
+      name: ${{ github.event.release.prerelease && 'test' || 'pypi' }}
+      url: ${{ env.url }}
 
     steps:
-      - name: "Download Release"
-        uses: robinraju/release-downloader@v1.10
-        with:
-          fileName: "actions_tools-*"
-          out-file-path: "dist"
-          latest: true
+      - name: "Debug"
+        run: |
+          echo "tag: ${{ github.ref_name }}"
+          echo "name: ${{ github.event.release.prerelease && 'test' || 'pypi' }}"
+          echo "env.url: ${{ env.url }}"
+          echo "env.repository-url: ${{ env.repository-url }}"
 
       #- name: "Debug event.json"
+      #  if: ${{ !github.event.act }}
+      #  continue-on-error: true
       #  run: |
       #    cat "${GITHUB_EVENT_PATH}"
 
-      - name: "Debug"
-        run: |
-          echo ${GITHUB_REF_NAME}
-          ls -lAh dist
+      - name: "Debug CTX github"
+        if: ${{ !github.event.act }}
+        continue-on-error: true
+        env:
+          GITHUB_CTX: ${{ toJSON(github) }}
+        run: echo "$GITHUB_CTX"
 
-      # TODO: Verify dist and GITHUB_REF_NAME first
+      #- name: "Download Release"
+      #  uses: robinraju/release-downloader@v1
+      #  id: release
+      #  with:
+      #    tag: ${{ inputs.tag }}
+      #    latest: ${{ env.latest }}
+      #    fileName: "*"
+      #    out-file-path: "dist"
+
+      - name: "Download Artifact"
+        uses: actions/download-artifact@v6
+        with:
+          name: ${{ inputs.name }}
+          path: ${{ inputs.path }}
+
+      - name: "Verify Artifacts"
+        env:
+          path: ${{ inputs.path }}
+          tag: ${{ github.ref_name }}
+        run: |
+          ls -lAh ${path}/*
+          results="$(ls -lAh ${path}/* | awk '{print $9" - "$5}')"
+          markdown='Artifacts:\n```text\n'"${results}"'\n```'
+          echo -e "${markdown}" >> $GITHUB_STEP_SUMMARY
+          ls ${path} | grep -- "-${tag}-" > /dev/null
+
       - name: "Publish to PyPI"
+        id: publish
         uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: ${{ env.repository-url }}
+          #attestations: false
+
+      - name: "Summary"
+        if: ${{ always() }}
+        env:
+          tag: ${{ github.ref_name }}
+          url: ${{ env.url }}
+          repository-url: ${{ env.repository-url }}
+        run: |
+          if [ "${{ steps.publish.outcome }}" == "success" ];then
+            markdown="🎉 Published Version: \`${tag}\`\n\n[${url}](${url})\n\n"
+          else
+            markdown="⛔ Error Publishing Version: \`${tag}\`\n\n"
+          fi
+          markdown+="Repository URL: \`${repository-url}\`"
+          echo -e "${markdown}" >> $GITHUB_STEP_SUMMARY
+
+      - name: "Send Failure Notification"
+        if: ${{ failure() }}
+        uses: sarisia/actions-status-discord@v1
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
