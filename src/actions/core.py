@@ -75,14 +75,13 @@ def group(title: str):
 def stop_commands(endtoken: str = ""):
     global _endtoken
     if not endtoken:
-        r = random.choices(string.ascii_uppercase + string.ascii_lowercase + string.digits, k=16)  # NOSONAR
+        r = random.choices(string.ascii_uppercase + string.ascii_lowercase + string.digits, k=16)
         endtoken = "".join(r)
     _endtoken = endtoken
     print(f"::stop-commands::{_endtoken}")
 
 
 def start_commands(endtoken: str = ""):
-    # global _endtoken
     if not endtoken:
         endtoken = _endtoken
     print(f"::{endtoken}::")
@@ -90,28 +89,24 @@ def start_commands(endtoken: str = ""):
 
 def set_output(output: str, value: str):
     with open(os.environ["GITHUB_OUTPUT"], "a") as f:
-        # noinspection PyTypeChecker
-        print(f"{output}={value}", file=f)
+        print(f"{output}={value}", file=f)  # type: ignore
 
 
 def set_env(name: str, value: str):
     with open(os.environ["GITHUB_ENV"], "a") as f:
-        # noinspection PyTypeChecker
-        print(f"{name}={value}", file=f)
+        print(f"{name}={value}", file=f)  # type: ignore
 
 
 def add_path(path: str):
     with open(os.environ["GITHUB_PATH"], "a") as f:
-        # noinspection PyTypeChecker
-        print(path, file=f)
+        print(path, file=f)  # type: ignore
 
 
 def set_state(name: str, value: str) -> str:
     if name.startswith("STATE_"):
         name = name[6:]
     with open(os.environ["GITHUB_STATE"], "a") as f:
-        # noinspection PyTypeChecker
-        print(f"{name}={value}", file=f)
+        print(f"{name}={value}", file=f)  # type: ignore
     return f"STATE_{name}"
 
 
@@ -130,8 +125,7 @@ def summary(text: str, nlc=1):
     """
     new_lines = os.linesep * nlc
     with open(os.environ["GITHUB_STEP_SUMMARY"], "a") as f:
-        # noinspection PyTypeChecker
-        print(f"{text}{new_lines}", file=f)
+        print(f"{text}{new_lines}", file=f)  # type: ignore
 
 
 # Inputs
@@ -223,18 +217,18 @@ def get_data(name: str, req=False) -> dict:
     return {}
 
 
-def event(path: Optional[str] = None) -> dict:
+def get_event(path: Optional[str] = None) -> dict:
     with open(path or os.environ["GITHUB_EVENT_PATH"]) as f:
         return json.load(f)
 
 
+def get_random(length: int = 16) -> str:
+    r = random.choices(string.ascii_uppercase + string.ascii_lowercase + string.digits, k=length)
+    return "".join(r)
+
+
 def command(name: str, value: Optional[str] = ""):
     print(f"::{name}::{value}")
-
-
-def get_random(length: int = 16) -> str:
-    r = random.choices(string.ascii_uppercase + string.ascii_lowercase + string.digits, k=length)  # NOSONAR
-    return "".join(r)
 
 
 def start_indent(spaces: int = 2):

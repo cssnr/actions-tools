@@ -79,4 +79,4 @@ def test_getters():
     assert core.get_state("STATE_test") == "value"
     assert len(core.get_random(20)) == 20
     assert not core.is_debug()
-    assert core.event()
+    assert core.get_event()
