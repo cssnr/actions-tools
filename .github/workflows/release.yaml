@@ -54,7 +54,7 @@ jobs:
 
       - name: "Update Latest Tag"
         if: ${{ !github.event.release.prerelease }}
-        uses: cssnr/update-version-tags-action@v1
+        uses: cssnr/update-version-tags-action@latest
         continue-on-error: true
         with:
           major: false
@@ -63,7 +63,7 @@ jobs:
           #tag: ${{ github.ref_name }}
 
       - name: "Download Artifact"
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: "release"
           path: dist

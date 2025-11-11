@@ -54,7 +54,7 @@ jobs:
         run: echo "$GITHUB_CTX"
 
       - name: "Download Artifact"
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: test
           path: dist
