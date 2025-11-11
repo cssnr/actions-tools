@@ -82,7 +82,7 @@ def stop_commands(endtoken: str = ""):
 
 
 def start_commands(endtoken: str = ""):
-    global _endtoken
+    # global _endtoken
     if not endtoken:
         endtoken = _endtoken
     print(f"::{endtoken}::")
@@ -238,7 +238,7 @@ def get_random(length: int = 16) -> str:
 
 
 def start_indent(spaces: int = 2):
-    global _indent
+    # global _indent
     _indent = spaces
 
 
