@@ -9,6 +9,9 @@ from typing import List, Optional
 from yaml import Loader, load
 
 
+# from . import context as ctx
+
+
 # https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands
 
 
@@ -17,6 +20,9 @@ _false = ["n", "no", "false", "off"]
 
 _indent = 0
 _endtoken = ""
+
+
+# context = ctx
 
 
 # Core
@@ -116,7 +122,7 @@ def get_state(name: str) -> str:
     return os.getenv(f"STATE_{name}", "")
 
 
-def summary(text: str, nlc=1):
+def summary(text: str, nlc: int = 1):
     """
     NOTE: Make this its own module
     :param text:str: Raw Text
@@ -131,7 +137,7 @@ def summary(text: str, nlc=1):
 # Inputs
 
 
-def get_input(name: str, req=False, low=False, strip=True) -> str:
+def get_input(name: str, req: bool = False, low: bool = False, strip: bool = True) -> str:
     """
     Get Input by Name
     :param name: str: Input Name
@@ -147,7 +153,7 @@ def get_input(name: str, req=False, low=False, strip=True) -> str:
     return value
 
 
-def get_list(name: str, split: str = "[,|\n]", req=False, low=False, strip=True) -> List[str]:
+def get_list(name: str, split: str = "[,|\n]", req: bool = False, low: bool = False, strip: bool = True) -> List[str]:
     """
     Get Input by Name
     :param name: str: Input Name
@@ -167,7 +173,7 @@ def get_list(name: str, split: str = "[,|\n]", req=False, low=False, strip=True)
     return results
 
 
-def get_bool(name: str, req=False) -> bool:
+def get_bool(name: str, req: bool = False) -> bool:
     """
     Get Boolean Input by Name
     :param name: str: Input Name
@@ -182,7 +188,7 @@ def get_bool(name: str, req=False) -> bool:
     return False
 
 
-def _get_str_value(value, strip=True, low=False) -> str:
+def _get_str_value(value, strip: bool = True, low: bool = False) -> str:
     if strip:
         value = value.strip()
     if low:
@@ -235,7 +241,7 @@ def get_version(fallback: str = "Source") -> str:
     return fallback
 
 
-def command(name: str, value: Optional[str] = ""):
+def command(name: str, value: str = ""):
     print(f"::{name}::{value}")
 
 
