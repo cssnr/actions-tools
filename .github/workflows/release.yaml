@@ -65,6 +65,7 @@ jobs:
         id: publish
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
+          verbose: true
           repository-url: ${{ env.repository-url }}
           #attestations: false
 
