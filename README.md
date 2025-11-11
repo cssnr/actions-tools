@@ -21,8 +21,8 @@
 - [Support](#Support)
 - [Contributing](#Contributing)
 
-> [!WARNING]  
-> This project is in development and is NOT stable!
+> [!IMPORTANT]  
+> This project is in active development.
 
 GitHub Actions Tools for Python.
 
@@ -57,7 +57,8 @@ from actions import core
 # Input
 my_str = core.get_input('string')
 my_bool = core.get_bool('boolean')
-my_list = core.get_list('list')
+my_list = core.get_list('list')  # split and trim
+my_data = core.get_data('name')  # json or yaml
 
 # Logging
 core.info("info")  # alias for print
@@ -107,6 +108,9 @@ core.command('warning', 'Warned!')
 
 # Random
 rand = core.get_random(32)
+
+# Action Version
+version = core.get_version()
 
 # Indent
 core.start_indent(4)

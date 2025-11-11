@@ -8,11 +8,11 @@ on:
   push:
     branches: [master]
     paths:
+      - ".github/workflows/test.yaml"
       - "src/**"
       - "tests/**"
-      - ".github/workflows/test.yaml"
       - "pyproject.toml"
-      - "requirements.txt"
+      - "requirements*.txt"
 
 jobs:
   build:
