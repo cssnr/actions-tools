@@ -139,7 +139,7 @@ def summary(text: str, nlc: int = 1):
 
 def get_input(name: str, req: bool = False, strip: bool = True) -> str:
     """
-    Get Input by Name
+    Get String Input
     :param name: str: Input Name
     :param req: bool: If Required
     :param strip: bool: To Strip
@@ -153,7 +153,7 @@ def get_input(name: str, req: bool = False, strip: bool = True) -> str:
 
 def get_bool(name: str, req: bool = False) -> bool:
     """
-    Get Boolean Input by Name
+    Get Boolean Input
     :param name: str: Input Name
     :param req: bool: If Required
     :return: bool
@@ -168,7 +168,7 @@ def get_bool(name: str, req: bool = False) -> bool:
 
 def get_list(name: str, req: bool = False, strip: bool = True, split: str = "[,|\n]") -> List[str]:
     """
-    Get Input by Name
+    Get List Input
     :param name: str: Input Name
     :param req: bool: If Required
     :param strip: bool: To Strip
@@ -186,9 +186,9 @@ def get_list(name: str, req: bool = False, strip: bool = True, split: str = "[,|
     return results
 
 
-def get_data(name: str, req=False) -> dict:
+def get_dict(name: str, req=False) -> dict:
     """
-    Get JSON/YAML Data by Name
+    Get Dict Input - from JSON or YAML String
     :param name: str: Input Name
     :param req: bool: If Required
     :return: dict

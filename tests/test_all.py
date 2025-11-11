@@ -10,9 +10,9 @@ cwd = Path(__file__).resolve().parent
 
 os.environ["INPUT_TEST"] = " TRUE "
 os.environ["INPUT_FALSE"] = " untrue "
-os.environ["INPUT_DATA1"] = "status: broken\nby: ralf"
-os.environ["INPUT_DATA2"] = '{"status": "broken", "by": "ralf"}'
-os.environ["INPUT_DATA3"] = "{asdf"
+os.environ["INPUT_DICT1"] = "status: broken\nby: ralf"
+os.environ["INPUT_DICT2"] = '{"status": "broken", "by": "ralf"}'
+os.environ["INPUT_DICT3"] = "{asdf"
 os.environ["GITHUB_WORKFLOW_REF"] = "cssnr/actions-tools/.github/workflows/test.yaml@refs/heads/v1.0.0"
 os.environ["GITHUB_OUTPUT"] = os.environ.get("GITHUB_OUTPUT") or os.path.join(cwd, "output.txt")
 os.environ["GITHUB_ENV"] = os.environ.get("GITHUB_ENV") or os.path.join(cwd, "output.txt")
@@ -71,11 +71,11 @@ def test_inputs():
     with pytest.raises(ValueError):
         core.get_list("asdf", True)
 
-    assert core.get_data("data1") == {"status": "broken", "by": "ralf"}
-    assert core.get_data("data2") == {"status": "broken", "by": "ralf"}
-    assert core.get_data("data3") == {}
+    assert core.get_dict("dict1") == {"status": "broken", "by": "ralf"}
+    assert core.get_dict("dict2") == {"status": "broken", "by": "ralf"}
+    assert core.get_dict("dict3") == {}
     with pytest.raises(ValueError):
-        core.get_data("asdf", True)
+        core.get_dict("asdf", True)
 
 
 def test_getters():
