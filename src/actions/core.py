@@ -19,7 +19,7 @@ _true = ["y", "yes", "true", "on"]
 _false = ["n", "no", "false", "off"]
 
 _indent = 0
-_endtoken = ""
+_end_token = ""
 
 
 # context = ctx
@@ -78,19 +78,19 @@ def group(title: str):
         print("::endgroup::")
 
 
-def stop_commands(endtoken: str = ""):
-    global _endtoken
-    if not endtoken:
+def stop_commands(end_token: str = ""):
+    global _end_token
+    if not end_token:
         r = random.choices(string.ascii_uppercase + string.ascii_lowercase + string.digits, k=16)
-        endtoken = "".join(r)
-    _endtoken = endtoken
-    print(f"::stop-commands::{_endtoken}")
+        end_token = "".join(r)
+    _end_token = end_token
+    print(f"::stop-commands::{_end_token}")
 
 
-def start_commands(endtoken: str = ""):
-    if not endtoken:
-        endtoken = _endtoken
-    print(f"::{endtoken}::")
+def start_commands(end_token: str = ""):
+    if not end_token:
+        end_token = _end_token
+    print(f"::{end_token}::")
 
 
 def set_output(output: str, value: str):
