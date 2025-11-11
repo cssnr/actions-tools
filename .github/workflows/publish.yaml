@@ -14,7 +14,7 @@ on:
 
 env:
   url: "https://${{ github.event.release.prerelease && 'test.' || '' }}pypi.org/p/actions-tools"
-  repository-url: "https://${{ github.event.release.prerelease && 'test.' || 'upload' }}.pypi.org/legacy/"
+  repository-url: "https://${{ github.event.release.prerelease && 'test' || 'upload' }}.pypi.org/legacy/"
 
 jobs:
   publish:
@@ -87,14 +87,16 @@ jobs:
       - name: "Summary"
         if: ${{ always() }}
         env:
-          url: ${{ env.url }}
           tag: ${{ github.ref_name }}
+          url: ${{ env.url }}
+          repository-url: ${{ env.repository-url }}
         run: |
           if [ "${{ steps.publish.outcome }}" == "success" ];then
-            markdown="🎉 Published Version: \`${tag}\`\n\n[${url}](${url})"
+            markdown="🎉 Published Version: \`${tag}\`\n\n[${url}](${url})\n\n"
           else
-            markdown="⛔ Error Publishing Version: \`${tag}\`"
+            markdown="⛔ Error Publishing Version: \`${tag}\`\n\n"
           fi
+          markdown+="Repository URL: \`${repository-url}\`"
           echo -e "${markdown}" >> $GITHUB_STEP_SUMMARY
 
       - name: "Send Failure Notification"

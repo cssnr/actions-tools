@@ -35,9 +35,6 @@ jobs:
         run: |
           echo "github.ref_name: ${{ github.ref_name }}"
           echo "github.event.release.prerelease: ${{ github.event.release.prerelease }}"
-          echo "name: ${{ github.event.release.prerelease && 'test' || 'pypi' }}"
-          echo "url: https://${{ github.event.release.prerelease && 'test.' || '' }}pypi.org/p/actions-tools"
-          echo "repository-url: https://${{ github.event.release.prerelease && 'test.' || 'upload' }}.pypi.org/legacy/"
 
       #- name: "Debug event.json"
       #  if: ${{ !github.event.act }}
