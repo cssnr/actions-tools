@@ -51,7 +51,7 @@ def test_outputs():
     core.summary("test")
     core.add_path("/dev/null")
     core.set_state("STATE_test", "value")
-    os.environ["STATE_test"] = "value"
+    os.environ["STATE_test"] = "value"  # for testing only
 
 
 def test_inputs():
@@ -80,3 +80,7 @@ def test_getters():
     assert len(core.get_random(20)) == 20
     assert not core.is_debug()
     assert core.get_event()
+    assert core.get_version() == "Source"
+    assert core.get_version("asdf") == "asdf"
+    os.environ["GITHUB_WORKFLOW_REF"] = "cssnr/actions-tools/.github/workflows/test.yaml@refs/heads/v1.0.0"
+    assert core.get_version() == "v1.0.0"

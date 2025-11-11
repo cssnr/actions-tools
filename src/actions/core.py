@@ -227,6 +227,14 @@ def get_random(length: int = 16) -> str:
     return "".join(r)
 
 
+def get_version(fallback: str = "Source") -> str:
+    workflow_ref: str = os.environ.get("GITHUB_WORKFLOW_REF", "")
+    print(f"GITHUB_WORKFLOW_REF: {workflow_ref}")
+    if workflow_ref:
+        return workflow_ref.rsplit("/", 1)[-1]
+    return fallback
+
+
 def command(name: str, value: Optional[str] = ""):
     print(f"::{name}::{value}")
 
