@@ -52,7 +52,7 @@ python -m pip uninstall actions-tools
 Functionality from @actions/toolkit
 
 ```python
-from actions import core
+from actions import core, context
 
 # Input
 my_str = core.get_input('string')
@@ -66,6 +66,11 @@ my_str = core.get_input('string', req=False, strip=True)
 my_bool = core.get_bool('boolean', req=False)
 my_list = core.get_list('list', req=False, strip=True, split="[,|\n]")
 my_data = core.get_data('name', req=False)
+
+# Context
+# https://docs.github.com/en/actions/reference/workflows-and-actions/variables
+event_name = context.event_name
+ref_name = context.ref_name
 
 # Logging
 core.info("info")  # alias for print

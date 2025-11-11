@@ -145,11 +145,25 @@ def get_input(name: str, req: bool = False, strip: bool = True) -> str:
     :param strip: bool: To Strip
     :return: str
     """
-    value = os.getenv(f"INPUT_{name.upper()}", "")
-    value = _get_str_value(value, strip)
+    value = _get_input_str(name, strip)
     if req and not value:
         raise ValueError(f"Error Parsing Required Input: {name} -> {value}")
     return value
+
+
+def get_bool(name: str, req: bool = False) -> bool:
+    """
+    Get Boolean Input by Name
+    :param name: str: Input Name
+    :param req: bool: If Required
+    :return: bool
+    """
+    value = _get_input_str(name, True).lower()
+    if req and value not in _true + _false:
+        raise ValueError(f"Error Parsing Required Input: {name} -> {value}")
+    if value in _true:
+        return True
+    return False
 
 
 def get_list(name: str, req: bool = False, strip: bool = True, split: str = "[,|\n]") -> List[str]:
@@ -161,38 +175,15 @@ def get_list(name: str, req: bool = False, strip: bool = True, split: str = "[,|
     :param split: str: Split Regex
     :return: list
     """
-    value = os.getenv(f"INPUT_{name.upper()}", "")
-    value = _get_str_value(value, strip)
-    if req and not value.strip():
+    value = _get_input_str(name, True)
+    if req and not value:
         raise ValueError(f"Error Parsing Required Input: {name} -> {value}")
     results = []
     for x in re.split(split, value):
-        results.append(_get_str_value(x, strip))
+        if strip:
+            x = x.strip()
+        results.append(x)
     return results
-
-
-def get_bool(name: str, req: bool = False) -> bool:
-    """
-    Get Boolean Input by Name
-    :param name: str: Input Name
-    :param req: bool: If Required
-    :return: bool
-    """
-    value = os.getenv(f"INPUT_{name.upper()}", "").strip().lower()
-    if req and value not in _true + _false:
-        raise ValueError(f"Error Parsing Required Input: {name} -> {value}")
-    if value in _true:
-        return True
-    return False
-
-
-def _get_str_value(value, strip: bool = True) -> str:
-    if strip:
-        value = value.strip()
-    return value
-
-
-# Additional
 
 
 def get_data(name: str, req=False) -> dict:
@@ -202,8 +193,7 @@ def get_data(name: str, req=False) -> dict:
     :param req: bool: If Required
     :return: dict
     """
-    value = os.getenv(f"INPUT_{name.upper()}", "")
-    value = _get_str_value(value)
+    value = _get_input_str(name, True)
     try:
         return json.loads(value)
     except Exception as e:
@@ -219,14 +209,19 @@ def get_data(name: str, req=False) -> dict:
     return {}
 
 
+def _get_input_str(name: str, strip: bool = True) -> str:
+    value = os.getenv(f"INPUT_{name.upper()}", "")
+    if strip:
+        value = value.strip()
+    return value
+
+
+# Additional
+
+
 def get_event(path: Optional[str] = None) -> dict:
     with open(path or os.environ["GITHUB_EVENT_PATH"]) as f:
         return json.load(f)
-
-
-def get_random(length: int = 16) -> str:
-    r = random.choices(string.ascii_uppercase + string.ascii_lowercase + string.digits, k=length)
-    return "".join(r)
 
 
 def get_version(fallback: str = "Source") -> str:
@@ -235,6 +230,11 @@ def get_version(fallback: str = "Source") -> str:
     if workflow_ref:
         return workflow_ref.rsplit("/", 1)[-1]
     return fallback
+
+
+def get_random(length: int = 16) -> str:
+    r = random.choices(string.ascii_uppercase + string.ascii_lowercase + string.digits, k=length)
+    return "".join(r)
 
 
 def command(name: str, value: str = ""):
