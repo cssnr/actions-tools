@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from actions import core, context
+from actions import context, core
 
 
 cwd = Path(__file__).resolve().parent
@@ -85,3 +85,4 @@ def test_getters():
     del os.environ["GITHUB_WORKFLOW_REF"]
     assert core.get_version() == "Source"
     assert core.get_version("asdf") == "asdf"
+    assert context
