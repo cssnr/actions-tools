@@ -8,73 +8,78 @@ jobs:
   build:
     name: "Build"
     uses: ./.github/workflows/build.yaml
-    #permissions:
-    #  contents: write
+    secrets: inherit
     with:
-      name: release
+      name: "release"
+
+  publish:
+    name: "Publish"
+    uses: ./.github/workflows/publish.yaml
+    needs: [build]
+    secrets: inherit
+    with:
+      name: "release"
+    permissions:
+      contents: write
+      id-token: write
 
   release:
     name: "Release"
     runs-on: ubuntu-latest
     timeout-minutes: 5
-    needs: [build]
-    permissions:
-      contents: write
-      id-token: write
-    environment:
-      name: test
-      url: https://test.pypi.org/p/actions-tools
+    needs: [publish]
 
     steps:
+      - name: "Debug"
+        continue-on-error: true
+        run: |
+          echo "github.ref_name: ${{ github.ref_name }}"
+          echo "github.event.release.prerelease: ${{ github.event.release.prerelease }}"
+
       #- name: "Debug event.json"
       #  if: ${{ !github.event.act }}
       #  continue-on-error: true
       #  run: |
       #    cat "${GITHUB_EVENT_PATH}"
 
-      - name: "Download Artifact"
-        uses: actions/download-artifact@v4
+      - name: "Debug CTX github"
+        if: ${{ !github.event.act }}
+        continue-on-error: true
+        env:
+          GITHUB_CTX: ${{ toJSON(github) }}
+        run: echo "$GITHUB_CTX"
+
+      - name: "Update Latest Tag"
+        if: ${{ !github.event.release.prerelease }}
+        uses: cssnr/update-version-tags-action@latest
+        continue-on-error: true
         with:
-          name: release
+          major: false
+          minor: false
+          tags: latest
+          #tag: ${{ github.ref_name }}
+
+      - name: "Download Artifact"
+        uses: actions/download-artifact@v6
+        with:
+          name: "release"
           path: dist
 
       - name: "List Artifacts"
         run: |
-          set -e
-          echo github.ref_name: "${{ github.ref_name }}"
           ls -lAh dist
           ls dist | grep -- "-${{ github.ref_name }}-" > /dev/null
 
-      - name: "Upload to Release"
-        uses: svenstaro/upload-release-action@v2
+      - name: "Upload Release"
+        uses: cssnr/upload-release-action@latest
         with:
-          #overwrite: true
-          file_glob: true
-          file: dist/*
-
-      - name: "Publish to Test PyPI"
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          repository-url: https://test.pypi.org/legacy/
-          attestations: false
+          globs: dist/*
 
       - name: "Update Release Notes Action"
         continue-on-error: true
         uses: smashedr/update-release-notes-action@master
         with:
           location: tail
-
-      - name: "Debug Trigger Publish Workflow"
-        if: ${{ !github.event.release.prerelease }}
-        run: |
-          echo 🚀 Miles and miles and miles...
-
-      #- name: "Trigger Publish Workflow"
-      #  if: ${{ !github.event.release.prerelease }}
-      #  uses: benc-uk/workflow-dispatch@v1
-      #  with:
-      #    workflow: publish.yaml
-      #    inputs: '{"tag": "${{ github.ref_name }}"}'
 
       - name: "Send Failure Notification"
         if: ${{ failure() }}

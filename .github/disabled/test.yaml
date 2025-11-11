@@ -37,6 +37,9 @@ jobs:
       contents: read
 
     steps:
+      - name: "Checkout"
+        uses: actions/checkout@v4
+
       - name: "Debug event.json"
         if: ${{ !github.event.act }}
         continue-on-error: true
@@ -50,23 +53,14 @@ jobs:
           GITHUB_CTX: ${{ toJSON(github) }}
         run: echo "$GITHUB_CTX"
 
-      #- name: "Debug Environment"
-      #  if: ${{ !github.event.act }}
-      #  continue-on-error: true
-      #  run: |
-      #    env
-
-      - name: "Checkout"
-        uses: actions/checkout@v5
-
       - name: "Download Artifact"
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v4
         with:
           name: test
           path: dist
 
       - name: "Setup Python ${{ matrix.version }}"
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.version }}
           cache: "pip"
