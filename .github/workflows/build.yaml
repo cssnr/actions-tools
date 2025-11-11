@@ -19,6 +19,13 @@ jobs:
     timeout-minutes: 5
 
     steps:
+      - name: "Debug CTX github"
+        if: ${{ !github.event.act }}
+        continue-on-error: true
+        env:
+          GITHUB_CTX: ${{ toJSON(github) }}
+        run: echo "$GITHUB_CTX"
+
       - name: "Checkout"
         uses: actions/checkout@v5
 
