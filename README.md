@@ -57,8 +57,8 @@ from actions import core
 # Input
 my_str = core.get_input('string')
 my_bool = core.get_bool('boolean')
-my_list = core.get_list('list')  # split and trim
-my_data = core.get_data('name')  # json or yaml
+my_list = core.get_list('list')  # -> list - split and trim
+my_data = core.get_data('name')  # -> dict - from json or yaml
 
 # Logging
 core.info("info")  # alias for print
