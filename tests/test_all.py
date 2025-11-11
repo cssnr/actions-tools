@@ -13,6 +13,7 @@ os.environ["INPUT_FALSE"] = " untrue "
 os.environ["INPUT_DATA1"] = "status: broken\nby: ralf"
 os.environ["INPUT_DATA2"] = '{"status": "broken", "by": "ralf"}'
 os.environ["INPUT_DATA3"] = "{asdf"
+os.environ["GITHUB_WORKFLOW_REF"] = "cssnr/actions-tools/.github/workflows/test.yaml@refs/heads/v1.0.0"
 os.environ["GITHUB_OUTPUT"] = os.environ.get("GITHUB_OUTPUT") or os.path.join(cwd, "output.txt")
 os.environ["GITHUB_ENV"] = os.environ.get("GITHUB_ENV") or os.path.join(cwd, "output.txt")
 os.environ["GITHUB_PATH"] = os.environ.get("GITHUB_PATH") or os.path.join(cwd, "output.txt")
@@ -80,7 +81,7 @@ def test_getters():
     assert len(core.get_random(20)) == 20
     assert not core.is_debug()
     assert core.get_event()
+    assert core.get_version() == "v1.0.0"
+    del os.environ["GITHUB_WORKFLOW_REF"]
     assert core.get_version() == "Source"
     assert core.get_version("asdf") == "asdf"
-    os.environ["GITHUB_WORKFLOW_REF"] = "cssnr/actions-tools/.github/workflows/test.yaml@refs/heads/v1.0.0"
-    assert core.get_version() == "v1.0.0"
