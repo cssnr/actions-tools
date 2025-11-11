@@ -29,6 +29,8 @@ Source = "https://github.com/cssnr/actions-tools"
 Issues = "https://github.com/cssnr/actions-tools/issues"
 
 # Setup Tools
+[tool.setuptools.package-data]
+actions = ["py.typed"]
 [tool.setuptools.dynamic]
 version = { attr = "actions.__version__" }
 

@@ -6,7 +6,10 @@ import string
 from contextlib import contextmanager
 from typing import List, Optional
 
-from yaml import Loader, load
+from yaml import Loader, YAMLError, load
+
+
+# from . import context as ctx
 
 
 # https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands
@@ -16,7 +19,10 @@ _true = ["y", "yes", "true", "on"]
 _false = ["n", "no", "false", "off"]
 
 _indent = 0
-_endtoken = ""
+_end_token = ""
+
+
+# context = ctx
 
 
 # Core
@@ -72,19 +78,19 @@ def group(title: str):
         print("::endgroup::")
 
 
-def stop_commands(endtoken: str = ""):
-    global _endtoken
-    if not endtoken:
+def stop_commands(end_token: str = ""):
+    global _end_token
+    if not end_token:
         r = random.choices(string.ascii_uppercase + string.ascii_lowercase + string.digits, k=16)
-        endtoken = "".join(r)
-    _endtoken = endtoken
-    print(f"::stop-commands::{_endtoken}")
+        end_token = "".join(r)
+    _end_token = end_token
+    print(f"::stop-commands::{_end_token}")
 
 
-def start_commands(endtoken: str = ""):
-    if not endtoken:
-        endtoken = _endtoken
-    print(f"::{endtoken}::")
+def start_commands(end_token: str = ""):
+    if not end_token:
+        end_token = _end_token
+    print(f"::{end_token}::")
 
 
 def set_output(output: str, value: str):
@@ -116,7 +122,7 @@ def get_state(name: str) -> str:
     return os.getenv(f"STATE_{name}", "")
 
 
-def summary(text: str, nlc=1):
+def summary(text: str, nlc: int = 1):
     """
     NOTE: Make this its own module
     :param text:str: Raw Text
@@ -131,50 +137,28 @@ def summary(text: str, nlc=1):
 # Inputs
 
 
-def get_input(name: str, req=False, low=False, strip=True) -> str:
+def get_input(name: str, req: bool = False, strip: bool = True) -> str:
     """
-    Get Input by Name
+    Get String Input
     :param name: str: Input Name
     :param req: bool: If Required
-    :param low: bool: To Lower
     :param strip: bool: To Strip
     :return: str
     """
-    value = os.getenv(f"INPUT_{name.upper()}", "")
-    value = _get_str_value(value, strip, low)
+    value = _get_input_str(name, strip)
     if req and not value:
         raise ValueError(f"Error Parsing Required Input: {name} -> {value}")
     return value
 
 
-def get_list(name: str, split: str = "[,|\n]", req=False, low=False, strip=True) -> List[str]:
+def get_bool(name: str, req: bool = False) -> bool:
     """
-    Get Input by Name
-    :param name: str: Input Name
-    :param split: str: Split Regex
-    :param req: bool: If Required
-    :param strip: bool: To Strip
-    :param low: bool: To Lowercase
-    :return: list
-    """
-    value = os.getenv(f"INPUT_{name.upper()}", "")
-    value = _get_str_value(value, strip, low)
-    if req and not value.strip():
-        raise ValueError(f"Error Parsing Required Input: {name} -> {value}")
-    results = []
-    for x in re.split(split, value):
-        results.append(_get_str_value(x, strip, low))
-    return results
-
-
-def get_bool(name: str, req=False) -> bool:
-    """
-    Get Boolean Input by Name
+    Get Boolean Input
     :param name: str: Input Name
     :param req: bool: If Required
     :return: bool
     """
-    value = os.getenv(f"INPUT_{name.upper()}", "").strip().lower()
+    value = _get_input_str(name, True).lower()
     if req and value not in _true + _false:
         raise ValueError(f"Error Parsing Required Input: {name} -> {value}")
     if value in _true:
@@ -182,39 +166,57 @@ def get_bool(name: str, req=False) -> bool:
     return False
 
 
-def _get_str_value(value, strip=True, low=False) -> str:
-    if strip:
-        value = value.strip()
-    if low:
-        value = value.lower()
-    return value
-
-
-# Additional
-
-
-def get_data(name: str, req=False) -> dict:
+def get_list(name: str, req: bool = False, strip: bool = True, split: str = "[,|\n]") -> List[str]:
     """
-    Get JSON/YAML Data by Name
+    Get List Input
+    :param name: str: Input Name
+    :param req: bool: If Required
+    :param strip: bool: To Strip
+    :param split: str: Split Regex
+    :return: list
+    """
+    value = _get_input_str(name, True)
+    if req and not value:
+        raise ValueError(f"Error Parsing Required Input: {name} -> {value}")
+    results = []
+    for x in re.split(split, value):
+        if strip:
+            x = x.strip()
+        results.append(x)
+    return results
+
+
+def get_dict(name: str, req=False) -> dict:
+    """
+    Get Dict Input - from JSON or YAML String
     :param name: str: Input Name
     :param req: bool: If Required
     :return: dict
     """
-    value = os.getenv(f"INPUT_{name.upper()}", "")
-    value = _get_str_value(value)
+    value = _get_input_str(name, True)
     try:
         return json.loads(value)
-    except Exception as e:
-        print(f"::debug::{e}")
+    except json.JSONDecodeError:
+        pass
     try:
         res = load(value, Loader=Loader)
         if res:
             return res
-    except Exception as e:
-        print(f"::debug::{e}")
+    except YAMLError:
+        pass
     if req:
         raise ValueError(f"Error Parsing Required Input: {name} -> {repr(value)}")
     return {}
+
+
+def _get_input_str(name: str, strip: bool = True) -> str:
+    value = os.getenv(f"INPUT_{name.upper()}", "")
+    if strip:
+        value = value.strip()
+    return value
+
+
+# Additional
 
 
 def get_event(path: Optional[str] = None) -> dict:
@@ -222,20 +224,19 @@ def get_event(path: Optional[str] = None) -> dict:
         return json.load(f)
 
 
-def get_random(length: int = 16) -> str:
-    r = random.choices(string.ascii_uppercase + string.ascii_lowercase + string.digits, k=length)
-    return "".join(r)
-
-
 def get_version(fallback: str = "Source") -> str:
     workflow_ref: str = os.environ.get("GITHUB_WORKFLOW_REF", "")
-    print(f"GITHUB_WORKFLOW_REF: {workflow_ref}")
     if workflow_ref:
         return workflow_ref.rsplit("/", 1)[-1]
     return fallback
 
 
-def command(name: str, value: Optional[str] = ""):
+def get_random(length: int = 16) -> str:
+    r = random.choices(string.ascii_uppercase + string.ascii_lowercase + string.digits, k=length)
+    return "".join(r)
+
+
+def command(name: str, value: str = ""):
     print(f"::{name}::{value}")
 
 

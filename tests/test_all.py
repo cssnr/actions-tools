@@ -3,16 +3,16 @@ from pathlib import Path
 
 import pytest
 
-from actions import core
+from actions import context, core
 
 
 cwd = Path(__file__).resolve().parent
 
 os.environ["INPUT_TEST"] = " TRUE "
 os.environ["INPUT_FALSE"] = " untrue "
-os.environ["INPUT_DATA1"] = "status: broken\nby: ralf"
-os.environ["INPUT_DATA2"] = '{"status": "broken", "by": "ralf"}'
-os.environ["INPUT_DATA3"] = "{asdf"
+os.environ["INPUT_DICT1"] = "status: broken\nby: ralf"
+os.environ["INPUT_DICT2"] = '{"status": "broken", "by": "ralf"}'
+os.environ["INPUT_DICT3"] = "{asdf"
 os.environ["GITHUB_WORKFLOW_REF"] = "cssnr/actions-tools/.github/workflows/test.yaml@refs/heads/v1.0.0"
 os.environ["GITHUB_OUTPUT"] = os.environ.get("GITHUB_OUTPUT") or os.path.join(cwd, "output.txt")
 os.environ["GITHUB_ENV"] = os.environ.get("GITHUB_ENV") or os.path.join(cwd, "output.txt")
@@ -57,23 +57,25 @@ def test_outputs():
 
 def test_inputs():
     assert core.get_input("test") == os.environ["INPUT_TEST"].strip()
-    assert core.get_input("test", low=True) == os.environ["INPUT_TEST"].strip().lower()
     assert core.get_input("test", strip=False) == os.environ["INPUT_TEST"]
+    with pytest.raises(ValueError):
+        core.get_input("asdf", True)
+
     assert core.get_bool("test")
-    with pytest.raises(ValueError):
-        core.get_input("asdf", req=True)
-    with pytest.raises(ValueError):
-        core.get_bool("asdf", req=True)
-    with pytest.raises(ValueError):
-        core.get_list("asdf", req=True)
-    assert isinstance(core.get_list("test", split="\n"), list)
-    assert len(core.get_list("test", split="\n")) == 1
     assert not core.get_bool("false")
     with pytest.raises(ValueError):
-        core.get_data("asdf", req=True)
-    assert core.get_data("data1") == {"status": "broken", "by": "ralf"}
-    assert core.get_data("data2") == {"status": "broken", "by": "ralf"}
-    assert core.get_data("data3") == {}
+        core.get_bool("asdf", True)
+
+    assert isinstance(core.get_list("test", split="\n"), list)
+    assert len(core.get_list("test", split="\n")) == 1
+    with pytest.raises(ValueError):
+        core.get_list("asdf", True)
+
+    assert core.get_dict("dict1") == {"status": "broken", "by": "ralf"}
+    assert core.get_dict("dict2") == {"status": "broken", "by": "ralf"}
+    assert core.get_dict("dict3") == {}
+    with pytest.raises(ValueError):
+        core.get_dict("asdf", True)
 
 
 def test_getters():
@@ -85,3 +87,4 @@ def test_getters():
     del os.environ["GITHUB_WORKFLOW_REF"]
     assert core.get_version() == "Source"
     assert core.get_version("asdf") == "asdf"
+    assert context

@@ -1,14 +1,18 @@
-[![Publish](https://img.shields.io/github/actions/workflow/status/cssnr/actions-tools/publish.yaml?logo=python&logoColor=white&label=publish)](https://github.com/cssnr/actions-tools/actions/workflows/publish.yaml)
-[![Release](https://img.shields.io/github/actions/workflow/status/cssnr/actions-tools/release.yaml?logo=github&logoColor=white&label=release)](https://github.com/cssnr/actions-tools/actions/workflows/release.yaml)
-[![Test](https://img.shields.io/github/actions/workflow/status/cssnr/actions-tools/test.yaml?logo=github&logoColor=white&label=test)](https://github.com/cssnr/actions-tools/actions/workflows/test.yaml)
-[![Lint](https://img.shields.io/github/actions/workflow/status/cssnr/actions-tools/lint.yaml?logo=github&logoColor=white&label=lint)](https://github.com/cssnr/actions-tools/actions/workflows/lint.yaml)
+[![GitHub Deployments](https://img.shields.io/github/deployments/cssnr/actions-tools/pypi?logo=pypi&logoColor=white&label=pypi)](https://github.com/cssnr/actions-tools/deployments/pypi)
+[![GitHub Deployments](https://img.shields.io/github/deployments/cssnr/actions-tools/test?logo=pypi&logoColor=white&label=test)](https://github.com/cssnr/actions-tools/deployments/test)
+[![Release Workflow](https://img.shields.io/github/actions/workflow/status/cssnr/actions-tools/release.yaml?logo=github&logoColor=white&label=release)](https://github.com/cssnr/actions-tools/actions/workflows/release.yaml)
+[![Lint Workflow](https://img.shields.io/github/actions/workflow/status/cssnr/actions-tools/lint.yaml?logo=github&logoColor=white&label=lint)](https://github.com/cssnr/actions-tools/actions/workflows/lint.yaml)
+[![Test Workflow](https://img.shields.io/github/actions/workflow/status/cssnr/actions-tools/test.yaml?logo=github&logoColor=white&label=test)](https://github.com/cssnr/actions-tools/actions/workflows/test.yaml)
 [![Codecov](https://codecov.io/gh/cssnr/actions-tools/graph/badge.svg?token=A8NDHZ393X)](https://codecov.io/gh/cssnr/actions-tools)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=cssnr_actions-tools&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=cssnr_actions-tools)
-[![PyPI](https://img.shields.io/pypi/v/actions-tools?logo=python&logoColor=white&label=PyPI)](https://pypi.org/project/actions-tools/)
+[![PyPI Version](https://img.shields.io/pypi/v/actions-tools?logo=pypi&logoColor=white&label=pypi)](https://pypi.org/project/actions-tools/)
 [![GitHub Release Version](https://img.shields.io/github/v/release/cssnr/actions-tools?logo=github)](https://github.com/cssnr/actions-tools/releases/latest)
-[![TOML Python Version](https://img.shields.io/badge/dynamic/toml?url=https%3A%2F%2Fraw.githubusercontent.com%2Fcssnr%2Factions-tools%2Frefs%2Fheads%2Fmaster%2Fpyproject.toml&query=%24.project.requires-python&logo=python&logoColor=white&label=version)](https://github.com/cssnr/actions-tools)
-[![GitHub Top Language](https://img.shields.io/github/languages/top/cssnr/actions-tools?logo=htmx&logoColor=white)](https://github.com/cssnr/actions-tools)
+[![TOML Python Version](https://img.shields.io/badge/dynamic/toml?url=https%3A%2F%2Fraw.githubusercontent.com%2Fcssnr%2Factions-tools%2Frefs%2Fheads%2Fmaster%2Fpyproject.toml&query=%24.project.requires-python&logo=python&logoColor=white&label=python)](https://github.com/cssnr/actions-tools)
+[![GitHub Top Language](https://img.shields.io/github/languages/top/cssnr/actions-tools?logo=htmx&logoColor=white)](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme)
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/cssnr/actions-tools?logo=github&logoColor=white&label=updated)](https://github.com/cssnr/actions-tools/graphs/commit-activity)
+[![GitHub Contributors](https://img.shields.io/github/contributors-anon/cssnr/actions-tools?logo=github)](https://github.com/cssnr/actions-tools/graphs/contributors)
+[![GitHub Repo Size](https://img.shields.io/github/repo-size/cssnr/actions-tools?logo=bookstack&logoColor=white&label=repo%20size)](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme)
+[![GitHub Forks](https://img.shields.io/github/forks/cssnr/actions-tools?style=flat&logo=github)](https://github.com/cssnr/actions-tools/forks)
 [![GitHub Repo Stars](https://img.shields.io/github/stars/cssnr/actions-tools?style=flat&logo=github&logoColor=white)](https://github.com/cssnr/actions-tools/stargazers)
 [![GitHub Org Stars](https://img.shields.io/github/stars/cssnr?style=flat&logo=github&label=org%20stars)](https://cssnr.github.io/)
 [![Discord](https://img.shields.io/discord/899171661457293343?logo=discord&logoColor=white&label=discord&color=7289da)](https://discord.gg/wXy6m2X8wY)
@@ -52,13 +56,20 @@ python -m pip uninstall actions-tools
 Functionality from @actions/toolkit
 
 ```python
-from actions import core
+from actions import core, context
 
 # Input
-my_str = core.get_input('string')
-my_bool = core.get_bool('boolean')
-my_list = core.get_list('list')  # split and trim
-my_data = core.get_data('name')  # json or yaml
+my_str = core.get_input('string')  # -> str
+my_req = core.get_input('string', True)  # required
+my_bool = core.get_bool('boolean')  # -> bool
+my_list = core.get_list('list')  # -> list
+my_data = core.get_dict('dict')  # -> dict - from json or yaml
+
+# Context
+# https://docs.github.com/en/actions/reference/workflows-and-actions/variables
+core.info(f'event_name: {context.event_name}')
+core.info(f'ref_name: {context.ref_name}')
+core.info(f'runner_temp: {context.runner_temp}')
 
 # Logging
 core.info("info")  # alias for print
@@ -95,7 +106,7 @@ core.add_path('/dev/null')
 core.set_output('name', 'cssnr')
 
 # Abort
-core.set_failed("Mayday!")
+core.set_failed("Mayday!")  # raise SystemExit
 ```
 
 Functionality new in actions-tools
@@ -104,13 +115,13 @@ Functionality new in actions-tools
 from actions import core
 
 # Commands
-core.command('warning', 'Warned!')
+core.command('warning', 'Warned!')  # core.warn()
+
+# Action Version
+version = core.get_version()  # from GITHUB_WORKFLOW_REF
 
 # Random
 rand = core.get_random(32)
-
-# Action Version
-version = core.get_version()
 
 # Indent
 core.start_indent(4)
