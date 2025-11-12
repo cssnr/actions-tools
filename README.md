@@ -112,7 +112,10 @@ core.set_failed("Mayday!")  # raise SystemExit
 Functionality new in actions-tools
 
 ```python
-from actions import core
+from actions import core, context
+
+# Context
+core.info(f'repository_name: {context.repository_name}')
 
 # Commands
 core.command('warning', 'Warned!')  # core.warn()

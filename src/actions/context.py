@@ -45,3 +45,6 @@ runner_name: str = os.environ.get("RUNNER_NAME", "")
 runner_os: str = os.environ.get("RUNNER_OS", "")
 runner_temp: str = os.environ.get("RUNNER_TEMP", "")
 runner_tool_cache: str = os.environ.get("RUNNER_TOOL_CACHE", "")
+
+
+repository_name: str = os.environ.get("GITHUB_REPOSITORY", "/").split("/")[1]
