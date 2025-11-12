@@ -25,10 +25,12 @@
 - [Support](#Support)
 - [Contributing](#Contributing)
 
-> [!IMPORTANT]  
-> This project is in active development.
+GitHub Actions Tools for Python similar to [actions/toolkit](https://github.com/actions/toolkit).
 
-GitHub Actions Tools for Python.
+> [!NOTE]  
+> This project is in active development.  
+> Please [let us know](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests)
+> what features you want to see.
 
 ## Install
 
