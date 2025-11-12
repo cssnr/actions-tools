@@ -25,10 +25,12 @@
 - [Support](#Support)
 - [Contributing](#Contributing)
 
-> [!IMPORTANT]  
-> This project is in active development.
+GitHub Actions Tools for Python similar to [actions/toolkit](https://github.com/actions/toolkit).
 
-GitHub Actions Tools for Python.
+> [!NOTE]  
+> This project is in active development.  
+> Please [let us know](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests)
+> what features you want to see.
 
 ## Install
 
@@ -42,7 +44,7 @@ From source:
 
 ```shell
 git clone https://github.com/cssnr/actions-tools
-python -m pip install -e actions-tools
+python -m pip install actions-tools
 ```
 
 Uninstall:
@@ -131,6 +133,24 @@ core.start_indent(4)
 core.info('Indented')  # only works with core.info
 core.end_indent()
 ```
+
+To access the GitHub API use [PyGithub](https://github.com/PyGithub/PyGithub)
+
+```shell
+python -m pip install PyGithub
+```
+
+```python
+from actions import core, context
+from github import Auth, Github
+
+token: str = core.get_input("token")
+g = Github(auth=Auth.Token(token))
+repo = g.get_repo(f"{context.repository}")
+core.info(f"repo.name: {repo.name}")
+```
+
+Reference: https://pygithub.readthedocs.io/en/stable/
 
 # Support
 
