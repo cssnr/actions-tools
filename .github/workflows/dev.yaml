@@ -16,62 +16,14 @@ concurrency:
 jobs:
   build:
     name: "Build"
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-
+    uses: ./.github/workflows/build-docs.yaml
     permissions:
       contents: read
-
-    steps:
-      - name: "Checkout"
-        uses: actions/checkout@v5
-        #with:
-        #  fetch-depth: 0
-
-      #- name: "Configure Pages"
-      #  uses: actions/configure-pages@v5
-
-      - name: "Setup Python 3.13"
-        uses: actions/setup-python@v6
-        with:
-          python-version: "3.13"
-          cache: "pip"
-
-      - name: "Install"
-        id: install
-        run: |
-          python -m pip install -U pip zensical
-
-      - name: "Build"
-        run: |
-          zensical build -c
-
-      - name: "Debug Build"
-        env:
-          path: "site"
-        run: |
-          tree "${path}" || ls -lAhR "${path}"
-
-      #- name: "Upload Pages Artifact"
-      #  uses: actions/upload-pages-artifact@v4
-      #  with:
-      #    path: site
-      #    name: artifact
-
-      - name: "Upload Artifact"
-        uses: actions/upload-artifact@v5
-        with:
-          name: artifact
-          path: site
-          if-no-files-found: "error"
-          include-hidden-files: true
 
   deploy:
     name: "Deploy"
     uses: cssnr/workflows/.github/workflows/deploy-static.yaml@master
     needs: build
-    permissions:
-      contents: read
     with:
       name: "dev"
       url: "https://dev-static.cssnr.com/"
@@ -82,3 +34,5 @@ jobs:
       user: ${{ secrets.DEV_DEPLOY_USER }}
       pass: ${{ secrets.DEV_DEPLOY_PASS }}
       webhook: ${{ secrets.DISCORD_WEBHOOK }}
+    permissions:
+      contents: read
