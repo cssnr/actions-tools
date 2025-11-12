@@ -87,4 +87,4 @@ def test_getters():
     del os.environ["GITHUB_WORKFLOW_REF"]
     assert core.get_version() == "Source"
     assert core.get_version("asdf") == "asdf"
-    assert context
+    assert context.repository_name is not None

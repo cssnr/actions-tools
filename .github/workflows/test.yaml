@@ -87,7 +87,7 @@ jobs:
       - name: "Test ${{ matrix.version }}"
         #continue-on-error: ${{ contains('dev', matrix.version) }}
         run: |
-          pytest -v
+          pytest -s
 
       - name: "Schedule Failure Notification"
         if: ${{ failure() && github.event_name == 'schedule' }}
