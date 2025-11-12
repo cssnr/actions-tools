@@ -6,12 +6,6 @@ icon: lucide/rocket
 
 GitHub Actions Tools for Python similar to [actions/toolkit](https://github.com/actions/toolkit).
 
-!!! note
-
-    This project is in active development.
-    Please [let us know](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests)
-    what features you want to see.
-
 ## Install
 
 From PyPI: https://pypi.org/p/actions-tools
@@ -43,3 +37,11 @@ python -m pip uninstall actions-tools
 &nbsp;
 
 [:lucide-play: View the Usage](usage.md){ .md-button .md-button--primary }
+
+&nbsp;
+
+!!! note
+
+    This project is in active development.
+    Please [let us know](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests)
+    what features you want to see.
