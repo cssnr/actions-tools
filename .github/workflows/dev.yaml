@@ -6,6 +6,7 @@ on:
     branches-ignore: [master]
     paths:
       - ".github/workflows/dev.yaml"
+      - "zensical.toml"
       - "docs/**"
 
 concurrency:
