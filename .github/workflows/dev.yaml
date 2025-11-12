@@ -46,11 +46,19 @@ jobs:
         run: |
           zensical build -c
 
-      - name: "Upload Pages Artifact"
-        uses: actions/upload-pages-artifact@v4
+      #- name: "Upload Pages Artifact"
+      #  uses: actions/upload-pages-artifact@v4
+      #  with:
+      #    path: site
+      #    name: artifact
+
+      - name: "Upload Artifact"
+        uses: actions/upload-artifact@v5
         with:
-          path: site
           name: artifact
+          path: site
+          if-no-files-found: "error"
+          include-hidden-files: true
 
   deploy:
     name: "Deploy"
