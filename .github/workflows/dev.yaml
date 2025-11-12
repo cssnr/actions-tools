@@ -46,6 +46,12 @@ jobs:
         run: |
           zensical build -c
 
+      - name: "Debug Build"
+        env:
+          path: "site"
+        run: |
+          tree "${path}" || ls -lAhR "${path}"
+
       #- name: "Upload Pages Artifact"
       #  uses: actions/upload-pages-artifact@v4
       #  with:
