@@ -1,0 +1,70 @@
+name: "Dev"
+
+on:
+  workflow_dispatch:
+  push:
+    branches-ignore: [master]
+    paths:
+      - ".github/workflows/docs.yaml"
+      - "docs/**"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: "Build"
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v5
+        #with:
+        #  fetch-depth: 0
+
+      # TODO: Determine if this is necessary...
+      - name: "Configure Pages"
+        uses: actions/configure-pages@v5
+
+      - name: "Setup Python 3.13"
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+          cache: "pip"
+
+      - name: "Install"
+        id: install
+        run: |
+          python -m pip install -U pip zensical
+
+      - name: "Build"
+        run: |
+          zensical build -c
+
+      - name: "Upload Pages Artifact"
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: site
+          name: artifact
+
+  deploy:
+    name: "Deploy"
+    uses: cssnr/workflows/.github/workflows/deploy-static.yaml@master
+    needs: build
+    permissions:
+      contents: read
+    with:
+      name: "dev"
+      url: "https://dev-static.cssnr.com/"
+      robots: true
+    secrets:
+      host: ${{ secrets.DEV_DEPLOY_HOST }}
+      port: ${{ secrets.DEV_DEPLOY_PORT }}
+      user: ${{ secrets.DEV_DEPLOY_USER }}
+      pass: ${{ secrets.DEV_DEPLOY_PASS }}
+      webhook: ${{ secrets.DISCORD_WEBHOOK }}

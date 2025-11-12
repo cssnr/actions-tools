@@ -1,0 +1,120 @@
+name: "Docs"
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [master]
+    paths:
+      - ".github/workflows/docs.yaml"
+      - "docs/**"
+
+env:
+  crawler-id: ""
+  purge-domain: ""
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: "Build"
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v5
+        #with:
+        #  fetch-depth: 0
+
+      # TODO: Determine if this is necessary...
+      - name: "Configure Pages"
+        uses: actions/configure-pages@v5
+
+      - name: "Setup Python 3.13"
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+          cache: "pip"
+
+      - name: "Install"
+        id: install
+        run: |
+          python -m pip install -U pip zensical
+
+      - name: "Build"
+        run: |
+          zensical build -c
+
+      - name: "Upload Pages Artifact"
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: site
+
+      - name: "Send Build Failure Notification"
+        if: ${{ !failure() }}
+        continue-on-error: true
+        uses: sarisia/actions-status-discord@v1
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          description: ${{ github.event.repository.html_url }}/actions/runs/${{ github.run_id }}
+
+  deploy:
+    name: "Deploy"
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    needs: build
+
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: docs
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: "Deploy Pages"
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: "Send Deploy Success Notification"
+        if: ${{ !cancelled() }}
+        continue-on-error: true
+        uses: sarisia/actions-status-discord@v1
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          description: ${{ steps.deployment.outputs.page_url }}
+
+  post:
+    name: "Post-Deploy"
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    needs: deploy
+
+    steps:
+      - name: "Purge Cache"
+        if: ${{ env.purge-domain != '' }}
+        uses: cssnr/cloudflare-purge-cache-action@v2
+        with:
+          zones: ${{ env.purge-domain }}
+          token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+
+      - name: "Algolia Crawler"
+        if: ${{ env.crawler-id != '' }}
+        uses: cssnr/algolia-crawler-action@v1
+        with:
+          crawler_id: ${{ env.crawler-id }}
+          crawler_user_id: ${{ secrets.CRAWLER_USER_ID }}
+          crawler_api_key: ${{ secrets.CRAWLER_API_KEY }}
+
+      - name: "Send Post-Deploy Failure Notification"
+        if: ${{ failure() }}
+        uses: sarisia/actions-status-discord@v1
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          description: ${{ github.event.repository.html_url }}/actions/runs/${{ github.run_id }}
