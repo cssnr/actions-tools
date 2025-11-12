@@ -51,7 +51,8 @@ nav = [
 custom_dir = "docs/overrides"
 
 favicon = "favicon.ico"
-logo = "assets/images/logo.png"
+#logo = "assets/images/logo.png"
+logo = "https://raw.githubusercontent.com/smashedr/repo-images/refs/heads/master/actions-tools/logo256.png"
 
 # https://zensical.org/docs/setup/language/
 language = "en"
