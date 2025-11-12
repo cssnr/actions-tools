@@ -28,7 +28,6 @@ jobs:
         #with:
         #  fetch-depth: 0
 
-      ## TODO: Determine if this is necessary...
       #- name: "Configure Pages"
       #  uses: actions/configure-pages@v5
 

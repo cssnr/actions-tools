@@ -32,6 +32,5 @@ jobs:
           echo ${GITHUB_REF_NAME}
           ls -lAh dist
 
-      # TODO: Verify dist and GITHUB_REF_NAME first
       - name: "Publish to PyPI"
         uses: pypa/gh-action-pypi-publish@release/v1
