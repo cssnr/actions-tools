@@ -22,6 +22,16 @@ jobs:
           GITHUB_CTX: ${{ toJSON(github) }}
         run: echo "$GITHUB_CTX"
 
+      #- name: "Check Changed Files"
+      #  id: changed
+      #  uses: tj-actions/changed-files@v47
+      #  with:
+      #    files: |
+      #      src/**
+      #      tests/**
+      #      pyproject.toml
+      #      requirements*.txt
+
       - name: "Checkout"
         uses: actions/checkout@v5
 
