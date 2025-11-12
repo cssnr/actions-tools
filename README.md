@@ -42,7 +42,7 @@ From source:
 
 ```shell
 git clone https://github.com/cssnr/actions-tools
-python -m pip install -e actions-tools
+python -m pip install actions-tools
 ```
 
 Uninstall:
