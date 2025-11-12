@@ -5,6 +5,7 @@
 **/__pycache__/
 **/*.egg-info/
 dist/
+site/
 *.log
 *.pyc
 .coverage
