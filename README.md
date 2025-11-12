@@ -132,6 +132,24 @@ core.info('Indented')  # only works with core.info
 core.end_indent()
 ```
 
+To access the GitHub API use [PyGithub](https://github.com/PyGithub/PyGithub)
+
+```shell
+python -m pip install PyGithub
+```
+
+```python
+from actions import core, context
+from github import Auth, Github
+
+token: str = core.get_input("token")
+g = Github(auth=Auth.Token(token))
+repo = g.get_repo(f"{context.repository}")
+core.info(f"repo.name: {repo.name}")
+```
+
+Reference: https://pygithub.readthedocs.io/en/stable/
+
 # Support
 
 For general help or to request a feature, see:
