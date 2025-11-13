@@ -1,5 +1,5 @@
 ---
-icon: lucide/text-search
+icon: simple/githubactions
 ---
 
 # Usage

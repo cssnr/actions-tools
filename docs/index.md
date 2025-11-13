@@ -14,4 +14,4 @@ Welcome to the Actions Tools Documentation Site.
 
     See the [README.md](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme) for more details.
 
-Reference: https://zensical.org/docs/
+Zensical Docs: https://zensical.org/docs/
