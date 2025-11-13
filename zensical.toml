@@ -22,6 +22,7 @@ nav = [
     {"Get Started" = "index.md"},
     {"Usage" = "usage.md"},
     {"Support" = "support.md"},
+    {"Actions" = "actions.md"},
 ]
 
 # With the "extra_css" option you can add your own CSS styling to customize

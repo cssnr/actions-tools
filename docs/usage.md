@@ -1,10 +1,10 @@
 ---
-icon: simple/githubactions
+icon: lucide/cog
 ---
 
 # Usage
 
-Once [installed](get-started.md) import the module and start using methods.
+Once [installed](index.md) import the module and start using methods.
 
 ## From @actions/toolkit
 
@@ -62,7 +62,7 @@ core.set_output('name', 'cssnr')
 core.set_failed("Mayday!")  # raise SystemExit
 ```
 
-## New in actions-tools
+## New In actions-tools
 
 ```python
 from actions import core, context
@@ -87,7 +87,7 @@ core.end_indent()
 
 ## GitHub API PyGithub
 
-To access the GitHub API use [PyGithub](https://github.com/PyGithub/PyGithub)
+To access the GitHub API use [PyGithub](https://github.com/PyGithub/PyGithub).
 
 ```shell
 python -m pip install PyGithub
