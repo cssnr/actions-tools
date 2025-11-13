@@ -5,6 +5,7 @@ on:
   push:
     branches-ignore: [master]
     paths:
+      - ".github/workflows/build-docs.yaml"
       - ".github/workflows/dev.yaml"
       - "zensical.toml"
       - "docs/**"

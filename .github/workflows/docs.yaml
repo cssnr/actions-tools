@@ -2,12 +2,13 @@ name: "Docs"
 
 on:
   workflow_dispatch:
-  #push:
-  #  branches: [master]
-  #  paths:
-  #    - ".github/workflows/docs.yaml"
-  #    - "zensical.toml"
-  #    - "docs/**"
+  push:
+    branches: [master]
+    paths:
+      - ".github/workflows/build-docs.yaml"
+      - ".github/workflows/docs.yaml"
+      - "zensical.toml"
+      - "docs/**"
 
 env:
   crawler-id: ""
