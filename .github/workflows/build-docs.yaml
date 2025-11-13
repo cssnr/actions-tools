@@ -1,0 +1,99 @@
+name: "Build Docs"
+
+on:
+  workflow_call:
+    inputs:
+      name:
+        description: "Artifact Name"
+        type: string
+        default: artifact
+      path:
+        description: "Build Path"
+        type: string
+        default: site
+      pages:
+        type: boolean
+        default: false
+
+jobs:
+  build:
+    name: "Build"
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: "Debug CTX github"
+        if: ${{ !github.event.act }}
+        continue-on-error: true
+        env:
+          GITHUB_CTX: ${{ toJSON(github) }}
+        run: echo "$GITHUB_CTX"
+
+      - name: "Checkout"
+        uses: actions/checkout@v5
+        #with:
+        #  fetch-depth: 0
+
+      #- name: "Configure Pages"
+      #  uses: actions/configure-pages@v5
+
+      - name: "Setup Python 3.13"
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+          cache: "pip"
+
+      - name: "Install"
+        id: install
+        run: |
+          python -m pip install -U pip zensical
+
+      - name: "Build"
+        id: build
+        run: |
+          zensical build -c
+          echo "version=$(zensical --version)" >> "$GITHUB_OUTPUT"
+
+      - name: "Upload Artifact"
+        if: ${{ !inputs.pages }}
+        uses: actions/upload-artifact@v5
+        with:
+          name: ${{ inputs.name }}
+          path: ${{ inputs.path }}
+          if-no-files-found: "error"
+          include-hidden-files: true
+
+      - name: "Upload Pages Artifact"
+        if: ${{ inputs.pages }}
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: ${{ inputs.path }}
+
+      - name: "Summary"
+        if: ${{ always() }}
+        env:
+          path: site
+          version: ${{ steps.build.outputs.version || 'unknown' }}
+        run: |
+          if [ "${{ steps.build.outcome }}" == "success" ];then
+            markdown="🚀 Build Success\n\n"
+          else
+            markdown="⛔ Build Failure\n\n"
+          fi
+          markdown+="zensical version: \`${version}\`\n\n"
+          if [ -d "${path}" ];then
+            markdown+="<details><summary>Build Output</summary>\n\n\`\`\`text\n"
+            markdown+="$(tree ${path} || ls -lAhR ${path} 2>&1 ||:)\n"
+            markdown+="\`\`\`\n\n</details>\n\n"
+          else
+            markdown+="⛔ Path Not Found: ${path}\n\n"
+          fi
+          echo -e "${markdown}" >> $GITHUB_STEP_SUMMARY
+
+      - name: "Send Failure Notification"
+        if: ${{ !failure() }}
+        continue-on-error: true
+        uses: sarisia/actions-status-discord@v1
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          description: ${{ github.event.repository.html_url }}/actions/runs/${{ github.run_id }}

@@ -8,10 +8,10 @@ jobs:
   build:
     name: "Build"
     uses: ./.github/workflows/build.yaml
-    #permissions:
-    #  contents: write
     with:
       name: release
+    #permissions:
+    #  contents: write
 
   release:
     name: "Release"

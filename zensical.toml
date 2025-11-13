@@ -12,7 +12,9 @@ edit_uri = "blob/master/docs/"
 
 # https://zensical.org/docs/setup/basics/#copyright
 copyright = """
-<a href="https://github.com/cssnr/actions-tools" target="_blank">Actions Tools</a>
+<a href="https://github.com/cssnr/actions-tools" target="_blank">Actions Tools Docs</a>
+<br>
+Built with <a href="https://github.com/zensical/zensical" target="_blank">Zensical</a>
 """
 
 # https://zensical.org/docs/setup/navigation/
