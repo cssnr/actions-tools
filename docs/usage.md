@@ -104,3 +104,16 @@ core.info(f"repo.name: {repo.name}")
 ```
 
 Reference: https://pygithub.readthedocs.io/en/stable/
+
+&nbsp;
+
+!!! note
+
+    This project is in active development.
+    Please [let us know](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests)
+    what features you want to see.
+
+!!! example "Work in Progress"
+
+    This documentation site is a work in progress.
+    See the [README.md](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme) for more details.

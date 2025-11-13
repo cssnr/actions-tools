@@ -19,8 +19,9 @@ Built with <a href="https://github.com/zensical/zensical" target="_blank">Zensic
 
 # https://zensical.org/docs/setup/navigation/
 nav = [
-    {"Get Started" = "get-started.md"},
+    {"Get Started" = "index.md"},
     {"Usage" = "usage.md"},
+    {"Support" = "support.md"},
 ]
 
 # With the "extra_css" option you can add your own CSS styling to customize
@@ -194,7 +195,7 @@ features = [
     # When navigation integration for the table of contents is enabled, it is
     # always rendered as part of the navigation sidebar on the left.
     # https://zensical.org/docs/setup/navigation/#navigation-integration
-    #"toc.integrate",
+    "toc.integrate",
 ]
 
 # ----------------------------------------------------------------------------
