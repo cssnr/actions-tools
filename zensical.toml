@@ -8,7 +8,7 @@ repo_url = "https://github.com/cssnr/actions-tools"
 edit_uri = "blob/master/docs/"
 
 # https://zensical.org/docs/setup/basics/#site_url
-#site_url = "https://www.example.com/"
+site_url = "https://actions-tools.cssnr.com/"
 
 # https://zensical.org/docs/setup/basics/#copyright
 copyright = """
@@ -218,6 +218,8 @@ toggle.name = "Switch to light mode"
 [[project.theme.palette]]
 media = "(prefers-color-scheme: light)"
 scheme = "default"
+primary  = "yellow"
+accent = "indigo"
 toggle.icon = "lucide/sun"
 toggle.name = "Switch to dark mode"
 
@@ -225,6 +227,8 @@ toggle.name = "Switch to dark mode"
 [[project.theme.palette]]
 media = "(prefers-color-scheme: dark)"
 scheme = "slate"
+primary  = "indigo"
+accent = "yellow"
 toggle.icon = "lucide/moon"
 toggle.name = "Switch to system preference"
 
@@ -283,3 +287,6 @@ name = "Ko-fi"
 
 [project.extra]
 generator = false
+
+#[project.markdown_extensions.toc]
+#permalink =  true
