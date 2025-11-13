@@ -39,10 +39,11 @@ You can submit general feedback via the [web form](https://cssnr.github.io/feedb
 
 _This method is not recommended to [report issues](https://github.com/cssnr/actions-tools/issues) or [request features](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests)._
 
-[https://cssnr.github.io/feedback/](https://cssnr.github.io/feedback/?app=Actions%20Tools)
+[:lucide-send: Send Feedback](https://cssnr.github.io/feedback/?app=Actions%20Tools){ .md-button .md-button--primary }
 
 ## Additional Links
 
+- [Actions](https://actions.cssnr.com/)
 - [Website](https://cssnr.github.io/)
 - [Discord](https://discord.gg/wXy6m2X8wY)
 - [GitHub Org](https://github.com/cssnr)
