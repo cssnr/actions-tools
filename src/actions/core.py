@@ -5,12 +5,13 @@ import re
 import string
 from contextlib import contextmanager
 from typing import List, Optional
+from urllib.parse import quote
+from urllib.request import Request, urlopen
 
 from yaml import Loader, YAMLError, load
 
 
 # from . import context as ctx
-
 
 # https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands
 
@@ -29,23 +30,73 @@ _end_token = ""
 
 
 def debug(message: str, *args, **kwargs):
+    """
+    Send a Debug message
+    https://docs.github.com/en/actions/how-tos/monitor-workflows/enable-debug-logging
+    :param message: Message
+    :param args: Extra print args
+    :param kwargs: Extra print kwargs
+    """
     print(f"::debug::{message}", *args, **kwargs)
 
 
 def info(message: str, *args, **kwargs):
+    """
+    Send an Info message
+    :param message: Message
+    :param args: Extra print args
+    :param kwargs: Extra print kwargs
+    """
     print(" " * _indent + message, *args, **kwargs)
 
 
 def notice(message: str, *args, **kwargs):
-    print(f"::notice::{message}", *args, **kwargs)
+    """
+    Send a Notice message
+    https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#setting-a-notice-message
+    :param message: Message
+    :param args: Extra print args
+    :param kwargs: Notice options and print kwargs
+    """
+    cmd_args = _cmd_args(kwargs)
+    print(f"::notice{cmd_args}::{message}", *args, **kwargs)
 
 
 def warn(message: str, *args, **kwargs):
-    print(f"::warning::{message}", *args, **kwargs)
+    """
+    Send a Warning message
+    https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#setting-a-warning-message
+    :param message: Message
+    :param args: Extra print args
+    :param kwargs: Warning options and print kwargs
+    """
+    cmd_args = _cmd_args(kwargs)
+    print(f"::warning{cmd_args}::{message}", *args, **kwargs)
 
 
 def error(message: str, *args, **kwargs):
-    print(f"::error::{message}", *args, **kwargs)
+    """
+    Send an Error message
+    https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#setting-an-error-message
+    :param message: Message
+    :param args: Extra print args
+    :param kwargs: Error options and print kwargs
+    """
+    cmd_args = _cmd_args(kwargs)
+    print(f"::error{cmd_args}::{message}", *args)
+
+
+def _cmd_args(kwargs) -> str:
+    keys = ["title", "file", "col", "endColumn", "line", "endLine"]
+    results = []
+    items = kwargs.copy()
+    for key, value in items.items():
+        if key not in keys:
+            continue
+        results.append(f"{key}={value}")
+        del kwargs[key]
+    result = ",".join(results)
+    return f" {result}" if result else ""
 
 
 def is_debug() -> bool:
@@ -58,6 +109,11 @@ def set_failed(message: str):
 
 
 def mask(message: str):
+    """
+    Mask a secret
+    https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#masking-a-value-in-a-log
+    :param message: Secret to mask
+    """
     print(f"::add-mask::{message}")
 
 
@@ -124,7 +180,8 @@ def get_state(name: str) -> str:
 
 def summary(text: str, nlc: int = 1):
     """
-    NOTE: Make this its own module
+    Write to the Job Summary file
+    https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#adding-a-job-summary
     :param text:str: Raw Text
     :param nlc:int: New Line Count
     :return:
@@ -145,7 +202,7 @@ def get_input(name: str, req: bool = False, strip: bool = True) -> str:
     :param strip: bool: To Strip
     :return: str
     """
-    value = _get_input_str(name, strip)
+    value: str = _get_input_str(name, strip)
     if req and not value:
         raise ValueError(f"Error Parsing Required Input: {name} -> {value}")
     return value
@@ -178,7 +235,7 @@ def get_list(name: str, req: bool = False, strip: bool = True, split: str = "[,|
     value = _get_input_str(name, True)
     if req and not value:
         raise ValueError(f"Error Parsing Required Input: {name} -> {value}")
-    results = []
+    results: List[str] = []
     for x in re.split(split, value):
         if strip:
             x = x.strip()
@@ -189,6 +246,7 @@ def get_list(name: str, req: bool = False, strip: bool = True, split: str = "[,|
 def get_dict(name: str, req=False) -> dict:
     """
     Get Dict Input - from JSON or YAML String
+    TODO: This function can currently return Any
     :param name: str: Input Name
     :param req: bool: If Required
     :return: dict
@@ -213,6 +271,44 @@ def _get_input_str(name: str, strip: bool = True) -> str:
     value = os.getenv(f"INPUT_{name.upper()}", "")
     if strip:
         value = value.strip()
+    return value
+
+
+# OIDC
+# https://docs.github.com/en/actions/reference/security/oidc#methods-for-requesting-the-oidc-token
+
+
+def get_id_token(audience: Optional[str] = None) -> str:
+    """
+    Get and mask OIDC Token
+    :param audience:
+    :return: str
+    """
+    tip = "Check permissions: id-token: write"
+    request_url = os.environ.get("ACTIONS_ID_TOKEN_REQUEST_URL")
+    if not request_url:
+        raise ValueError(f"No ACTIONS_ID_TOKEN_REQUEST_URL - {tip}")
+    request_token = os.environ.get("ACTIONS_ID_TOKEN_REQUEST_TOKEN")
+    if not request_token:
+        raise ValueError(f"No ACTIONS_ID_TOKEN_REQUEST_TOKEN - {tip}")
+    if audience:
+        # request_url += f"&audience={quote(audience)}"
+        sep = "&" if "?" in request_url else "?"
+        request_url += f"{sep}audience={quote(audience)}"
+
+    request = Request(request_url)
+    request.add_header("Authorization", f"bearer {request_token}")
+    response = urlopen(request)
+    # code = response.getcode()
+    # if not 199 < code < 300:
+    #     raise ValueError(f"Invalid response code: {code} - {tip}")
+    content = response.read().decode()
+    # print(f"content: {content}")
+    data = json.loads(content)
+    value = data.get("value")
+    if not value:
+        raise ValueError(f"No ID Token in response - {tip}")
+    mask(value)
     return value
 
 
