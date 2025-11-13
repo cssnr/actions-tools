@@ -273,6 +273,10 @@ icon = "fontawesome/brands/python"
 link = "https://pypi.org/project/actions-tools/"
 name = "PyPi"
 [[project.extra.social]]
+icon = "simple/githubactions"
+link = "https://actions.cssnr.com/"
+name = "Actions"
+[[project.extra.social]]
 icon = "fontawesome/solid/globe"
 link = "https://cssnr.github.io/"
 name = "Website"
