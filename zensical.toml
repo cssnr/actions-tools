@@ -8,7 +8,7 @@ repo_url = "https://github.com/cssnr/actions-tools"
 edit_uri = "blob/master/docs/"
 
 # https://zensical.org/docs/setup/basics/#site_url
-#site_url = "https://www.example.com/"
+site_url = "https://actions-tools.cssnr.com/"
 
 # https://zensical.org/docs/setup/basics/#copyright
 copyright = """
@@ -19,8 +19,10 @@ Built with <a href="https://github.com/zensical/zensical" target="_blank">Zensic
 
 # https://zensical.org/docs/setup/navigation/
 nav = [
-    {"Get Started" = "get-started.md"},
+    {"Get Started" = "index.md"},
     {"Usage" = "usage.md"},
+    {"Support" = "support.md"},
+    {"Actions" = "actions.md"},
 ]
 
 # With the "extra_css" option you can add your own CSS styling to customize
@@ -194,7 +196,7 @@ features = [
     # When navigation integration for the table of contents is enabled, it is
     # always rendered as part of the navigation sidebar on the left.
     # https://zensical.org/docs/setup/navigation/#navigation-integration
-    #"toc.integrate",
+    "toc.integrate",
 ]
 
 # ----------------------------------------------------------------------------
@@ -216,6 +218,8 @@ toggle.name = "Switch to light mode"
 [[project.theme.palette]]
 media = "(prefers-color-scheme: light)"
 scheme = "default"
+primary  = "yellow"
+accent = "indigo"
 toggle.icon = "lucide/sun"
 toggle.name = "Switch to dark mode"
 
@@ -223,6 +227,8 @@ toggle.name = "Switch to dark mode"
 [[project.theme.palette]]
 media = "(prefers-color-scheme: dark)"
 scheme = "slate"
+primary  = "indigo"
+accent = "yellow"
 toggle.icon = "lucide/moon"
 toggle.name = "Switch to system preference"
 
@@ -267,6 +273,10 @@ icon = "fontawesome/brands/python"
 link = "https://pypi.org/project/actions-tools/"
 name = "PyPi"
 [[project.extra.social]]
+icon = "simple/githubactions"
+link = "https://actions.cssnr.com/"
+name = "Actions"
+[[project.extra.social]]
 icon = "fontawesome/solid/globe"
 link = "https://cssnr.github.io/"
 name = "Website"
@@ -281,3 +291,6 @@ name = "Ko-fi"
 
 [project.extra]
 generator = false
+
+#[project.markdown_extensions.toc]
+#permalink =  true

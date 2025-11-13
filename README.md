@@ -1,5 +1,5 @@
 [![GitHub Deployments](https://img.shields.io/github/deployments/cssnr/actions-tools/pypi?logo=pypi&logoColor=white&label=pypi)](https://github.com/cssnr/actions-tools/deployments/pypi)
-[![GitHub Deployments](https://img.shields.io/github/deployments/cssnr/actions-tools/test?logo=pypi&logoColor=white&label=test)](https://github.com/cssnr/actions-tools/deployments/test)
+[![GitHub Deployments](https://img.shields.io/github/deployments/cssnr/actions-tools/docs?logo=materialformkdocs&logoColor=white&label=docs)](https://github.com/cssnr/actions-tools/deployments/docs)
 [![Release Workflow](https://img.shields.io/github/actions/workflow/status/cssnr/actions-tools/release.yaml?logo=github&logoColor=white&label=release)](https://github.com/cssnr/actions-tools/actions/workflows/release.yaml)
 [![Lint Workflow](https://img.shields.io/github/actions/workflow/status/cssnr/actions-tools/lint.yaml?logo=github&logoColor=white&label=lint)](https://github.com/cssnr/actions-tools/actions/workflows/lint.yaml)
 [![Test Workflow](https://img.shields.io/github/actions/workflow/status/cssnr/actions-tools/test.yaml?logo=github&logoColor=white&label=test)](https://github.com/cssnr/actions-tools/actions/workflows/test.yaml)
@@ -25,7 +25,11 @@
 - [Support](#Support)
 - [Contributing](#Contributing)
 
-GitHub Actions Tools for Python similar to [actions/toolkit](https://github.com/actions/toolkit).
+<p align="center"><a title="Actions Tools Docs" href="https://actions-tools.cssnr.com/" target="_blank">
+<img alt="Actions Tools Docs" width="256" height="auto" src="https://raw.githubusercontent.com/smashedr/repo-images/refs/heads/master/actions-tools/logo256.png" />
+</a></p>
+
+A Typed Python GitHub Actions Tookit similar to [actions/toolkit](https://github.com/actions/toolkit).
 
 > [!NOTE]  
 > This project is in active development.  
@@ -41,14 +45,21 @@ From PyPI: https://pypi.org/p/actions-tools
 python -m pip install actions-tools
 ```
 
-From source:
+From source.
 
 ```shell
 git clone https://github.com/cssnr/actions-tools
 python -m pip install actions-tools
 ```
 
-Uninstall:
+As editable (for development).
+
+```shell
+git clone https://github.com/cssnr/actions-tools
+python -m pip install -e actions-tools
+```
+
+Uninstall.
 
 ```shell
 python -m pip uninstall actions-tools
@@ -62,17 +73,17 @@ Functionality from @actions/toolkit
 from actions import core, context
 
 # Input
-my_str = core.get_input('string')  # -> str
-my_req = core.get_input('string', True)  # required
-my_bool = core.get_bool('boolean')  # -> bool
-my_list = core.get_list('list')  # -> list
-my_data = core.get_dict('dict')  # -> dict - from json or yaml
+my_str = core.get_input("string")  # -> str
+my_req = core.get_input("string", True)  # required
+my_bool = core.get_bool("boolean")  # -> bool
+my_list = core.get_list("list")  # -> list
+my_data = core.get_dict("dict")  # -> dict - from json or yaml
 
 # Context
 # https://docs.github.com/en/actions/reference/workflows-and-actions/variables
-core.info(f'event_name: {context.event_name}')
-core.info(f'ref_name: {context.ref_name}')
-core.info(f'runner_temp: {context.runner_temp}')
+core.info(f"event_name: {context.event_name}")
+core.info(f"ref_name: {context.ref_name}")
+core.info(f"runner_temp: {context.runner_temp}")
 
 # Logging
 core.info("info")  # alias for print
@@ -85,32 +96,34 @@ core.error("error")
 
 # Blocks
 core.start_group("Title")
-core.info('This is folded.')
+core.info("This is folded.")
 core.end_group()
 
 with core.group("Title") as p:
-    p('This is folded.')
-    core.info('Also folded.')
+    p("This is folded.")
+    core.info("Also folded.")
 
 # Summary
-core.summary('## Test Action')
+core.summary("## Test Action")
 
 # Environment
-core.set_env('NAME', 'value')
+core.set_env("NAME", "value")
 
 # State
-name = core.set_state('name', 'value')
-value = core.get_state('name')
+name = core.set_state("name", "value")
+value = core.get_state("name")
 
 # System Path
-core.add_path('/dev/null')
+core.add_path("/dev/null")
 
 # Outputs
-core.set_output('name', 'cssnr')
+core.set_output("name", "cssnr")
 
 # Abort
 core.set_failed("Mayday!")  # raise SystemExit
 ```
+
+View Example Action: [smashedr/test-action-py](https://github.com/smashedr/test-action-py/blob/master/src/main.py)
 
 Functionality new in actions-tools
 
@@ -118,10 +131,10 @@ Functionality new in actions-tools
 from actions import core, context
 
 # Context
-core.info(f'repository_name: {context.repository_name}')
+core.info(f"repository_name: {context.repository_name}")
 
 # Commands
-core.command('warning', 'Warned!')  # core.warn()
+core.command("warning", "Warned!")  # core.warn()
 
 # Action Version
 version = core.get_version()  # from GITHUB_WORKFLOW_REF
@@ -131,15 +144,17 @@ rand = core.get_random(32)
 
 # Indent
 core.start_indent(4)
-core.info('Indented')  # only works with core.info
+core.info("Indented")  # only works with core.info
 core.end_indent()
 ```
 
-To access the GitHub API use [PyGithub](https://github.com/PyGithub/PyGithub)
+To access the GitHub API install [PyGithub](https://github.com/PyGithub/PyGithub).
 
 ```shell
 python -m pip install PyGithub
 ```
+
+Then import and initialize with the `token`.
 
 ```python
 from actions import core, context

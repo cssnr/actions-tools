@@ -1,7 +1,7 @@
 # Project
 [project]
 name = "actions-tools"
-description = "GitHub Actions Tools for Python"
+description = "A Typed Python GitHub Actions Tookit similar to actions/toolkit."
 authors = [{ name="Shane" }]
 readme = "README.md"
 dynamic = ["version"]
@@ -25,8 +25,10 @@ license = { text = "GPL-3.0" }
 
 [project.urls]
 Homepage = "https://cssnr.com/"
+Documentation = "https://actions-tools.cssnr.com/"
 Source = "https://github.com/cssnr/actions-tools"
 Issues = "https://github.com/cssnr/actions-tools/issues"
+Funding = "https://ko-fi.com/cssnr"
 
 # Setup Tools
 [tool.setuptools.package-data]

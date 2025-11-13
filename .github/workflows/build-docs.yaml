@@ -91,7 +91,7 @@ jobs:
           echo -e "${markdown}" >> $GITHUB_STEP_SUMMARY
 
       - name: "Send Failure Notification"
-        if: ${{ !failure() }}
+        if: ${{ failure() }}
         continue-on-error: true
         uses: sarisia/actions-status-discord@v1
         with:
