@@ -106,7 +106,7 @@ zensical build
 This builds the docs to the `sites` folder. It should run on any static site.
 
 ```shell
-docker run --rm -p 8000:80 --name docker-static -v "$(pwd)/site:/static" ghcr.io/cssnr/docker-nginx-static:latest
+docker run --rm -p 8000:80 --name docker-static -v "./site:/static" ghcr.io/cssnr/docker-nginx-static:latest
 ```
 
 Then visit: http://localhost:8000/
