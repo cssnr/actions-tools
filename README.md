@@ -60,6 +60,8 @@ python -m pip uninstall actions-tools
 
 ## Usage
 
+The usage is also available on the [documentation site](https://actions-tools.cssnr.com/).
+
 Functionality from @actions/toolkit
 
 ```python
@@ -138,7 +140,7 @@ core.is_debug()
 id_token = core.get_id_token()
 ```
 
-View Example Action: [smashedr/test-action-py](https://github.com/smashedr/test-action-py/blob/master/src/main.py)
+View example action: [smashedr/test-action-py](https://github.com/smashedr/test-action-py/blob/master/src/main.py)
 
 Functionality new in actions-tools
 
@@ -164,6 +166,7 @@ core.end_indent()
 ```
 
 To access the GitHub API install [PyGithub](https://github.com/PyGithub/PyGithub).
+This is the Python equivalent to [octokit.js](https://github.com/octokit/octokit.js).
 
 ```shell
 python -m pip install PyGithub
