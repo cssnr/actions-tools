@@ -32,7 +32,7 @@
 
 A Typed Python GitHub Actions Tookit similar to [actions/toolkit](https://github.com/actions/toolkit).
 
-- http://actions-tools.cssnr.com/
+- http://actions-tools.cssnr.com
 
 > [!NOTE]  
 > This project is in active development.  
