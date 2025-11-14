@@ -38,61 +38,56 @@ _end_token = ""
 # Core
 
 
-def debug(message: str, *args, **kwargs):
+def debug(message: str, **kwargs):
     """
     Send a Debug message
     https://docs.github.com/en/actions/how-tos/monitor-workflows/enable-debug-logging
     :param message: Message
-    :param args: Extra print args
     :param kwargs: Extra print kwargs
     """
-    print(f"::debug::{message}", *args, **kwargs)
+    print(f"::debug::{message}", **kwargs)
 
 
-def info(message: str, *args, **kwargs):
+def info(message: str, **kwargs):
     """
     Send an Info message
     :param message: Message
-    :param args: Extra print args
     :param kwargs: Extra print kwargs
     """
-    print(" " * _indent + message, *args, **kwargs)
+    print(" " * _indent + message, **kwargs)
 
 
-def notice(message: str, *args, **kwargs):
+def notice(message: str, **kwargs):
     """
     Send a Notice message
     https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#setting-a-notice-message
     :param message: Message
-    :param args: Extra print args
     :param kwargs: Notice options and print kwargs
     """
     cmd_args = _cmd_args(kwargs)
-    print(f"::notice{cmd_args}::{message}", *args, **kwargs)
+    print(f"::notice{cmd_args}::{message}", **kwargs)
 
 
-def warn(message: str, *args, **kwargs):
+def warn(message: str, **kwargs):
     """
     Send a Warning message
     https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#setting-a-warning-message
     :param message: Message
-    :param args: Extra print args
     :param kwargs: Warning options and print kwargs
     """
     cmd_args = _cmd_args(kwargs)
-    print(f"::warning{cmd_args}::{message}", *args, **kwargs)
+    print(f"::warning{cmd_args}::{message}", **kwargs)
 
 
-def error(message: str, *args, **kwargs):
+def error(message: str, **kwargs):
     """
     Send an Error message
     https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#setting-an-error-message
     :param message: Message
-    :param args: Extra print args
     :param kwargs: Error options and print kwargs
     """
     cmd_args = _cmd_args(kwargs)
-    print(f"::error{cmd_args}::{message}", *args)
+    print(f"::error{cmd_args}::{message}")
 
 
 def _cmd_args(kwargs) -> str:
@@ -295,7 +290,7 @@ def get_id_token(audience: Optional[str] = None) -> str:
     :param audience:
     :return:
     """
-    tip = "Check permissions: id-token: write"
+    tip = "Check permissions: id-token"
     request_url = os.environ.get("ACTIONS_ID_TOKEN_REQUEST_URL")
     if not request_url:
         raise ValueError(f"No ACTIONS_ID_TOKEN_REQUEST_URL - {tip}")
@@ -326,15 +321,17 @@ def get_id_token(audience: Optional[str] = None) -> str:
 # PyGithub
 
 
-def get_github(token: str) -> Github:
+def get_github(token: str, *args, **kwargs) -> Github:
     """
     Get Github from PyGithub
     :param token: GitHub Token
+    :param args: PyGithub args
+    :param kwargs: PyGithub kwargs
     :return:
     """
     if not _has_github:  # pragma: no cover
         raise ImportError("Install actions-tools[github] or PyGithub")
-    return Github(auth=Auth.Token(token))
+    return Github(auth=Auth.Token(token), *args, **kwargs)
 
 
 # Additional
