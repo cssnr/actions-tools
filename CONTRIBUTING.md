@@ -4,6 +4,7 @@
 - [Setup](#Setup)
 - [Testing](#Testing)
 - [Building](#Building)
+- [Documentation](#Documentation)
 
 > [!WARNING]  
 > This guide is a work in progress and may not be complete.
@@ -36,6 +37,8 @@ Prettier is used to format yaml, json and md.
 
 ```shell
 npm install -g prettier
+npx prettier --check .
+npx prettier --write .
 ```
 
 ## Testing
@@ -43,7 +46,8 @@ npm install -g prettier
 First [Setup](#Setup) the project, then run:
 
 ```shell
-pytest -v
+pytest -s
+pytest -s -k test_print
 ```
 
 To see coverage, run the test with:
@@ -70,3 +74,30 @@ python -m pip install dist/actions_tools-0.0.1-py3-none-any.whl
 ```
 
 The default version is `0.0.1` unless you set the environment variable `GITHUB_REF_NAME`.
+
+See [src/actions/\_\_init\_\_.py](src/actions/__init__.py) for more details.
+
+## Documentation
+
+The docs are built with Zensical.
+
+```shell
+python -m pip install -U zensical
+zensical serve
+```
+
+Then visit: http://localhost:8000/
+
+You can also build the docs locally.
+
+```shell
+zensical build
+```
+
+This builds the docs to the `sites` folder. It should run on any static site.
+
+```shell
+docker run --rm -p 8000:80 --name docker-static -v "$(pwd)/site:/static" ghcr.io/cssnr/docker-nginx-static:latest
+```
+
+Then visit: http://localhost:8000/
