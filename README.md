@@ -67,7 +67,7 @@ python -m pip uninstall actions-tools
 
 ## Usage
 
-The usage is also available on the [documentation site](https://actions-tools.cssnr.com/usage/).
+A usage guide is also available on the [documentation site](https://actions-tools.cssnr.com/usage/).
 
 Functionality from @actions/toolkit
 
@@ -144,7 +144,7 @@ core.is_debug()
 
 # PyGithub (Octokit)
 # https://pygithub.readthedocs.io/en/stable/
-token = core.get_input("token")
+token = core.get_input("token", True)
 g = core.get_github(token)
 repo = g.get_repo(f"{context.repository}")
 core.info(f"repo.name: {repo.name}")
@@ -179,7 +179,8 @@ core.info("Indented")  # only works with core.info
 core.end_indent()
 ```
 
-Reference: https://pygithub.readthedocs.io/en/stable/
+- Full `core` reference: [../src/actions/core.py](https://github.com/cssnr/actions-tools/blob/master/src/actions/core.py)
+- Full `context` reference: [../src/actions/context.py](https://github.com/cssnr/actions-tools/blob/master/src/actions/context.py)
 
 # Support
 

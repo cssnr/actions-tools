@@ -70,7 +70,7 @@ python -m pip uninstall actions-tools
 ```python
 from actions import core, context
 
-token = core.get_input("token")
+token = core.get_input("token", True)
 g = core.get_github(token)
 repo = g.get_repo(f"{context.repository}")
 core.info(f"repo.name: {repo.name}")

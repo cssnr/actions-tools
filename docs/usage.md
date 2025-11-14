@@ -8,9 +8,6 @@ After [installing](index.md), simply import the module and using methods.
 
 ## From @actions/toolkit
 
-- Full `core` reference: [../src/actions/core.py](https://github.com/cssnr/actions-tools/blob/master/src/actions/core.py)
-- Full `context` reference: [../src/actions/context.py](https://github.com/cssnr/actions-tools/blob/master/src/actions/context.py)
-
 ```python
 from actions import core, context
 
@@ -84,7 +81,7 @@ core.is_debug()
 
 # PyGithub (Octokit)
 # https://pygithub.readthedocs.io/en/stable/
-token = core.get_input("token")
+token = core.get_input("token", True)
 g = core.get_github(token)
 repo = g.get_repo(f"{context.repository}")
 core.info(f"repo.name: {repo.name}")
@@ -94,7 +91,8 @@ core.info(f"repo.name: {repo.name}")
 id_token = core.get_id_token()
 ```
 
-View example action: [smashedr/test-action-py](https://github.com/smashedr/test-action-py/blob/master/src/main.py)
+- Full `core` reference: [../src/actions/core.py](https://github.com/cssnr/actions-tools/blob/master/src/actions/core.py)
+- Full `context` reference: [../src/actions/context.py](https://github.com/cssnr/actions-tools/blob/master/src/actions/context.py)
 
 ## New In actions-tools
 
@@ -118,6 +116,8 @@ core.start_indent(4)
 core.info("Indented")  # only works with core.info
 core.end_indent()
 ```
+
+View example action: [smashedr/test-action-py](https://github.com/smashedr/test-action-py/blob/master/src/main.py)
 
 &nbsp;
 
