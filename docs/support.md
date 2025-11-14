@@ -61,10 +61,15 @@ _This method is not recommended to [report issues](https://github.com/cssnr/acti
 ## Contributing
 
 All contributions are welcome; including [bug reports](https://github.com/cssnr/actions-tools/issues),
-[feature requests](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests), and pull requests.
+[feature requests](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests),
+and [pull requests](https://github.com/cssnr/actions-tools?tab=contributing-ov-file#readme).
+
+[![Star](https://badges.cssnr.com/static/star?lucide=star&style=for-the-badge&color=ffcc3e)](https://github.com/cssnr/actions-tools)
+[![Fork](https://badges.cssnr.com/static/fork?lucide=git-fork&style=for-the-badge&color=3674a7)](https://github.com/cssnr/actions-tools/fork)
+[![Issue](https://badges.cssnr.com/static/issue?lucide=bug&style=for-the-badge&color=red)](https://github.com/cssnr/actions-tools/issues)
 
 For more details see the [CONTRIBUTING.md](https://github.com/cssnr/actions-tools?tab=contributing-ov-file#readme)
-on [GitHub](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme).
+on [GitHub](https://github.com/cssnr/actions-tools?tab=readme-ov-file#contributing).
 
 &nbsp;
 

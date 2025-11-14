@@ -10,6 +10,7 @@ cwd = Path(__file__).resolve().parent
 
 os.environ["INPUT_TEST"] = " TRUE "
 os.environ["INPUT_FALSE"] = " untrue "
+os.environ["INPUT_NUMBER"] = " 1 "
 os.environ["INPUT_DICT1"] = "status: broken\nby: ralf"
 os.environ["INPUT_DICT2"] = '{"status": "broken", "by": "ralf"}'
 os.environ["INPUT_DICT3"] = "{asdf"
@@ -83,8 +84,27 @@ def test_inputs():
 
     assert core.get_dict("dict1") == {"status": "broken", "by": "ralf"}
     assert core.get_dict("dict2") == {"status": "broken", "by": "ralf"}
+
     assert core.get_dict("dict3") == {}
     with pytest.raises(ValueError):
+        core.get_dict("dict3", True)
+
+    assert core.get_data("test") is True
+    assert core.get_dict("test") == {}
+    with pytest.raises(ValueError):
+        core.get_data("test", True)
+        core.get_dict("test", True)
+
+    assert core.get_data("number") == 1
+    assert core.get_dict("number") == {}
+    with pytest.raises(ValueError):
+        core.get_data("number", True)
+        core.get_dict("number", True)
+
+    assert not core.get_data("asdf")
+    assert core.get_dict("asdf") == {}
+    with pytest.raises(ValueError):
+        core.get_data("asdf", True)
         core.get_dict("asdf", True)
 
 

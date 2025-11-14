@@ -2,6 +2,7 @@
 
 - [Workflow](#Workflow)
 - [Setup](#Setup)
+- [Formatting](#Formatting)
 - [Testing](#Testing)
 - [Building](#Building)
 - [Documentation](#Documentation)
@@ -9,6 +10,8 @@
 This is a basic contributing guide and is a work in progress.
 
 ## Workflow
+
+[![Fork](https://badges.cssnr.com/static/fork?lucide=git-fork&style=for-the-badge&color=3674a7)](https://github.com/cssnr/actions-tools/fork)
 
 1. Fork the repository.
 2. Create a branch in your fork!
@@ -36,6 +39,10 @@ Install the project as an editable.
 python -m pip install -e .
 ```
 
+# Formatting
+
+Black is used to format python code.
+
 Prettier is used to format yaml, json and md.
 
 ```shell
@@ -43,6 +50,8 @@ npm install -g prettier
 npx prettier --check .
 npx prettier --write .
 ```
+
+For details on linters see the [pyproject.toml](pyproject.toml) and [.github/workflows/lint.yaml](.github/workflows/lint.yaml).
 
 ## Testing
 

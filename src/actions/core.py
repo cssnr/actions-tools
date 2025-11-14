@@ -238,21 +238,21 @@ def get_list(name: str, req: bool = False, strip: bool = True, split: str = "[,|
     :return:
     """
     value = _get_input_str(name, True)
-    if req and not value:
-        raise ValueError(f"Error Parsing Required Input: {name} -> {value}")
     results: List[str] = []
     for x in re.split(split, value):
         if strip:
             x = x.strip()
         if x:
             results.append(x)
+    if req and not results:
+        raise ValueError(f"Error Parsing Required Input: {name} -> {value}")
     return results
 
 
-def get_dict(name: str, req=False) -> dict:
+def get_data(name: str, req=False) -> Any:
     """
-    Get Dict Input - from JSON or YAML String
-    TODO: This function can return Any
+    Get Data Input - from JSON or YAML String
+    Parse Order - json.loads -> yaml.load -> None
     :param name: str: Input Name
     :param req: bool: If Required
     :return:
@@ -270,7 +270,23 @@ def get_dict(name: str, req=False) -> dict:
         pass
     if req:
         raise ValueError(f"Error Parsing Required Input: {name} -> {repr(value)}")
-    return {}
+    return None
+
+
+def get_dict(name: str, req=False) -> dict:
+    """
+    Get Dict Input - from JSON or YAML String
+    Same as get_data except always returns a dict
+    :param name: str: Input Name
+    :param req: bool: If Required
+    :return:
+    """
+    results = get_data(name, req)
+    if not isinstance(results, dict):
+        if req:
+            raise ValueError(f"Error Parsing Input as Dict: {name}")
+        return {}
+    return results
 
 
 def _get_input_str(name: str, strip: bool = True) -> str:
