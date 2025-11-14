@@ -39,7 +39,7 @@ Install the project as an editable.
 python -m pip install -e .
 ```
 
-# Formatting
+## Formatting
 
 Black is used to format python code.
 
