@@ -6,9 +6,6 @@
 - [Building](#Building)
 - [Documentation](#Documentation)
 
-> [!WARNING]  
-> This guide is a work in progress and may not be complete.
-
 This is a basic contributing guide and is a work in progress.
 
 ## Workflow
@@ -26,7 +23,7 @@ If you need help with anything, [let us know](https://github.com/cssnr/actions-t
 
 ## Setup
 
-Clone the repository, change into the directory and run:
+Clone the repository, change into the directory and run.
 
 ```shell
 python -m pip install -U pip
@@ -43,23 +40,29 @@ npx prettier --write .
 
 ## Testing
 
-First [Setup](#Setup) the project, then run:
+First [Setup](#Setup) the project, then run.
 
 ```shell
 pytest -s
 pytest -s -k test_print
 ```
 
-To see coverage, run the test with:
+To see coverage, run the test with.
 
 ```shell
 coverage run -m pytest
 coverage report -m
 ```
 
+Run a test by name.
+
+```shell
+pytest -s -k test_print
+```
+
 ## Building
 
-Build the project locally:
+Build the project locally.
 
 ```shell
 python -m pip install -U pip
@@ -67,7 +70,7 @@ python -m pip install -Ur requirements.txt
 python -m build
 ```
 
-Install the built package:
+Install the built package.
 
 ```shell
 python -m pip install dist/actions_tools-0.0.1-py3-none-any.whl

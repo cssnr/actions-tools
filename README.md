@@ -133,7 +133,7 @@ core.start_commands()
 core.summary("## Test Action")
 
 # Abort
-core.set_failed("Mayday!")  # raise SystemExit
+core.set_failed("Mayday!")
 
 # Runner Debug
 core.is_debug()
