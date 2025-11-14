@@ -24,14 +24,21 @@ core.info(f"event_name: {context.event_name}")
 core.info(f"ref_name: {context.ref_name}")
 core.info(f"runner_temp: {context.runner_temp}")
 
+# Event
+# https://docs.github.com/en/webhooks/webhook-events-and-payloads
+event = core.get_event()  # -> dict
+core.info(str(event))
+repository = event.get("repository")
+
 # Logging
 core.info("info")  # alias for print
 core.debug("debug")
 
 # Annotations
+# https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#setting-a-notice-message
 core.notice("notice")
 core.warn("warn")
-core.error("error")
+core.error("error", title="Title", file="File", col=1, endColumn=2, line=3, endLine=4)
 
 # Blocks
 core.start_group("Title")
@@ -41,9 +48,6 @@ core.end_group()
 with core.group("Title") as p:
     p("This is folded.")
     core.info("Also folded.")
-
-# Summary
-core.summary("## Test Action")
 
 # Environment
 core.set_env("NAME", "value")
@@ -55,11 +59,29 @@ value = core.get_state("name")
 # System Path
 core.add_path("/dev/null")
 
+# Set Secret
+core.mask("super-secret-string")
+
 # Outputs
 core.set_output("name", "cssnr")
 
+# Commands
+core.stop_commands()
+core.info("::error::log output with commands")
+core.start_commands()
+
+# Summary
+core.summary("## Test Action")
+
 # Abort
-core.set_failed("Mayday!")  # raise SystemExit
+core.set_failed("Mayday!")
+
+# Runner Debug
+core.is_debug()
+
+# OIDC Token
+# https://docs.github.com/en/actions/reference/security/oidc
+id_token = core.get_id_token()
 ```
 
 View Example Action: [smashedr/test-action-py](https://github.com/smashedr/test-action-py/blob/master/src/main.py)

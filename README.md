@@ -52,13 +52,6 @@ git clone https://github.com/cssnr/actions-tools
 python -m pip install actions-tools
 ```
 
-As editable (for development).
-
-```shell
-git clone https://github.com/cssnr/actions-tools
-python -m pip install -e actions-tools
-```
-
 Uninstall.
 
 ```shell

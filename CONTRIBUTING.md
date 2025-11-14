@@ -30,6 +30,12 @@ python -m pip install -U pip
 python -m pip install -Ur requirements.txt
 ```
 
+Install the project as an editable.
+
+```shell
+python -m pip install -e .
+```
+
 Prettier is used to format yaml, json and md.
 
 ```shell
