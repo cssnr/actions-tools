@@ -46,6 +46,8 @@ Add to requirements.
 
 ```text title="requirements.txt"
 actions-tools
+# or with PyGithub
+actions-tools[github]
 ```
 
 Install from source.

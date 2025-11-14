@@ -52,7 +52,7 @@ With [PyGithub](https://github.com/PyGithub/PyGithub) (for GitHub API access).
 python -m pip install actions-tools[github]
 ```
 
-From source.
+Install from source.
 
 ```shell
 git clone https://github.com/cssnr/actions-tools

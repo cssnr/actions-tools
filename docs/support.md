@@ -7,6 +7,10 @@ icon: lucide/message-circle-question-mark
 If you have any [trouble](https://github.com/cssnr/actions-tools/issues) using the tools or want to see more
 [features](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests), please let us know!
 
+## Get Help
+
+Feel free to request help for anything.
+
 ### GitHub Discussions
 
 If you have a question or need help with anything,
@@ -53,6 +57,14 @@ _This method is not recommended to [report issues](https://github.com/cssnr/acti
 - [PyPI Profile](https://pypi.org/user/smashed/)
 - [Mozilla Profile](https://addons.mozilla.org/en-US/firefox/user/18021912/)
 - [Google Play Profile](https://play.google.com/store/apps/dev?id=8933468453824534870)
+
+## Contributing
+
+All contributions are welcome; including [bug reports](https://github.com/cssnr/actions-tools/issues),
+[feature requests](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests), and pull requests.
+
+For more details see the [CONTRIBUTING.md](https://github.com/cssnr/actions-tools?tab=contributing-ov-file#readme)
+on [GitHub](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme).
 
 &nbsp;
 

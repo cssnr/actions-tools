@@ -255,7 +255,7 @@ def get_list(name: str, req: bool = False, strip: bool = True, split: str = "[,|
 def get_dict(name: str, req=False) -> dict:
     """
     Get Dict Input - from JSON or YAML String
-    TODO: This function can currently return Any
+    TODO: This function can return Any
     :param name: str: Input Name
     :param req: bool: If Required
     :return:
