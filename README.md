@@ -46,6 +46,12 @@ From PyPI: https://pypi.org/p/actions-tools
 python -m pip install actions-tools
 ```
 
+With [PyGithub](https://github.com/PyGithub/PyGithub) (for GitHub API access).
+
+```shell
+python -m pip install actions-tools[github]
+```
+
 From source.
 
 ```shell
@@ -136,6 +142,13 @@ core.set_failed("Mayday!")
 # Runner Debug
 core.is_debug()
 
+# PyGithub (Octokit)
+# https://pygithub.readthedocs.io/en/stable/
+token = core.get_input("token")
+g = core.get_github(token)
+repo = g.get_repo(f"{context.repository}")
+core.info(f"repo.name: {repo.name}")
+
 # OIDC Token
 # https://docs.github.com/en/actions/reference/security/oidc
 id_token = core.get_id_token()
@@ -164,25 +177,6 @@ rand = core.get_random(32)
 core.start_indent(4)
 core.info("Indented")  # only works with core.info
 core.end_indent()
-```
-
-To access the GitHub API install [PyGithub](https://github.com/PyGithub/PyGithub).
-This is the Python equivalent to [octokit.js](https://github.com/octokit/octokit.js).
-
-```shell
-python -m pip install PyGithub
-```
-
-Then import and initialize with the `token`.
-
-```python
-from actions import core, context
-from github import Auth, Github
-
-token: str = core.get_input("token")
-g = Github(auth=Auth.Token(token))
-repo = g.get_repo(f"{context.repository}")
-core.info(f"repo.name: {repo.name}")
 ```
 
 Reference: https://pygithub.readthedocs.io/en/stable/

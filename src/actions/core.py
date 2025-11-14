@@ -321,7 +321,7 @@ def get_id_token(audience: Optional[str] = None) -> str:
     return value
 
 
-## PyGithub
+# PyGithub
 
 
 def get_github(token: str) -> Github:

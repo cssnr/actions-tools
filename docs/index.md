@@ -36,6 +36,12 @@ From PyPI: https://pypi.org/p/actions-tools
 python -m pip install actions-tools
 ```
 
+With [PyGithub](https://github.com/PyGithub/PyGithub) (for GitHub API access).
+
+```shell
+python -m pip install actions-tools[github]
+```
+
 Add to requirements.txt.
 
 ```text title="requirements.txt"
