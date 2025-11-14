@@ -11,6 +11,15 @@ from urllib.request import Request, urlopen
 from yaml import Loader, YAMLError, load
 
 
+try:
+    # noinspection PyUnresolvedReferences
+    from github import Auth, Github
+except ImportError:  # pragma: no cover
+    _has_github = False
+else:
+    _has_github = True
+
+
 # from . import context as ctx
 
 # https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands
@@ -200,7 +209,7 @@ def get_input(name: str, req: bool = False, strip: bool = True) -> str:
     :param name: str: Input Name
     :param req: bool: If Required
     :param strip: bool: To Strip
-    :return: str
+    :return:
     """
     value: str = _get_input_str(name, strip)
     if req and not value:
@@ -213,7 +222,7 @@ def get_bool(name: str, req: bool = False) -> bool:
     Get Boolean Input
     :param name: str: Input Name
     :param req: bool: If Required
-    :return: bool
+    :return:
     """
     value = _get_input_str(name, True).lower()
     if req and value not in _true + _false:
@@ -230,7 +239,7 @@ def get_list(name: str, req: bool = False, strip: bool = True, split: str = "[,|
     :param req: bool: If Required
     :param strip: bool: To Strip
     :param split: str: Split Regex
-    :return: list
+    :return:
     """
     value = _get_input_str(name, True)
     if req and not value:
@@ -249,7 +258,7 @@ def get_dict(name: str, req=False) -> dict:
     TODO: This function can currently return Any
     :param name: str: Input Name
     :param req: bool: If Required
-    :return: dict
+    :return:
     """
     value = _get_input_str(name, True)
     try:
@@ -282,7 +291,7 @@ def get_id_token(audience: Optional[str] = None) -> str:
     """
     Get and mask OIDC Token
     :param audience:
-    :return: str
+    :return:
     """
     tip = "Check permissions: id-token: write"
     request_url = os.environ.get("ACTIONS_ID_TOKEN_REQUEST_URL")
@@ -310,6 +319,20 @@ def get_id_token(audience: Optional[str] = None) -> str:
         raise ValueError(f"No ID Token in response - {tip}")
     mask(value)
     return value
+
+
+## PyGithub
+
+
+def get_github(token: str) -> Github:
+    """
+    Get Github from PyGithub
+    :param token: GitHub Token
+    :return:
+    """
+    if not _has_github:  # pragma: no cover
+        raise ImportError("Install with actions-tools[github] or install PyGithub.")
+    return Github(auth=Auth.Token(token))
 
 
 # Additional

@@ -113,3 +113,10 @@ def test_oidc_token():
     # 46d5-1506-40d5-b4f7 {"value": "bar"}
     os.environ["ACTIONS_ID_TOKEN_REQUEST_URL"] = "https://dummyjson.com/c/46d5-1506-40d5-b4f7"
     assert core.get_id_token() == "bar"
+
+
+def test_github(monkeypatch):
+    # monkeypatch.delitem(sys.modules, "Github", raising=False)
+    # importlib.reload(core)
+    g = core.get_github("xxx")
+    assert g

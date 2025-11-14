@@ -79,7 +79,7 @@ jobs:
 
       - name: "Install ${{ matrix.version }}"
         run: |
-          python -m pip install dist/*.whl
+          python -m pip install dist/*.whl[github]
 
       #- name: "Debug ${{ matrix.version }}"
       #  run: |
