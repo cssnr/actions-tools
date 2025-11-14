@@ -353,9 +353,9 @@ def get_random(length: int = 16) -> str:
     return "".join(r)
 
 
-def command(name: str, value: str = "", *args, **kwargs):
+def command(name: str, value: str = "", **kwargs):
     cmd_args = _cmd_args(kwargs)
-    print(f"::{name}{cmd_args}::{value}", *args, **kwargs)
+    print(f"::{name}{cmd_args}::{value}", **kwargs)
 
 
 def start_indent(spaces: int = 2):
