@@ -88,6 +88,8 @@ core.info(f"runner_temp: {context.runner_temp}")
 # Event
 # https://docs.github.com/en/webhooks/webhook-events-and-payloads
 event = core.get_event()  # -> dict
+core.info(str(event))
+repository = event.get("repository")
 
 # Logging
 core.info("info")  # alias for print
