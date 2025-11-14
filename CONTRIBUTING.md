@@ -19,13 +19,7 @@ This is a basic contributing guide and is a work in progress.
 7. Verify all the tests pass, fix the issues.
 8. Make sure to keep your branch up-to-date.
 
-If you need help with anything, [let us know](https://github.com/cssnr/actions-tools?tab=readme-ov-file#support)...
-
 If you need help with anything, [let us know](#readme-ov-file)...
-
-If you need help with anything, [let us know](#readme-ov-file#support)...
-
-If you need help with anything, [let us know](#readme-ov-file-support)...
 
 ## Setup
 

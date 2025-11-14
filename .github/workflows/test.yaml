@@ -6,19 +6,14 @@ on:
   #  - cron: "18 18 * * 1,3,5"
   push:
     branches: [master]
-    paths:
+    paths: &paths
       - ".github/workflows/test.yaml"
       - "src/**"
       - "tests/**"
       - "pyproject.toml"
       - "requirements*.txt"
   pull_request:
-    paths:
-      - ".github/workflows/test.yaml"
-      - "src/**"
-      - "tests/**"
-      - "pyproject.toml"
-      - "requirements*.txt"
+    paths: *paths
 
 jobs:
   build:
