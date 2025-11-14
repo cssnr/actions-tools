@@ -4,7 +4,7 @@ icon: simple/githubactions
 
 # Actions
 
-I have also developed quite a few [GitHub Actions](https://actions.cssnr.com/).
+I have also developed quite a few [GitHub Actions](https://actions.cssnr.com/actions).
 
 Additionally, let me know you would like [a new action](https://github.com/cssnr/actions/discussions/categories/github-actions) created.
 
@@ -78,7 +78,7 @@ These are basic action templates that I use for creating new actions.
 
 I have not yet created a template for this project; however, this is an example action using these tools:
 
-- https://github.com/smashedr/test-action-py
+- [https://github.com/smashedr/test-action-py](https://github.com/smashedr/test-action-py?tab=readme-ov-file#readme)
 
 !!! quote "Additional Information"
 

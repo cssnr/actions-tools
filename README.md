@@ -32,6 +32,8 @@
 
 A Typed Python GitHub Actions Tookit similar to [actions/toolkit](https://github.com/actions/toolkit).
 
+- http://actions-tools.cssnr.com
+
 > [!NOTE]  
 > This project is in active development.  
 > Please [let us know](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests)
@@ -67,7 +69,7 @@ python -m pip uninstall actions-tools
 
 ## Usage
 
-A usage guide is also available on the [documentation site](https://actions-tools.cssnr.com/usage/).
+A [usage guide](https://actions-tools.cssnr.com/usage/) is available on the [documentation site](https://actions-tools.cssnr.com/).
 
 Functionality from @actions/toolkit
 
@@ -79,7 +81,8 @@ my_str = core.get_input("string")  # -> str
 my_req = core.get_input("string", True)  # required
 my_bool = core.get_bool("boolean")  # -> bool
 my_list = core.get_list("list")  # -> list
-my_data = core.get_dict("dict")  # -> dict - from json or yaml
+my_dict = core.get_dict("dict")  # -> dict - from json or yaml
+my_data = core.get_dict("data")  # -> Any - from json or yaml
 
 # Context
 # https://docs.github.com/en/actions/reference/workflows-and-actions/variables
