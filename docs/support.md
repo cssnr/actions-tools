@@ -66,6 +66,7 @@ and [pull requests](https://github.com/cssnr/actions-tools?tab=contributing-ov-f
 
 [![Star](https://badges.cssnr.com/static/star?lucide=star&style=for-the-badge&color=ffcc3e)](https://github.com/cssnr/actions-tools)
 [![Fork](https://badges.cssnr.com/static/fork?lucide=git-fork&style=for-the-badge&color=3674a7)](https://github.com/cssnr/actions-tools/fork)
+[![Feature](https://badges.cssnr.com/static/feature?icon=github&style=for-the-badge&color=232925)](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests)
 [![Issue](https://badges.cssnr.com/static/issue?lucide=bug&style=for-the-badge&color=red)](https://github.com/cssnr/actions-tools/issues)
 
 For more details see the [CONTRIBUTING.md](https://github.com/cssnr/actions-tools?tab=contributing-ov-file#readme)
