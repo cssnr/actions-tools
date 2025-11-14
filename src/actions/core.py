@@ -4,7 +4,7 @@ import random
 import re
 import string
 from contextlib import contextmanager
-from typing import List, Optional
+from typing import Any, List, Optional
 from urllib.parse import quote
 from urllib.request import Request, urlopen
 
@@ -102,6 +102,7 @@ def _cmd_args(kwargs) -> str:
     for key, value in items.items():
         if key not in keys:
             continue
+        value = str(value).replace(":", "%3A").replace(",", "%2C")
         results.append(f"{key}={value}")
         del kwargs[key]
     result = ",".join(results)
@@ -158,7 +159,7 @@ def start_commands(end_token: str = ""):
     print(f"::{end_token}::")
 
 
-def set_output(output: str, value: str):
+def set_output(output: str, value: Any):
     with open(os.environ["GITHUB_OUTPUT"], "a") as f:
         print(f"{output}={value}", file=f)  # type: ignore
 
@@ -173,7 +174,7 @@ def add_path(path: str):
         print(path, file=f)  # type: ignore
 
 
-def set_state(name: str, value: str) -> str:
+def set_state(name: str, value: Any) -> str:
     if name.startswith("STATE_"):
         name = name[6:]
     with open(os.environ["GITHUB_STATE"], "a") as f:
@@ -331,7 +332,7 @@ def get_github(token: str) -> Github:
     :return:
     """
     if not _has_github:  # pragma: no cover
-        raise ImportError("Install with actions-tools[github] or install PyGithub.")
+        raise ImportError("Install actions-tools[github] or PyGithub")
     return Github(auth=Auth.Token(token))
 
 
@@ -355,8 +356,9 @@ def get_random(length: int = 16) -> str:
     return "".join(r)
 
 
-def command(name: str, value: str = ""):
-    print(f"::{name}::{value}")
+def command(name: str, value: str = "", *args, **kwargs):
+    cmd_args = _cmd_args(kwargs)
+    print(f"::{name}{cmd_args}::{value}", *args, **kwargs)
 
 
 def start_indent(spaces: int = 2):
