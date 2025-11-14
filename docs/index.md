@@ -23,6 +23,10 @@ icon: lucide/rocket
 
 A Typed Python GitHub Actions Tookit similar to [actions/toolkit](https://github.com/actions/toolkit).
 
+To get started [install](#install) the tools and view the [usage](usage.md).
+
+If you run into any issues, [support](support.md) is available.
+
 ## Install
 
 From PyPI: https://pypi.org/p/actions-tools
