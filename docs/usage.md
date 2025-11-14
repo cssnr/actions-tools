@@ -1,15 +1,12 @@
 ---
-icon: lucide/cog
+icon: lucide/notebook-pen
 ---
 
 # Usage
 
-Once [installed](index.md) import the module and start using methods.
+After [installing](index.md), simply import the module and using methods.
 
 ## From @actions/toolkit
-
-- Full `core` reference: [../src/actions/core.py](https://github.com/cssnr/actions-tools/blob/master/src/actions/core.py)
-- Full `context` reference: [../src/actions/context.py](https://github.com/cssnr/actions-tools/blob/master/src/actions/context.py)
 
 ```python
 from actions import core, context
@@ -82,12 +79,20 @@ core.set_failed("Mayday!")
 # Runner Debug
 core.is_debug()
 
+# PyGithub (Octokit)
+# https://pygithub.readthedocs.io/en/stable/
+token = core.get_input("token", True)
+g = core.get_github(token)
+repo = g.get_repo(f"{context.repository}")
+core.info(f"repo.name: {repo.name}")
+
 # OIDC Token
 # https://docs.github.com/en/actions/reference/security/oidc
 id_token = core.get_id_token()
 ```
 
-View example action: [smashedr/test-action-py](https://github.com/smashedr/test-action-py/blob/master/src/main.py)
+- Full `core` reference: [../src/actions/core.py](https://github.com/cssnr/actions-tools/blob/master/src/actions/core.py)
+- Full `context` reference: [../src/actions/context.py](https://github.com/cssnr/actions-tools/blob/master/src/actions/context.py)
 
 ## New In actions-tools
 
@@ -112,28 +117,7 @@ core.info("Indented")  # only works with core.info
 core.end_indent()
 ```
 
-## GitHub API PyGithub
-
-To access the GitHub API install [PyGithub](https://github.com/PyGithub/PyGithub).
-This is the Python equivalent to [octokit.js](https://github.com/octokit/octokit.js).
-
-```shell
-python -m pip install PyGithub
-```
-
-Then import and initialize with the `token`.
-
-```python
-from actions import core, context
-from github import Auth, Github
-
-token: str = core.get_input("token")
-g = Github(auth=Auth.Token(token))
-repo = g.get_repo(f"{context.repository}")
-core.info(f"repo.name: {repo.name}")
-```
-
-Reference: https://pygithub.readthedocs.io/en/stable/
+View example action: [smashedr/test-action-py](https://github.com/smashedr/test-action-py/blob/master/src/main.py)
 
 &nbsp;
 

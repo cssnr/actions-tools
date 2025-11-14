@@ -1,6 +1,7 @@
 [![PyPI Version](https://img.shields.io/pypi/v/actions-tools?logo=pypi&logoColor=white&label=pypi)](https://pypi.org/project/actions-tools/)
 [![GitHub Release Version](https://img.shields.io/github/v/release/cssnr/actions-tools?logo=github)](https://github.com/cssnr/actions-tools/releases)
 [![TOML Python Version](https://img.shields.io/badge/dynamic/toml?url=https%3A%2F%2Fraw.githubusercontent.com%2Fcssnr%2Factions-tools%2Frefs%2Fheads%2Fmaster%2Fpyproject.toml&query=%24.project.requires-python&logo=python&logoColor=white&label=python)](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme)
+[![PyPI Downloads](https://img.shields.io/pypi/dm/actions-tools?logo=pypi&logoColor=white)](https://pepy.tech/projects/actions-tools)
 [![Codecov](https://codecov.io/gh/cssnr/actions-tools/graph/badge.svg?token=A8NDHZ393X)](https://codecov.io/gh/cssnr/actions-tools)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=cssnr_actions-tools&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=cssnr_actions-tools)
 [![Release Workflow](https://img.shields.io/github/actions/workflow/status/cssnr/actions-tools/release.yaml?logo=github&logoColor=white&label=release)](https://github.com/cssnr/actions-tools/actions/workflows/release.yaml)
@@ -45,7 +46,13 @@ From PyPI: https://pypi.org/p/actions-tools
 python -m pip install actions-tools
 ```
 
-From source.
+With [PyGithub](https://github.com/PyGithub/PyGithub) (for GitHub API access).
+
+```shell
+python -m pip install actions-tools[github]
+```
+
+Install from source.
 
 ```shell
 git clone https://github.com/cssnr/actions-tools
@@ -60,7 +67,7 @@ python -m pip uninstall actions-tools
 
 ## Usage
 
-The usage is also available on the [documentation site](https://actions-tools.cssnr.com/usage/).
+A usage guide is also available on the [documentation site](https://actions-tools.cssnr.com/usage/).
 
 Functionality from @actions/toolkit
 
@@ -135,12 +142,20 @@ core.set_failed("Mayday!")
 # Runner Debug
 core.is_debug()
 
+# PyGithub (Octokit)
+# https://pygithub.readthedocs.io/en/stable/
+token = core.get_input("token", True)
+g = core.get_github(token)
+repo = g.get_repo(f"{context.repository}")
+core.info(f"repo.name: {repo.name}")
+
 # OIDC Token
 # https://docs.github.com/en/actions/reference/security/oidc
 id_token = core.get_id_token()
 ```
 
-View example action: [smashedr/test-action-py](https://github.com/smashedr/test-action-py/blob/master/src/main.py)
+- Full `core` reference: [../src/actions/core.py](https://github.com/cssnr/actions-tools/blob/master/src/actions/core.py)
+- Full `context` reference: [../src/actions/context.py](https://github.com/cssnr/actions-tools/blob/master/src/actions/context.py)
 
 Functionality new in actions-tools
 
@@ -165,26 +180,7 @@ core.info("Indented")  # only works with core.info
 core.end_indent()
 ```
 
-To access the GitHub API install [PyGithub](https://github.com/PyGithub/PyGithub).
-This is the Python equivalent to [octokit.js](https://github.com/octokit/octokit.js).
-
-```shell
-python -m pip install PyGithub
-```
-
-Then import and initialize with the `token`.
-
-```python
-from actions import core, context
-from github import Auth, Github
-
-token: str = core.get_input("token")
-g = Github(auth=Auth.Token(token))
-repo = g.get_repo(f"{context.repository}")
-core.info(f"repo.name: {repo.name}")
-```
-
-Reference: https://pygithub.readthedocs.io/en/stable/
+View example action: [smashedr/test-action-py](https://github.com/smashedr/test-action-py/blob/master/src/main.py)
 
 # Support
 

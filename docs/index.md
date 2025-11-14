@@ -5,6 +5,7 @@ icon: lucide/rocket
 [![PyPI Version](https://img.shields.io/pypi/v/actions-tools?logo=pypi&logoColor=white&label=pypi)](https://pypi.org/project/actions-tools/)
 [![GitHub Release Version](https://img.shields.io/github/v/release/cssnr/actions-tools?logo=github)](https://github.com/cssnr/actions-tools/releases)
 [![TOML Python Version](https://img.shields.io/badge/dynamic/toml?url=https%3A%2F%2Fraw.githubusercontent.com%2Fcssnr%2Factions-tools%2Frefs%2Fheads%2Fmaster%2Fpyproject.toml&query=%24.project.requires-python&logo=python&logoColor=white&label=python)](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme)
+[![PyPI Downloads](https://img.shields.io/pypi/dm/actions-tools?logo=pypi&logoColor=white)](https://pepy.tech/projects/actions-tools)
 [![Codecov](https://codecov.io/gh/cssnr/actions-tools/graph/badge.svg?token=A8NDHZ393X)](https://codecov.io/gh/cssnr/actions-tools)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=cssnr_actions-tools&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=cssnr_actions-tools)
 [![GitHub Top Language](https://img.shields.io/github/languages/top/cssnr/actions-tools?logo=htmx&logoColor=white)](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme)
@@ -23,7 +24,7 @@ icon: lucide/rocket
 
 A Typed Python GitHub Actions Tookit similar to [actions/toolkit](https://github.com/actions/toolkit).
 
-To get started [install](#install) the tools and view the [usage](usage.md).
+**To get started [install](#install) the tools and view the [usage](usage.md).**
 
 If you run into any issues, [support](support.md) is available.
 
@@ -35,13 +36,21 @@ From PyPI: https://pypi.org/p/actions-tools
 python -m pip install actions-tools
 ```
 
-Add to requirements.txt.
+With [PyGithub](https://github.com/PyGithub/PyGithub) (for GitHub API access).
+
+```shell
+python -m pip install actions-tools[github]
+```
+
+Add to requirements.
 
 ```text title="requirements.txt"
 actions-tools
+# or with PyGithub
+actions-tools[github]
 ```
 
-From source.
+Install from source.
 
 ```shell
 git clone https://github.com/cssnr/actions-tools
@@ -56,7 +65,18 @@ python -m pip uninstall actions-tools
 
 &nbsp;
 
-[:lucide-play: View the Usage](usage.md){ .md-button .md-button--primary }
+[:lucide-notebook-pen: View the Usage](usage.md){ .md-button .md-button--primary }
+
+```python
+from actions import core, context
+
+token = core.get_input("token", True)
+g = core.get_github(token)
+repo = g.get_repo(f"{context.repository}")
+core.info(f"repo.name: {repo.name}")
+```
+
+**Make sure to view the full [Usage](usage.md) guide.**
 
 &nbsp;
 

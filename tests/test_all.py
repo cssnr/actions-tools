@@ -28,9 +28,9 @@ def test_print():
     core.notice("notice")
     core.warn("warn")
     with pytest.raises(SystemExit):
-        core.set_failed("test")
-    core.mask("test")
-    core.start_group("test")
+        core.set_failed("failed")
+    core.mask("secret")
+    core.start_group("group")
     core.end_group()
     core.start_indent()
     core.info("indent")
@@ -43,7 +43,7 @@ def test_print():
         core.info("with group")
         p("core.info")
     core.info("no group")
-    core.command("debug", "test")
+    core.command("debug", "command")
     args = {
         "title": "Test Title",
         "file": "test-file.txt",
@@ -113,3 +113,10 @@ def test_oidc_token():
     # 46d5-1506-40d5-b4f7 {"value": "bar"}
     os.environ["ACTIONS_ID_TOKEN_REQUEST_URL"] = "https://dummyjson.com/c/46d5-1506-40d5-b4f7"
     assert core.get_id_token() == "bar"
+
+
+def test_github(monkeypatch):
+    # monkeypatch.delitem(sys.modules, "Github", raising=False)
+    # importlib.reload(core)
+    g = core.get_github("xxx")
+    assert g

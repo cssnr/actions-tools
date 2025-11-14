@@ -23,6 +23,9 @@ classifiers = [
 license = { text = "GPL-3.0" }
 #license = { file = "LICENSE" }
 
+[project.optional-dependencies]
+github = ["PyGithub>=2,<3"]
+
 [project.urls]
 Homepage = "https://cssnr.com/"
 Documentation = "https://actions-tools.cssnr.com/"
@@ -59,7 +62,7 @@ source = ["src"]
 profile = "black"
 lines_after_imports = 2
 src_paths = ["src", "test"]
-skip = [".github"]
+skip = ["venv", ".github"]
 
 # Mypy
 # https://mypy.readthedocs.io/en/stable/config_file.html
