@@ -24,7 +24,7 @@ icon: lucide/rocket
 
 A Typed Python GitHub Actions Tookit similar to [actions/toolkit](https://github.com/actions/toolkit).
 
-To get started [install](#install) the tools and view the [usage](usage.md).
+**To get started [install](#install) the tools and view the [usage](usage.md).**
 
 If you run into any issues, [support](support.md) is available.
 
@@ -42,13 +42,13 @@ With [PyGithub](https://github.com/PyGithub/PyGithub) (for GitHub API access).
 python -m pip install actions-tools[github]
 ```
 
-Add to requirements.txt.
+Add to requirements.
 
 ```text title="requirements.txt"
 actions-tools
 ```
 
-From source.
+Install from source.
 
 ```shell
 git clone https://github.com/cssnr/actions-tools
@@ -63,7 +63,18 @@ python -m pip uninstall actions-tools
 
 &nbsp;
 
-[:lucide-play: View the Usage](usage.md){ .md-button .md-button--primary }
+[:lucide-notebook-pen: View the Usage](usage.md){ .md-button .md-button--primary }
+
+```python
+from actions import core, context
+
+token = core.get_input("token")
+g = core.get_github(token)
+repo = g.get_repo(f"{context.repository}")
+core.info(f"repo.name: {repo.name}")
+```
+
+**Make sure to view the full [Usage](usage.md) guide.**
 
 &nbsp;
 

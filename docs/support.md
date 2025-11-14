@@ -16,7 +16,7 @@ or [Q&A](https://github.com/cssnr/actions-tools/discussions/categories/q-a).
 If you want to see a new feature, start a discussion in
 the [Feature Requests](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests) section.
 
-[:lucide-messages-square: Start A Discussion](https://github.com/cssnr/actions-tools/discussions){ .md-button .md-button--primary }
+[:fontawesome-brands-github: Start A Discussion](https://github.com/cssnr/actions-tools/discussions){ .md-button .md-button--primary }
 
 ### GitHub Issues
 

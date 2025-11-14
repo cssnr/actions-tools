@@ -1,10 +1,10 @@
 ---
-icon: lucide/cog
+icon: lucide/notebook-pen
 ---
 
 # Usage
 
-Once [installed](index.md) import the module and start using methods.
+After [installing](index.md), simply import the module and using methods.
 
 ## From @actions/toolkit
 
