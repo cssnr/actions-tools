@@ -6,9 +6,9 @@ icon: simple/githubactions
 
 I have also developed quite a few [GitHub Actions](https://actions.cssnr.com/).
 
-Additionally, let me know you would like [a new action](https://github.com/cssnr/actions/discussions/categories/feature-requests) created.
+Additionally, let me know you would like [a new action](https://github.com/cssnr/actions/discussions/categories/github-actions) created.
 
-[:lucide-activity: Request New Action](https://github.com/cssnr/actions/discussions/categories/feature-requests){ .md-button .md-button--primary }
+[:lucide-activity: Request New Action](https://github.com/cssnr/actions/discussions/categories/github-actions){ .md-button .md-button--primary }
 
 ## Published
 
@@ -76,7 +76,7 @@ These are basic action templates that I use for creating new actions.
 - [py-test-action](https://github.com/smashedr/py-test-action?tab=readme-ov-file#readme) - Python (Dockerfile)
 - [docker-test-action](https://github.com/smashedr/docker-test-action?tab=readme-ov-file#readme) - Docker (Image)
 
-I have not created a template for actions-tools yet; however, this project uses `actions-tools`:
+I have not yet created a template for this project; however, this is an example action using these tools:
 
 - https://github.com/smashedr/test-action-py
 

@@ -60,13 +60,17 @@ python -m pip uninstall actions-tools
 
 &nbsp;
 
-!!! note
+!!! question
+
+    If you need help or run into issues, [support](support.md) is available!
+
+!!! info
 
     This project is in active development.
     Please [let us know](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests)
     what features you want to see.
 
-!!! example "Work in Progress"
+!!! example "Documentation"
 
     This documentation site is a work in progress.
     See the [README.md](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme) for more details.

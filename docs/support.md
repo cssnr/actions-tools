@@ -4,7 +4,7 @@ icon: lucide/message-circle-question-mark
 
 # Support
 
-If you have any [troubles](https://github.com/cssnr/actions-tools/issues) using `actions-tools`, or want to see more
+If you have any [trouble](https://github.com/cssnr/actions-tools/issues) using the tools or want to see more
 [features](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests), please let us know!
 
 ### GitHub Discussions
