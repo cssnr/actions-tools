@@ -79,7 +79,7 @@ features = [
     # will generate a button that allows the user to view the Markdown
     # code for the current page.
     # https://zensical.org/docs/setup/repository/#code-actions
-    "content.action.view",
+    #"content.action.view",
 
     # Code annotations allow you to add an icon with a tooltip to your
     # code blocks to provide explanations at crucial points.
@@ -94,7 +94,7 @@ features = [
     # Code blocks can include a button to allow for the selection of line
     # ranges by the user.
     # https://zensical.org/docs/authoring/code-blocks/#code-selection-button
-    "content.code.select",
+    #"content.code.select",
 
     # Zensical can render footnotes as inline tooltips, so the user can read
     # the footnote without leaving the context of the document.

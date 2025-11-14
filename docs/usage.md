@@ -8,6 +8,9 @@ Once [installed](index.md) import the module and start using methods.
 
 ## From @actions/toolkit
 
+- Full `core` reference: [../src/actions/core.py](https://github.com/cssnr/actions-tools/blob/master/src/actions/core.py)
+- Full `context` reference: [../src/actions/context.py](https://github.com/cssnr/actions-tools/blob/master/src/actions/context.py)
+
 ```python
 from actions import core, context
 
@@ -24,14 +27,21 @@ core.info(f"event_name: {context.event_name}")
 core.info(f"ref_name: {context.ref_name}")
 core.info(f"runner_temp: {context.runner_temp}")
 
+# Event
+# https://docs.github.com/en/webhooks/webhook-events-and-payloads
+event = core.get_event()  # -> dict
+core.info(str(event))
+repository = event.get("repository")
+
 # Logging
 core.info("info")  # alias for print
 core.debug("debug")
 
 # Annotations
+# https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#setting-a-notice-message
 core.notice("notice")
 core.warn("warn")
-core.error("error")
+core.error("error", title="Title", file="File", col=1, endColumn=2, line=3, endLine=4)
 
 # Blocks
 core.start_group("Title")
@@ -41,9 +51,6 @@ core.end_group()
 with core.group("Title") as p:
     p("This is folded.")
     core.info("Also folded.")
-
-# Summary
-core.summary("## Test Action")
 
 # Environment
 core.set_env("NAME", "value")
@@ -55,14 +62,32 @@ value = core.get_state("name")
 # System Path
 core.add_path("/dev/null")
 
+# Set Secret
+core.mask("super-secret-string")
+
 # Outputs
 core.set_output("name", "cssnr")
 
+# Commands
+core.stop_commands()
+core.info("::error::log output with commands")
+core.start_commands()
+
+# Summary
+core.summary("## Test Action")
+
 # Abort
-core.set_failed("Mayday!")  # raise SystemExit
+core.set_failed("Mayday!")
+
+# Runner Debug
+core.is_debug()
+
+# OIDC Token
+# https://docs.github.com/en/actions/reference/security/oidc
+id_token = core.get_id_token()
 ```
 
-View Example Action: [smashedr/test-action-py](https://github.com/smashedr/test-action-py/blob/master/src/main.py)
+View example action: [smashedr/test-action-py](https://github.com/smashedr/test-action-py/blob/master/src/main.py)
 
 ## New In actions-tools
 
@@ -90,6 +115,7 @@ core.end_indent()
 ## GitHub API PyGithub
 
 To access the GitHub API install [PyGithub](https://github.com/PyGithub/PyGithub).
+This is the Python equivalent to [octokit.js](https://github.com/octokit/octokit.js).
 
 ```shell
 python -m pip install PyGithub
@@ -111,13 +137,6 @@ Reference: https://pygithub.readthedocs.io/en/stable/
 
 &nbsp;
 
-!!! note
+!!! question
 
-    This project is in active development.
-    Please [let us know](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests)
-    what features you want to see.
-
-!!! example "Work in Progress"
-
-    This documentation site is a work in progress.
-    See the [README.md](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme) for more details.
+    If you need help or run into issues, [support](support.md) is available!

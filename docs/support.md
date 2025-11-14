@@ -4,7 +4,8 @@ icon: lucide/message-circle-question-mark
 
 # Support
 
-If you have any troubles using the tools, or want to see more features, please let us know!
+If you have any [trouble](https://github.com/cssnr/actions-tools/issues) using the tools or want to see more
+[features](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests), please let us know!
 
 ### GitHub Discussions
 
@@ -35,11 +36,11 @@ From here you can contact me directly, `Shane@111150265075298304`.
 
 ### General Feedback
 
-You can submit general feedback via the [web form](https://cssnr.github.io/feedback/?app=Actions%20Tools).
+You can submit general feedback via the [web form](https://cssnr.github.io/feedback/?app=actions-tools).
 
 _This method is not recommended to [report issues](https://github.com/cssnr/actions-tools/issues) or [request features](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests)._
 
-[:lucide-send: Send Feedback](https://cssnr.github.io/feedback/?app=Actions%20Tools){ .md-button .md-button--primary }
+[:lucide-send: Send Feedback](https://cssnr.github.io/feedback/?app=actions-tools){ .md-button .md-button--primary }
 
 ## Additional Links
 

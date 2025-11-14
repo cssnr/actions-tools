@@ -6,9 +6,13 @@ icon: simple/githubactions
 
 I have also developed quite a few [GitHub Actions](https://actions.cssnr.com/).
 
-Additionally, please let me know you need [a new action](https://github.com/cssnr/actions/discussions/categories/feature-requests) created.
+Additionally, let me know you would like [a new action](https://github.com/cssnr/actions/discussions/categories/github-actions) created.
 
-[:lucide-activity: Request an Action](https://github.com/cssnr/actions/discussions/categories/feature-requests){ .md-button .md-button--primary }
+[:lucide-activity: Request New Action](https://github.com/cssnr/actions/discussions/categories/github-actions){ .md-button .md-button--primary }
+
+## Published
+
+All these actions are published on the Actions Marketplace.
 
 ### Docker
 
@@ -51,3 +55,31 @@ Additionally, please let me know you need [a new action](https://github.com/cssn
 - [Get Commit Action](https://github.com/cssnr/get-commit-action?tab=readme-ov-file#readme)
 - [NPM Outdated Check Action](https://github.com/cssnr/npm-outdated-action?tab=readme-ov-file#readme)
 - [Check Build Action](https://github.com/cssnr/check-build-action?tab=readme-ov-file#readme)
+
+## Unpublished
+
+These actions are not yet published but many are in use.
+
+- [cssnr/create-files-action](https://github.com/cssnr/create-files-action?tab=readme-ov-file#readme) - Create various files from templates.
+- [cssnr/draft-release-action](https://github.com/cssnr/draft-release-action?tab=readme-ov-file#readme) - Keep a draft release ready to publish.
+- [cssnr/env-json-action](https://github.com/cssnr/env-json-action?tab=readme-ov-file#readme) - Convert env file to json or vice versa.
+- [cssnr/push-artifacts-action](https://github.com/cssnr/push-artifacts-action?tab=readme-ov-file#readme) - Sync files to a remote host with rsync.
+- [smashedr/update-release-notes-action](https://github.com/smashedr/update-release-notes-action?tab=readme-ov-file#readme) - Update release notes.
+- [smashedr/combine-release-notes-action](https://github.com/smashedr/combine-release-notes-action?tab=readme-ov-file#readme) - Combine release notes.
+
+## Template
+
+These are basic action templates that I use for creating new actions.
+
+- [js-test-action](https://github.com/smashedr/js-test-action?tab=readme-ov-file#readme) - JavaScript
+- [ts-test-action](https://github.com/smashedr/ts-test-action?tab=readme-ov-file#readme) - TypeScript
+- [py-test-action](https://github.com/smashedr/py-test-action?tab=readme-ov-file#readme) - Python (Dockerfile)
+- [docker-test-action](https://github.com/smashedr/docker-test-action?tab=readme-ov-file#readme) - Docker (Image)
+
+I have not yet created a template for this project; however, this is an example action using these tools:
+
+- https://github.com/smashedr/test-action-py
+
+!!! quote "Additional Information"
+
+    For more details visit: https://actions.cssnr.com/

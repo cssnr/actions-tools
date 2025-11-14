@@ -4,9 +4,7 @@
 - [Setup](#Setup)
 - [Testing](#Testing)
 - [Building](#Building)
-
-> [!WARNING]  
-> This guide is a work in progress and may not be complete.
+- [Documentation](#Documentation)
 
 This is a basic contributing guide and is a work in progress.
 
@@ -21,41 +19,56 @@ This is a basic contributing guide and is a work in progress.
 7. Verify all the tests pass, fix the issues.
 8. Make sure to keep your branch up-to-date.
 
-If you need help with anything, [let us know](https://github.com/cssnr/actions-tools?tab=readme-ov-file#support)...
+If you need help with anything, [let us know](#readme-ov-file)...
 
 ## Setup
 
-Clone the repository, change into the directory and run:
+Clone the repository, change into the directory and run.
 
 ```shell
 python -m pip install -U pip
 python -m pip install -Ur requirements.txt
 ```
 
+Install the project as an editable.
+
+```shell
+python -m pip install -e .
+```
+
 Prettier is used to format yaml, json and md.
 
 ```shell
 npm install -g prettier
+npx prettier --check .
+npx prettier --write .
 ```
 
 ## Testing
 
-First [Setup](#Setup) the project, then run:
+First [Setup](#Setup) the project, then run.
 
 ```shell
-pytest -v
+pytest -s
+pytest -s -k test_print
 ```
 
-To see coverage, run the test with:
+To see coverage, run the test with.
 
 ```shell
 coverage run -m pytest
 coverage report -m
 ```
 
+Run a test by name.
+
+```shell
+pytest -s -k test_print
+```
+
 ## Building
 
-Build the project locally:
+Build the project locally.
 
 ```shell
 python -m pip install -U pip
@@ -63,10 +76,37 @@ python -m pip install -Ur requirements.txt
 python -m build
 ```
 
-Install the built package:
+Install the built package.
 
 ```shell
 python -m pip install dist/actions_tools-0.0.1-py3-none-any.whl
 ```
 
 The default version is `0.0.1` unless you set the environment variable `GITHUB_REF_NAME`.
+
+See [src/actions/\_\_init\_\_.py](src/actions/__init__.py) for more details.
+
+## Documentation
+
+The docs are built with Zensical.
+
+```shell
+python -m pip install -U zensical
+zensical serve
+```
+
+Then visit: http://localhost:8000/
+
+You can also build the docs locally.
+
+```shell
+zensical build
+```
+
+This builds the docs to the `sites` folder. It should run on any static site.
+
+```shell
+docker run --rm -p 8000:80 --name docker-static -v "./site:/static" ghcr.io/cssnr/docker-nginx-static:latest
+```
+
+Then visit: http://localhost:8000/

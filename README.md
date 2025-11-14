@@ -1,17 +1,17 @@
-[![GitHub Deployments](https://img.shields.io/github/deployments/cssnr/actions-tools/pypi?logo=pypi&logoColor=white&label=pypi)](https://github.com/cssnr/actions-tools/deployments/pypi)
-[![GitHub Deployments](https://img.shields.io/github/deployments/cssnr/actions-tools/docs?logo=materialformkdocs&logoColor=white&label=docs)](https://github.com/cssnr/actions-tools/deployments/docs)
+[![PyPI Version](https://img.shields.io/pypi/v/actions-tools?logo=pypi&logoColor=white&label=pypi)](https://pypi.org/project/actions-tools/)
+[![GitHub Release Version](https://img.shields.io/github/v/release/cssnr/actions-tools?logo=github)](https://github.com/cssnr/actions-tools/releases)
+[![TOML Python Version](https://img.shields.io/badge/dynamic/toml?url=https%3A%2F%2Fraw.githubusercontent.com%2Fcssnr%2Factions-tools%2Frefs%2Fheads%2Fmaster%2Fpyproject.toml&query=%24.project.requires-python&logo=python&logoColor=white&label=python)](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme)
+[![Codecov](https://codecov.io/gh/cssnr/actions-tools/graph/badge.svg?token=A8NDHZ393X)](https://codecov.io/gh/cssnr/actions-tools)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=cssnr_actions-tools&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=cssnr_actions-tools)
 [![Release Workflow](https://img.shields.io/github/actions/workflow/status/cssnr/actions-tools/release.yaml?logo=github&logoColor=white&label=release)](https://github.com/cssnr/actions-tools/actions/workflows/release.yaml)
 [![Lint Workflow](https://img.shields.io/github/actions/workflow/status/cssnr/actions-tools/lint.yaml?logo=github&logoColor=white&label=lint)](https://github.com/cssnr/actions-tools/actions/workflows/lint.yaml)
 [![Test Workflow](https://img.shields.io/github/actions/workflow/status/cssnr/actions-tools/test.yaml?logo=github&logoColor=white&label=test)](https://github.com/cssnr/actions-tools/actions/workflows/test.yaml)
-[![Codecov](https://codecov.io/gh/cssnr/actions-tools/graph/badge.svg?token=A8NDHZ393X)](https://codecov.io/gh/cssnr/actions-tools)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=cssnr_actions-tools&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=cssnr_actions-tools)
-[![PyPI Version](https://img.shields.io/pypi/v/actions-tools?logo=pypi&logoColor=white&label=pypi)](https://pypi.org/project/actions-tools/)
-[![GitHub Release Version](https://img.shields.io/github/v/release/cssnr/actions-tools?logo=github)](https://github.com/cssnr/actions-tools/releases/latest)
-[![TOML Python Version](https://img.shields.io/badge/dynamic/toml?url=https%3A%2F%2Fraw.githubusercontent.com%2Fcssnr%2Factions-tools%2Frefs%2Fheads%2Fmaster%2Fpyproject.toml&query=%24.project.requires-python&logo=python&logoColor=white&label=python)](https://github.com/cssnr/actions-tools)
+[![GitHub Deployments](https://img.shields.io/github/deployments/cssnr/actions-tools/pypi?logo=pypi&logoColor=white&label=pypi)](https://pypi.org/project/actions-tools/)
+[![GitHub Deployments](https://img.shields.io/github/deployments/cssnr/actions-tools/docs?logo=materialformkdocs&logoColor=white&label=docs)](https://actions-tools.cssnr.com/)
 [![GitHub Top Language](https://img.shields.io/github/languages/top/cssnr/actions-tools?logo=htmx&logoColor=white)](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme)
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/cssnr/actions-tools?logo=github&logoColor=white&label=updated)](https://github.com/cssnr/actions-tools/graphs/commit-activity)
 [![GitHub Contributors](https://img.shields.io/github/contributors-anon/cssnr/actions-tools?logo=github)](https://github.com/cssnr/actions-tools/graphs/contributors)
-[![GitHub Repo Size](https://img.shields.io/github/repo-size/cssnr/actions-tools?logo=bookstack&logoColor=white&label=repo%20size)](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme)
+[![GitHub Repo Size](https://img.shields.io/github/repo-size/cssnr/actions-tools?logo=bookstack&logoColor=white&label=repo%20size)](https://github.com/cssnr/actions-tools)
 [![GitHub Forks](https://img.shields.io/github/forks/cssnr/actions-tools?style=flat&logo=github)](https://github.com/cssnr/actions-tools/forks)
 [![GitHub Repo Stars](https://img.shields.io/github/stars/cssnr/actions-tools?style=flat&logo=github&logoColor=white)](https://github.com/cssnr/actions-tools/stargazers)
 [![GitHub Org Stars](https://img.shields.io/github/stars/cssnr?style=flat&logo=github&label=org%20stars)](https://cssnr.github.io/)
@@ -52,13 +52,6 @@ git clone https://github.com/cssnr/actions-tools
 python -m pip install actions-tools
 ```
 
-As editable (for development).
-
-```shell
-git clone https://github.com/cssnr/actions-tools
-python -m pip install -e actions-tools
-```
-
 Uninstall.
 
 ```shell
@@ -66,6 +59,8 @@ python -m pip uninstall actions-tools
 ```
 
 ## Usage
+
+The usage is also available on the [documentation site](https://actions-tools.cssnr.com/usage/).
 
 Functionality from @actions/toolkit
 
@@ -85,14 +80,21 @@ core.info(f"event_name: {context.event_name}")
 core.info(f"ref_name: {context.ref_name}")
 core.info(f"runner_temp: {context.runner_temp}")
 
+# Event
+# https://docs.github.com/en/webhooks/webhook-events-and-payloads
+event = core.get_event()  # -> dict
+core.info(str(event))
+repository = event.get("repository")
+
 # Logging
 core.info("info")  # alias for print
 core.debug("debug")
 
 # Annotations
+# https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#setting-a-notice-message
 core.notice("notice")
 core.warn("warn")
-core.error("error")
+core.error("error", title="Title", file="File", col=1, endColumn=2, line=3, endLine=4)
 
 # Blocks
 core.start_group("Title")
@@ -102,9 +104,6 @@ core.end_group()
 with core.group("Title") as p:
     p("This is folded.")
     core.info("Also folded.")
-
-# Summary
-core.summary("## Test Action")
 
 # Environment
 core.set_env("NAME", "value")
@@ -116,14 +115,32 @@ value = core.get_state("name")
 # System Path
 core.add_path("/dev/null")
 
+# Set Secret
+core.mask("super-secret-string")
+
 # Outputs
 core.set_output("name", "cssnr")
 
+# Commands
+core.stop_commands()
+core.info("::error::log output with commands")
+core.start_commands()
+
+# Summary
+core.summary("## Test Action")
+
 # Abort
-core.set_failed("Mayday!")  # raise SystemExit
+core.set_failed("Mayday!")
+
+# Runner Debug
+core.is_debug()
+
+# OIDC Token
+# https://docs.github.com/en/actions/reference/security/oidc
+id_token = core.get_id_token()
 ```
 
-View Example Action: [smashedr/test-action-py](https://github.com/smashedr/test-action-py/blob/master/src/main.py)
+View example action: [smashedr/test-action-py](https://github.com/smashedr/test-action-py/blob/master/src/main.py)
 
 Functionality new in actions-tools
 
@@ -149,6 +166,7 @@ core.end_indent()
 ```
 
 To access the GitHub API install [PyGithub](https://github.com/PyGithub/PyGithub).
+This is the Python equivalent to [octokit.js](https://github.com/octokit/octokit.js).
 
 ```shell
 python -m pip install PyGithub
@@ -191,7 +209,7 @@ and [additional](https://cssnr.com/) open source projects.
 
 [![Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/cssnr)
 
-Additionally, you can support other GitHub Actions I have published:
+Additionally, you can support other [GitHub Actions](https://actions.cssnr.com/) I have published:
 
 - [Stack Deploy Action](https://github.com/cssnr/stack-deploy-action?tab=readme-ov-file#readme)
 - [Portainer Stack Deploy Action](https://github.com/cssnr/portainer-stack-deploy-action?tab=readme-ov-file#readme)

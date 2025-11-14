@@ -44,6 +44,16 @@ def test_print():
         p("core.info")
     core.info("no group")
     core.command("debug", "test")
+    args = {
+        "title": "Test Title",
+        "file": "test-file.txt",
+        "col": 1,
+        "endColumn": 2,
+        "line": 3,
+        "endLine": 4,
+        "end": "\n",
+    }
+    core.notice("notice with args", **args)
 
 
 def test_outputs():
@@ -88,3 +98,18 @@ def test_getters():
     assert core.get_version() == "Source"
     assert core.get_version("asdf") == "asdf"
     assert context.repository_name is not None
+
+
+def test_oidc_token():
+    with pytest.raises(ValueError):
+        core.get_id_token()
+    # 3029-d29f-4014-9fb4 {"foo": "bar"}
+    os.environ["ACTIONS_ID_TOKEN_REQUEST_URL"] = "https://dummyjson.com/c/3029-d29f-4014-9fb4"
+    with pytest.raises(ValueError):
+        core.get_id_token()
+    os.environ["ACTIONS_ID_TOKEN_REQUEST_TOKEN"] = "xxx"
+    with pytest.raises(ValueError):
+        core.get_id_token("audience")
+    # 46d5-1506-40d5-b4f7 {"value": "bar"}
+    os.environ["ACTIONS_ID_TOKEN_REQUEST_URL"] = "https://dummyjson.com/c/46d5-1506-40d5-b4f7"
+    assert core.get_id_token() == "bar"
