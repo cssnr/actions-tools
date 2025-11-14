@@ -249,7 +249,8 @@ def get_list(name: str, req: bool = False, strip: bool = True, split: str = "[,|
     for x in re.split(split, value):
         if strip:
             x = x.strip()
-        results.append(x)
+        if x:
+            results.append(x)
     return results
 
 

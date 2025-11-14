@@ -28,9 +28,9 @@ def test_print():
     core.notice("notice")
     core.warn("warn")
     with pytest.raises(SystemExit):
-        core.set_failed("test")
-    core.mask("test")
-    core.start_group("test")
+        core.set_failed("failed")
+    core.mask("secret")
+    core.start_group("group")
     core.end_group()
     core.start_indent()
     core.info("indent")
@@ -43,7 +43,7 @@ def test_print():
         core.info("with group")
         p("core.info")
     core.info("no group")
-    core.command("debug", "test")
+    core.command("debug", "command")
     args = {
         "title": "Test Title",
         "file": "test-file.txt",
