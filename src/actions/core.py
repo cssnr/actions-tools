@@ -321,17 +321,16 @@ def get_id_token(audience: Optional[str] = None) -> str:
 # PyGithub
 
 
-def get_github(token: str, *args, **kwargs) -> Github:
+def get_github(token: str, **kwargs) -> Github:
     """
     Get Github from PyGithub
     :param token: GitHub Token
-    :param args: PyGithub args
     :param kwargs: PyGithub kwargs
     :return:
     """
     if not _has_github:  # pragma: no cover
         raise ImportError("Install actions-tools[github] or PyGithub")
-    return Github(auth=Auth.Token(token), *args, **kwargs)
+    return Github(auth=Auth.Token(token), **kwargs)
 
 
 # Additional
