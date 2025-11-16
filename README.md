@@ -21,6 +21,8 @@
 
 # Actions Tools
 
+SonarCloud Broken
+
 - [Install](#Install)
 - [Usage](#Usage)
 - [Support](#Support)
