@@ -48,15 +48,6 @@ jobs:
           python -m pip install -Ur requirements.txt
           python -m pip install -e .
 
-      - name: "Retarded"
-        if: ${{ !cancelled() }}
-        run: |
-          which python
-          which ty
-          python -V
-          python -m ty -V
-          ty -V
-
       - name: "astral-sh/ruff"
         if: ${{ !cancelled() }}
         uses: astral-sh/ruff-action@v3
@@ -66,7 +57,7 @@ jobs:
       - name: "astral-sh/ty"
         if: ${{ !cancelled() }}
         run: |
-          python -m ty check --python "$(which python)" -v
+          ty check --python "$(which python)" -v
 
       - name: "psf/black"
         if: ${{ !cancelled() }}
