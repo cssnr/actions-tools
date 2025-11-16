@@ -2,8 +2,6 @@ name: "Test"
 
 on:
   workflow_dispatch:
-  #schedule:
-  #  - cron: "18 18 * * 1,3,5"
   push:
     branches: [master]
     paths: &paths
@@ -86,10 +84,3 @@ jobs:
         #continue-on-error: ${{ contains('dev', matrix.version) }}
         run: |
           pytest -s
-
-      - name: "Schedule Failure Notification"
-        if: ${{ failure() && github.event_name == 'schedule' }}
-        uses: sarisia/actions-status-discord@v1
-        with:
-          webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          description: ${{ github.event.repository.html_url }}/actions/runs/${{ github.run_id }}

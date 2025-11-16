@@ -78,8 +78,8 @@ These are basic action templates that I use for creating new actions.
 
 Both these Python actions use `actions-tools`, pick your ecosystem:
 
-- Example py action: [smashedr/test-action-py](https://github.com/smashedr/test-action-py/blob/master/src/main.py)
-- Example uv action: [smashedr/test-action-uv](https://github.com/smashedr/test-action-uv/blob/master/src/main.py)
+- Example `py` action: [smashedr/test-action-py](https://github.com/smashedr/test-action-py)
+- Example `uv` action: [smashedr/test-action-uv](https://github.com/smashedr/test-action-uv)
 
 !!! quote "Additional Information"
 

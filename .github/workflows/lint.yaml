@@ -2,15 +2,20 @@ name: "Lint"
 
 on:
   workflow_dispatch:
-  pull_request:
   push:
     branches: [master]
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   lint:
     name: "Lint"
     runs-on: ubuntu-latest
     timeout-minutes: 5
+
     permissions:
       contents: read
 
@@ -30,6 +35,12 @@ jobs:
         env:
           GITHUB_CTX: ${{ toJSON(github) }}
         run: echo "$GITHUB_CTX"
+
+      - name: "Debug Environment"
+        if: ${{ !github.event.act }}
+        continue-on-error: true
+        run: |
+          env
 
       #- name: "Check Changed Files"
       #  id: changed
@@ -53,6 +64,16 @@ jobs:
           python -m pip install --group dev
           python -m pip install -e .
           python -m pip list
+
+      - name: "Debug"
+        if: ${{ !github.event.act }}
+        continue-on-error: true
+        run: |
+          python -V
+          which python
+          echo "::group::pip list"
+          python -m pip list
+          echo "::endgroup::"
 
       - name: "astral-sh/ruff"
         if: ${{ !cancelled() }}

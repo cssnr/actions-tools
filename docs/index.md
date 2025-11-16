@@ -32,17 +32,17 @@ If you run into any issues, [support](support.md) is available.
 
 From PyPI: https://pypi.org/p/actions-tools
 
-```shell
-python -m pip install actions-tools
-```
+=== "pip"
 
-With [PyGithub](https://github.com/PyGithub/PyGithub) (for GitHub API access).
+    ```shell
+    python -m pip install actions-tools
+    ```
 
-```shell
-python -m pip install actions-tools[github]
-```
+=== "uv"
 
-Add to requirements.
+    ```shell
+    uv add actions-tools
+    ```
 
 === "requirements.txt"
 
@@ -50,10 +50,36 @@ Add to requirements.
     actions-tools
     ```
 
-=== "with PyGithub"
+=== "pyproject.toml"
+
+    ``` toml
+    dependencies = ["actions-tools"]
+    ```
+
+With [PyGithub](https://github.com/PyGithub/PyGithub) (for GitHub API access).
+
+=== "pip"
+
+    ```shell
+    python -m pip install actions-tools[github]
+    ```
+
+=== "uv"
+
+    ```shell
+    uv add actions-tools[github]
+    ```
+
+=== "requirements.txt"
 
     ``` text
     actions-tools[github]
+    ```
+
+=== "pyproject.toml"
+
+    ``` toml
+    dependencies = ["actions-tools[github]"]
     ```
 
 Install from source.
