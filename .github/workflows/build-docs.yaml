@@ -55,10 +55,10 @@ jobs:
         run: |
           uv python install 3.13
 
-      - name: "Install Zensical"
-        run: |
-          #uv pip install --system zensical
-          uv add zensical
+      #- name: "Install Zensical"
+      #  run: |
+      #    #uv pip install --system zensical
+      #    uv add zensical
 
       #- name: "Debug 2"
       #  continue-on-error: true
@@ -70,8 +70,13 @@ jobs:
       - name: "Build"
         id: build
         run: |
+          echo "Debug 1"
+          uv run zensical --version
+          echo "Debug 2"
           echo "version=$(uv run zensical --version)" >> "$GITHUB_OUTPUT"
+          echo "Debug 3"
           uv run zensical build -c
+          echo "Debug 4"
 
       - name: "Upload Artifact"
         if: ${{ !inputs.pages }}
