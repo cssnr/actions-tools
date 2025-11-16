@@ -57,7 +57,7 @@ jobs:
       - name: "astral-sh/ty"
         if: ${{ !cancelled() }}
         run: |
-          ty check -v
+          python -m ty check -v
 
       - name: "psf/black"
         if: ${{ !cancelled() }}
