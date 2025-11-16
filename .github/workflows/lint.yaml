@@ -72,9 +72,10 @@ jobs:
         run: |
           mypy src
 
-      #- name: "Hadolint"
-      #  if: ${{ !cancelled() }}
-      #  uses: hadolint/hadolint-action@v3.1.0
+      - name: "Bandit"
+        if: ${{ !cancelled() }}
+        run: |
+          bandit -c pyproject.toml -r src
 
       - name: "Prettier"
         if: ${{ !cancelled() }}
@@ -123,6 +124,16 @@ jobs:
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+
+      #- name: "Hadolint"
+      #  if: ${{ !cancelled() }}
+      #  uses: hadolint/hadolint-action@v3.3.0
+      #  with:
+      #    dockerfile: Dockerfile
+
+      #- name: "Vale"
+      #  if: ${{ !cancelled() }}
+      #  uses: errata-ai/vale-action@v2.1.1
 
       #- name: "SonarQube"
       #  uses: SonarSource/sonarqube-scan-action@v4
