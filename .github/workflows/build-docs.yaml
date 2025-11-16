@@ -70,6 +70,8 @@ jobs:
       - name: "Build"
         id: build
         run: |
+          echo "Debug 0"
+          uv add zensical
           echo "Debug 1"
           uv run zensical --version
           echo "Debug 2"
