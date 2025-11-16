@@ -26,6 +26,25 @@ license = { text = "GPL-3.0" }
 [project.optional-dependencies]
 github = ["PyGithub>=2,<3"]
 
+[dependency-groups]
+dev = [
+    "bandit",
+    "black",
+    "build",
+    "coverage",
+    "isort",
+    "mypy",
+    "PyGithub>=2,<3",
+    "pytest",
+    "PyYAML>=6,<7",
+    "ruff",
+    "setuptools",
+    "twine",
+    "ty",
+    "types-PyYAML",
+    "yamllint",
+]
+
 [project.urls]
 Homepage = "https://cssnr.com/"
 Documentation = "https://actions-tools.cssnr.com/"
