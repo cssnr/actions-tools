@@ -9,7 +9,8 @@ If you have any [trouble](https://github.com/cssnr/actions-tools/issues) using t
 
 ## Get Help
 
-Feel free to request help for anything.
+Feel free to request help for anything, including install, setup, usage, etc.
+:material-information-outline:{ title="I will respond to all requests." }
 
 ### GitHub Discussions
 
@@ -64,10 +65,10 @@ All contributions are welcome; including [bug reports](https://github.com/cssnr/
 [feature requests](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests),
 and [pull requests](https://github.com/cssnr/actions-tools?tab=contributing-ov-file#readme).
 
-[![Star](https://badges.cssnr.com/static/star?lucide=star&style=for-the-badge&color=ffcc3e)](https://github.com/cssnr/actions-tools)
+[![Star](https://badges.cssnr.com/static/star?lucide=star&style=for-the-badge&color=ffcc3e&iconColor=black)](https://github.com/cssnr/actions-tools)
 [![Fork](https://badges.cssnr.com/static/fork?lucide=git-fork&style=for-the-badge&color=3674a7)](https://github.com/cssnr/actions-tools/fork)
-[![Feature](https://badges.cssnr.com/static/feature?icon=github&style=for-the-badge&color=232925)](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests)
-[![Issue](https://badges.cssnr.com/static/issue?lucide=bug&style=for-the-badge&color=red)](https://github.com/cssnr/actions-tools/issues)
+[![Features](https://badges.cssnr.com/static/features?icon=github&style=for-the-badge&color=232925)](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests)
+[![Issues](https://badges.cssnr.com/static/issues?lucide=bug&style=for-the-badge&color=red)](https://github.com/cssnr/actions-tools/issues)
 
 For more details see the [CONTRIBUTING.md](https://github.com/cssnr/actions-tools?tab=contributing-ov-file#readme)
 on [GitHub](https://github.com/cssnr/actions-tools?tab=readme-ov-file#contributing).

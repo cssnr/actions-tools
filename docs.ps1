@@ -1,10 +1,12 @@
 param (
-    [switch]$c
+    [switch]$c,
+    [switch]$b
 )
 
 $ErrorActionPreference = "Stop"
 
-write-output "Clean:      $c"
+write-output "Clean:    $c"
+write-output "Build:    $b"
 
 if ($c) {
     Write-Host -ForegroundColor Yellow "Cleaning Docs..."
@@ -20,4 +22,11 @@ if ($c) {
     }
 }
 
-zensical serve
+zensical --version
+
+if ($b) {
+    Write-Host -ForegroundColor Green "Building Docs..."
+    zensical build
+} else {
+    zensical serve
+}

@@ -1,7 +1,7 @@
 import json
 import os
-import random
 import re
+import secrets
 import string
 from contextlib import contextmanager
 from typing import Any, List, Optional
@@ -20,8 +20,6 @@ else:
     _has_github = True
 
 
-# from . import context as ctx
-
 # https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands
 
 
@@ -30,9 +28,6 @@ _false = ["n", "no", "false", "off"]
 
 _indent = 0
 _end_token = ""
-
-
-# context = ctx
 
 
 # Core
@@ -142,7 +137,7 @@ def group(title: str):
 def stop_commands(end_token: str = ""):
     global _end_token
     if not end_token:
-        r = random.choices(string.ascii_uppercase + string.ascii_lowercase + string.digits, k=16)
+        r = get_random(16)
         end_token = "".join(r)
     _end_token = end_token
     print(f"::stop-commands::{_end_token}")
@@ -320,7 +315,7 @@ def get_id_token(audience: Optional[str] = None) -> str:
 
     request = Request(request_url)
     request.add_header("Authorization", f"bearer {request_token}")
-    response = urlopen(request)
+    response = urlopen(request)  # nosec
     # code = response.getcode()
     # if not 199 < code < 300:
     #     raise ValueError(f"Invalid response code: {code} - {tip}")
@@ -335,6 +330,7 @@ def get_id_token(audience: Optional[str] = None) -> str:
 
 
 # PyGithub
+# https://github.com/PyGithub/PyGithub
 
 
 def get_github(token: str, **kwargs) -> Github:
@@ -365,7 +361,7 @@ def get_version(fallback: str = "Source") -> str:
 
 
 def get_random(length: int = 16) -> str:
-    r = random.choices(string.ascii_uppercase + string.ascii_lowercase + string.digits, k=length)
+    r = "".join(secrets.choice(string.ascii_letters + string.digits) for _ in range(length))
     return "".join(r)
 
 

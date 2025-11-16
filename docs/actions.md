@@ -76,9 +76,10 @@ These are basic action templates that I use for creating new actions.
 - [py-test-action](https://github.com/smashedr/py-test-action?tab=readme-ov-file#readme) - Python (Dockerfile)
 - [docker-test-action](https://github.com/smashedr/docker-test-action?tab=readme-ov-file#readme) - Docker (Image)
 
-I have not yet created a template for this project; however, this is an example action using these tools:
+Both these Python actions use `actions-tools`, pick your ecosystem:
 
-- [https://github.com/smashedr/test-action-py](https://github.com/smashedr/test-action-py?tab=readme-ov-file#readme)
+- py action: [smashedr/test-action-py](https://github.com/smashedr/test-action-py/blob/master/src/main.py)
+- uv action: [smashedr/test-action-uv](https://github.com/smashedr/test-action-uv/blob/master/src/main.py)
 
 !!! quote "Additional Information"
 

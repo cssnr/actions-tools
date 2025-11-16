@@ -44,11 +44,17 @@ python -m pip install actions-tools[github]
 
 Add to requirements.
 
-```text title="requirements.txt"
-actions-tools
-# or with PyGithub
-actions-tools[github]
-```
+=== "requirements.txt"
+
+    ``` text
+    actions-tools
+    ```
+
+=== "with PyGithub"
+
+    ``` text
+    actions-tools[github]
+    ```
 
 Install from source.
 
@@ -73,10 +79,15 @@ python -m pip uninstall actions-tools
 from actions import core, context
 
 token = core.get_input("token", True)
-g = core.get_github(token)
+g = core.get_github(token)  # (1)!
 repo = g.get_repo(f"{context.repository}")
 core.info(f"repo.name: {repo.name}")
 ```
+
+1.  To use `get_github` install with the github extra:
+    ```shell
+    python -m pip install actions-tools[github]
+    ```
 
 **Make sure to view the full [Usage](usage.md) guide.**
 

@@ -44,6 +44,12 @@ version = { attr = "actions.__version__" }
 requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
+#Bandit
+# https://bandit.readthedocs.io/en/latest/config.html
+[tool.bandit]
+exclude_dirs = ["venv"]
+skips = ["B105", "B107"]
+
 # Black
 # https://black.readthedocs.io/en/stable/usage_and_configuration/
 [tool.black]
