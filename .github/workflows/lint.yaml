@@ -18,6 +18,12 @@ jobs:
       - name: "Checkout"
         uses: actions/checkout@v5
 
+      - name: "Debug event.json"
+        if: ${{ !github.event.act }}
+        continue-on-error: true
+        run: |
+          cat "${GITHUB_EVENT_PATH}"
+
       - name: "Debug CTX github"
         if: ${{ !github.event.act }}
         continue-on-error: true
@@ -46,6 +52,7 @@ jobs:
           python -m pip install -U pip
           python -m pip install --group dev
           python -m pip install -e .
+          python -m pip list
 
       - name: "astral-sh/ruff"
         if: ${{ !cancelled() }}
@@ -110,7 +117,7 @@ jobs:
           echo "::endgroup::"
           "${RUNNER_TEMP}/actionlint" -color -verbose -shellcheck= -pyflakes=
 
-      - name: "coverage"
+      - name: "pytest"
         if: ${{ !cancelled() }}
         id: coverage
         run: |
