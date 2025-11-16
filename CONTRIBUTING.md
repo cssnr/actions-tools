@@ -29,8 +29,7 @@ If you need help with anything, [let us know](#readme-ov-file)...
 Clone the repository, change into the directory and run.
 
 ```shell
-python -m pip install -U pip
-python -m pip install -Ur requirements.txt
+python -m pip install --group dev
 ```
 
 Install the project as an editable.
@@ -80,8 +79,7 @@ pytest -s -k test_print
 Build the project locally.
 
 ```shell
-python -m pip install -U pip
-python -m pip install -Ur requirements.txt
+python -m pip install --group dev
 python -m build
 ```
 

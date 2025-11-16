@@ -85,12 +85,14 @@ jobs:
           markdown+="Repository URL: \`${repository-url}\`"
           echo -e "${markdown}" >> $GITHUB_STEP_SUMMARY
 
-      - name: "Send Failure Notification"
-        if: ${{ failure() }}
+      - name: "Send Notification"
+        if: ${{ !cancelled() }}
         uses: sarisia/actions-status-discord@v1
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          description: ${{ github.event.repository.html_url }}/actions/runs/${{ github.run_id }}
+          description: |
+            ${{ env.url }}
+            ${{ github.event.repository.html_url }}/actions/runs/${{ github.run_id }}
 
   release:
     name: "Release"
@@ -105,11 +107,11 @@ jobs:
           echo "github.ref_name: ${{ github.ref_name }}"
           echo "github.event.release.prerelease: ${{ github.event.release.prerelease }}"
 
-      #- name: "Debug event.json"
-      #  if: ${{ !github.event.act }}
-      #  continue-on-error: true
-      #  run: |
-      #    cat "${GITHUB_EVENT_PATH}"
+      - name: "Debug event.json"
+        if: ${{ !github.event.act }}
+        continue-on-error: true
+        run: |
+          cat "${GITHUB_EVENT_PATH}"
 
       - name: "Debug CTX github"
         if: ${{ !github.event.act }}
