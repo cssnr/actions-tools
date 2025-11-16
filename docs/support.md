@@ -4,13 +4,13 @@ icon: lucide/message-circle-question-mark
 
 # Support
 
-If you have any [trouble](https://github.com/cssnr/actions-tools/issues) using the tools or want to see more
-[features](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests), please let us know!
+If you have any [issues](https://github.com/cssnr/actions-tools/issues) using the tools,
+or just want to see more [features](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests), please let us know...
 
 ## Get Help
 
-Feel free to request help for anything, including install, setup, usage, etc.
-:material-information-outline:{ title="I will respond to all requests." }
+Feel free to ask for help with anything from basic to advanced usage.
+:material-information-outline:{ title="All issues will be resolved!" }
 
 ### GitHub Discussions
 
@@ -67,7 +67,7 @@ and [pull requests](https://github.com/cssnr/actions-tools?tab=contributing-ov-f
 
 [![Star](https://badges.cssnr.com/static/star?lucide=star&style=for-the-badge&color=ffcc3e&iconColor=black)](https://github.com/cssnr/actions-tools)
 [![Fork](https://badges.cssnr.com/static/fork?lucide=git-fork&style=for-the-badge&color=3674a7)](https://github.com/cssnr/actions-tools/fork)
-[![Features](https://badges.cssnr.com/static/features?icon=github&style=for-the-badge&color=232925)](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests)
+[![Features](https://badges.cssnr.com/static/features?icon=github&style=for-the-badge&color=brightgreen)](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests)
 [![Issues](https://badges.cssnr.com/static/issues?lucide=bug&style=for-the-badge&color=red)](https://github.com/cssnr/actions-tools/issues)
 
 For more details see the [CONTRIBUTING.md](https://github.com/cssnr/actions-tools?tab=contributing-ov-file#readme)

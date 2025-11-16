@@ -4,7 +4,7 @@ icon: lucide/notebook-pen
 
 # Usage
 
-After [installing](index.md), simply import the module and using methods.
+After [installing](index.md) import the module and start using the methods...
 
 ## From @actions/toolkit
 
@@ -155,8 +155,8 @@ core.info("Indented")  # only works with core.info
 core.end_indent()
 ```
 
-Example py action: [smashedr/test-action-py](https://github.com/smashedr/test-action-py/blob/master/src/main.py)  
-Example uv action: [smashedr/test-action-uv](https://github.com/smashedr/test-action-uv/blob/master/src/main.py)
+Example `py` action: [smashedr/test-action-py](https://github.com/smashedr/test-action-py/blob/master/src/main.py)  
+Example `uv` action: [smashedr/test-action-uv](https://github.com/smashedr/test-action-uv/blob/master/src/main.py)
 
 &nbsp;
 

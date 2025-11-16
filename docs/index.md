@@ -53,7 +53,7 @@ From PyPI: https://pypi.org/p/actions-tools
 === "pyproject.toml"
 
     ``` toml
-    dependencies = ["actions-tools[github]"]
+    dependencies = ["actions-tools"]
     ```
 
 With [PyGithub](https://github.com/PyGithub/PyGithub) (for GitHub API access).
