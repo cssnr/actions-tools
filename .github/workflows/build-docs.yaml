@@ -71,14 +71,15 @@ jobs:
       - name: "Debug 2"
         continue-on-error: true
         run: |
+          set +e
           which zensical
-          zensical --version
+          uv run zensical --version
 
       - name: "Build"
         id: build
         run: |
-          echo "version=$(zensical --version)" >> "$GITHUB_OUTPUT"
-          zensical build -c
+          echo "version=$(uv run zensical --version)" >> "$GITHUB_OUTPUT"
+          uv run zensical build -c
 
       - name: "Upload Artifact"
         if: ${{ !inputs.pages }}
