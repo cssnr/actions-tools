@@ -65,7 +65,8 @@ jobs:
 
       - name: "Install Zensical"
         run: |
-          uv pip install --system zensical
+          #uv pip install --system zensical
+          uv add zensical
 
       - name: "Debug 2"
         continue-on-error: true
