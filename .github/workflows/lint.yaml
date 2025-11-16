@@ -48,6 +48,15 @@ jobs:
           python -m pip install -Ur requirements.txt
           python -m pip install -e .
 
+      - name: "Waste Time Debugging Astral Shit"
+        if: ${{ !cancelled() }}
+        run: |
+          which python
+          which ty
+          python -V
+          python -m ty -V
+          ty -V
+
       - name: "astral-sh/ruff"
         if: ${{ !cancelled() }}
         uses: astral-sh/ruff-action@v3
