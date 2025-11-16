@@ -48,7 +48,7 @@ jobs:
           python -m pip install -Ur requirements.txt
           python -m pip install -e .
 
-      - name: "Waste Time Debugging Astral Shit"
+      - name: "Retarded"
         if: ${{ !cancelled() }}
         run: |
           which python
@@ -66,12 +66,7 @@ jobs:
       - name: "astral-sh/ty"
         if: ${{ !cancelled() }}
         run: |
-          which python
-          which ty
-          python -V
-          python -m ty -V
-          ty -V
-          python -m ty check --python /opt/hostedtoolcache/Python/3.13.9/x64/bin/python -v
+          python -m ty check --python "$(which python)" -v
 
       - name: "psf/black"
         if: ${{ !cancelled() }}
