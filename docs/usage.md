@@ -12,6 +12,7 @@ After [installing](index.md), simply import the module and using methods.
 from actions import core, context
 
 # Input
+# (1)!
 my_str = core.get_input("string")  # -> str
 my_req = core.get_input("string", True)  # required
 my_bool = core.get_bool("boolean")  # -> bool
@@ -20,13 +21,13 @@ my_dict = core.get_dict("dict")  # -> dict - from json or yaml
 my_data = core.get_dict("data")  # -> Any - from json or yaml
 
 # Context
-# https://docs.github.com/en/actions/reference/workflows-and-actions/variables
+# (2)!
 core.info(f"event_name: {context.event_name}")
 core.info(f"ref_name: {context.ref_name}")
 core.info(f"runner_temp: {context.runner_temp}")
 
 # Event
-# https://docs.github.com/en/webhooks/webhook-events-and-payloads
+# (3)!
 event = core.get_event()  # -> dict
 core.info(str(event))
 repository = event.get("repository")
@@ -36,7 +37,7 @@ core.info("info")  # alias for print
 core.debug("debug")
 
 # Annotations
-# https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#setting-a-notice-message
+# (4)!
 core.notice("notice")
 core.warn("warn")
 core.error("error", title="Title", file="File", col=1, endColumn=2, line=3, endLine=4)
@@ -81,7 +82,7 @@ core.set_failed("Mayday!")
 core.is_debug()
 
 # PyGithub (Octokit)
-# https://pygithub.readthedocs.io/en/stable/
+# (5)!
 token = core.get_input("token", True)
 g = core.get_github(token)
 repo = g.get_repo(f"{context.repository}")
@@ -90,10 +91,46 @@ core.info(f"repo.name: {repo.name}")
 # OIDC Token
 # https://docs.github.com/en/actions/reference/security/oidc
 id_token = core.get_id_token()
+id_token_aud = core.get_id_token("audience")
 ```
 
-- Full `core` reference: [../src/actions/core.py](https://github.com/cssnr/actions-tools/blob/master/src/actions/core.py)
-- Full `context` reference: [../src/actions/context.py](https://github.com/cssnr/actions-tools/blob/master/src/actions/context.py)
+1.  All the `get_input` methods accept these args/kwargs:
+
+    ```python
+    def get_input(name: str, req: bool = False, strip: bool = True) -> str:
+        """
+        Get String Input
+        :param name: str: Input Name
+        :param req: bool: If Required
+        :param strip: bool: To Strip
+        :return:
+        """
+    ```
+
+    Additional kwargs are passed directly to `print`.
+
+2.  Full `context` reference: [../src/actions/context.py](https://github.com/cssnr/actions-tools/blob/master/src/actions/context.py)
+
+    Reference: https://docs.github.com/en/actions/reference/workflows-and-actions/variables
+
+3.  The event payload depends on the event that triggered the workflow.
+
+    Reference: https://docs.github.com/en/webhooks/webhook-events-and-payloads
+
+4.  All annotation methods accept all kwargs shown below.
+
+    Reference: https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#setting-a-notice-message
+
+5.  This requires PyGithub. Make sure to install with:
+
+    ```shell
+    python -m pip install actions-tools[github]
+    ```
+
+    Reference: https://pygithub.readthedocs.io/en/stable/
+
+Full `core` reference: [../src/actions/core.py](https://github.com/cssnr/actions-tools/blob/master/src/actions/core.py)  
+Full `context` reference: [../src/actions/context.py](https://github.com/cssnr/actions-tools/blob/master/src/actions/context.py)
 
 ## New In actions-tools
 
@@ -118,8 +155,8 @@ core.info("Indented")  # only works with core.info
 core.end_indent()
 ```
 
-- Example py action: [smashedr/test-action-py](https://github.com/smashedr/test-action-py/blob/master/src/main.py)
-- Example uv action: [smashedr/test-action-uv](https://github.com/smashedr/test-action-uv/blob/master/src/main.py)
+Example py action: [smashedr/test-action-py](https://github.com/smashedr/test-action-py/blob/master/src/main.py)  
+Example uv action: [smashedr/test-action-uv](https://github.com/smashedr/test-action-uv/blob/master/src/main.py)
 
 &nbsp;
 
