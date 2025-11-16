@@ -55,25 +55,17 @@ jobs:
         run: |
           uv python install 3.13
 
-      - name: "Debug 1"
-        continue-on-error: true
-        run: |
-          python -V
-          which python
-          uv -V
-          which uv
-
       - name: "Install Zensical"
         run: |
           #uv pip install --system zensical
           uv add zensical
 
-      - name: "Debug 2"
-        continue-on-error: true
-        run: |
-          set +e
-          which zensical
-          uv run zensical --version
+      #- name: "Debug 2"
+      #  continue-on-error: true
+      #  run: |
+      #    set +e
+      #    which zensical
+      #    uv run zensical --version
 
       - name: "Build"
         id: build
