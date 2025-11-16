@@ -71,7 +71,7 @@ jobs:
           python -V
           python -m ty -V
           ty -V
-          python -m ty check -v
+          python -m ty --python /opt/hostedtoolcache/Python/3.13.9/x64/bin/python check -v
 
       - name: "psf/black"
         if: ${{ !cancelled() }}
