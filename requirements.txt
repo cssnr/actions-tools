@@ -2,7 +2,6 @@ bandit
 black
 build
 coverage
-flake8
 isort
 mypy
 PyGithub>=2,<3
@@ -11,5 +10,6 @@ PyYAML>=6,<7
 ruff
 setuptools
 twine
+ty
 types-PyYAML
 yamllint

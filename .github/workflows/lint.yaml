@@ -15,6 +15,9 @@ jobs:
       contents: read
 
     steps:
+      - name: "Checkout"
+        uses: actions/checkout@v5
+
       - name: "Debug CTX github"
         if: ${{ !github.event.act }}
         continue-on-error: true
@@ -32,9 +35,6 @@ jobs:
       #      pyproject.toml
       #      requirements*.txt
 
-      - name: "Checkout"
-        uses: actions/checkout@v5
-
       - name: "Setup Python 3.13"
         uses: actions/setup-python@v6
         with:
@@ -48,36 +48,36 @@ jobs:
           python -m pip install -Ur requirements.txt
           python -m pip install -e .
 
-      - name: "Flake8"
-        if: ${{ !cancelled() }}
-        run: |
-          flake8 --max-line-length 119 --extend-exclude ".github" .
-
-      - name: "Ruff"
+      - name: "astral-sh/ruff"
         if: ${{ !cancelled() }}
         uses: astral-sh/ruff-action@v3
         with:
           version: latest
 
-      - name: "Black"
+      - name: "astral-sh/ty"
+        if: ${{ !cancelled() }}
+        run: |
+          ty check -v
+
+      - name: "psf/black"
         if: ${{ !cancelled() }}
         uses: psf/black@stable
 
-      - name: "Isort"
+      - name: "isort"
         if: ${{ !cancelled() }}
         uses: isort/isort-action@v1
 
-      - name: "Mypy"
+      - name: "mypy"
         if: ${{ !cancelled() }}
         run: |
           mypy src
 
-      - name: "Bandit"
+      - name: "bandit"
         if: ${{ !cancelled() }}
         run: |
           bandit -c pyproject.toml -r src
 
-      - name: "Prettier"
+      - name: "prettier"
         if: ${{ !cancelled() }}
         run: |
           echo "::group::Install"
@@ -85,7 +85,7 @@ jobs:
           echo "::endgroup::"
           npx prettier --check .
 
-      - name: "Yamllint"
+      - name: "yamllint"
         if: ${{ !cancelled() }}
         env:
           CONFIG: "{extends: relaxed, ignore: [node_modules/], rules: {line-length: {max: 119}}}"
@@ -95,7 +95,7 @@ jobs:
           echo "::endgroup::"
           yamllint -d '${{ env.CONFIG }}' .
 
-      - name: "Actionlint"
+      - name: "actionlint"
         if: ${{ !cancelled() }}
         run: |
           echo "::group::Download"
@@ -111,7 +111,7 @@ jobs:
           echo "::endgroup::"
           "${RUNNER_TEMP}/actionlint" -color -verbose -shellcheck= -pyflakes=
 
-      - name: "Coverage"
+      - name: "coverage"
         if: ${{ !cancelled() }}
         id: coverage
         run: |
@@ -119,7 +119,7 @@ jobs:
           coverage xml
           coverage report -m
 
-      - name: "Codecov"
+      - name: "codecov"
         if: ${{ !cancelled() && steps.coverage.outcome == 'success' }}
         uses: codecov/codecov-action@v5
         with:
