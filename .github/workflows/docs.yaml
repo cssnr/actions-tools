@@ -32,9 +32,6 @@ jobs:
       url: ${{ steps.zensical.outputs.page_url }}
 
     steps:
-      - name: "Checkout"
-        uses: actions/checkout@v5
-
       - name: "Zensical Action"
         id: zensical
         uses: cssnr/zensical-action@master
