@@ -64,6 +64,7 @@ def test_outputs():
     core.add_path("/dev/null")
     core.set_state("STATE_test", "value")
     os.environ["STATE_test"] = "value"  # for testing core.get_state
+    core.set_output("multi", "line1\nline2\nline3")
 
 
 def test_inputs():
