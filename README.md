@@ -183,8 +183,9 @@ core.info("Indented")  # only works with core.info
 core.end_indent()
 ```
 
-- Example py action: [smashedr/test-action-py](https://github.com/smashedr/test-action-py/blob/master/src/main.py)
-- Example uv action: [smashedr/test-action-uv](https://github.com/smashedr/test-action-uv/blob/master/src/main.py)
+- Create Files Action: [cssnr/create-files-action](https://github.com/cssnr/create-files-action)
+- Python Action Template: [smashedr/test-action-py](https://github.com/smashedr/test-action-py)
+- Python UV Action Template: [smashedr/test-action-uv](https://github.com/smashedr/test-action-uv)
 
 # Support
 
