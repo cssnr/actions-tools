@@ -63,7 +63,7 @@ version = { attr = "actions.__version__" }
 requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
-#Bandit
+# Bandit
 # https://bandit.readthedocs.io/en/latest/config.html
 [tool.bandit]
 exclude_dirs = ["venv"]
@@ -100,7 +100,7 @@ exclude = ["venv"]
 [tool.ruff]
 line-length = 119
 target-version = "py313"
-exclude = [".github"]
+extend-exclude = [".github"]
 
 [tool.ruff.lint]
 select = ["E4", "E7", "E9", "F", "B", "Q"]

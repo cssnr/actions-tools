@@ -152,7 +152,7 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
 
-      #- name: "Hadolint"
+      #- name: "hadolint"
       #  if: ${{ !cancelled() }}
       #  uses: hadolint/hadolint-action@v3.3.0
       #  with:
