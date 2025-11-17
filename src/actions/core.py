@@ -151,7 +151,10 @@ def start_commands(end_token: str = ""):
 
 def set_output(output: str, value: Any):
     with open(os.environ["GITHUB_OUTPUT"], "a") as f:
-        print(f"{output}={value}", file=f)  # type: ignore
+        if "\n" in value:
+            print(f"{output}<<EOF\n{result}\nEOF", file=f)  # type: ignore
+        else:
+            print(f"{output}={value}", file=f)  # type: ignore
 
 
 def set_env(name: str, value: str):
