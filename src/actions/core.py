@@ -152,7 +152,7 @@ def start_commands(end_token: str = ""):
 def set_output(output: str, value: Any):
     with open(os.environ["GITHUB_OUTPUT"], "a") as f:
         if "\n" in value:
-            print(f"{output}<<EOF\n{result}\nEOF", file=f)  # type: ignore
+            print(f"{output}<<EOF\n{value}\nEOF", file=f)  # type: ignore
         else:
             print(f"{output}={value}", file=f)  # type: ignore
 
