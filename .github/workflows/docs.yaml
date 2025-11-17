@@ -5,7 +5,6 @@ on:
   push:
     branches: [master]
     paths:
-      - ".github/workflows/build-docs.yaml"
       - ".github/workflows/docs.yaml"
       - "zensical.toml"
       - "docs/**"
@@ -19,20 +18,10 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
-    name: "Build"
-    uses: ./.github/workflows/build-docs.yaml
-    secrets: inherit
-    with:
-      pages: true
-    permissions:
-      contents: read
-
-  deploy:
-    name: "Deploy"
+  docs:
+    name: "Docs"
     runs-on: ubuntu-latest
     timeout-minutes: 5
-    needs: build
 
     permissions:
       pages: write
@@ -40,28 +29,16 @@ jobs:
 
     environment:
       name: docs
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.zensical.outputs.page_url }}
 
     steps:
-      - name: "Deploy Pages"
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: "Checkout"
+        uses: actions/checkout@v5
 
-      - name: "Send Deploy Success Notification"
-        if: ${{ !cancelled() }}
-        continue-on-error: true
-        uses: sarisia/actions-status-discord@v1
-        with:
-          webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          description: ${{ steps.deployment.outputs.page_url }}
+      - name: "Zensical Action"
+        id: zensical
+        uses: cssnr/zensical-action@master
 
-  post:
-    name: "Post-Deploy"
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    needs: deploy
-
-    steps:
       - name: "Purge Cache"
         if: ${{ env.purge-domain != '' }}
         uses: cssnr/cloudflare-purge-cache-action@v2
@@ -77,9 +54,10 @@ jobs:
           crawler_user_id: ${{ secrets.CRAWLER_USER_ID }}
           crawler_api_key: ${{ secrets.CRAWLER_API_KEY }}
 
-      - name: "Send Failure Notification"
-        if: ${{ failure() }}
+      - name: "Send Notification"
+        if: ${{ !cancelled() }}
+        continue-on-error: true
         uses: sarisia/actions-status-discord@v1
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          description: ${{ github.event.repository.html_url }}/actions/runs/${{ github.run_id }}
+          description: ${{ steps.zensical.outputs.page_url }}

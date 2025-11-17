@@ -5,7 +5,6 @@ on:
   push:
     branches-ignore: [master]
     paths:
-      - ".github/workflows/build-docs.yaml"
       - ".github/workflows/dev.yaml"
       - "zensical.toml"
       - "docs/**"
@@ -17,10 +16,16 @@ concurrency:
 jobs:
   build:
     name: "Build"
-    uses: ./.github/workflows/build-docs.yaml
-    secrets: inherit
-    permissions:
-      contents: read
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v5
+
+      - name: "Zensical Action"
+        uses: cssnr/zensical-action@master
+        with:
+          upload: "artifact"
 
   deploy:
     name: "Deploy"
