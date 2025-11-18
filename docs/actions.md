@@ -12,6 +12,14 @@ Additionally, if you would like [a new action](https://github.com/cssnr/actions/
 
 [:lucide-activity: Request New Action](https://github.com/cssnr/actions/discussions/categories/github-actions){ .md-button .md-button--primary }
 
+## Actions Tools
+
+These are actions are using [actions-tools](https://github.com/cssnr/actions-tools):
+
+- Create Files Action: [cssnr/create-files-action](https://github.com/cssnr/create-files-action)
+- Python Action Template: [smashedr/test-action-py](https://github.com/smashedr/test-action-py)
+- Python UV Action Template: [smashedr/test-action-uv](https://github.com/smashedr/test-action-uv)
+
 ## Published
 
 All these actions are published on the Actions Marketplace.
@@ -79,14 +87,6 @@ These are basic action templates that I use for creating new actions.
 - [py-test-action](https://github.com/smashedr/py-test-action?tab=readme-ov-file#readme) - Dockerfile Python
 - [test-action-uv](https://github.com/smashedr/test-action-uv?tab=readme-ov-file#readme) - Dockerfile Python UV
 - [docker-test-action](https://github.com/smashedr/docker-test-action?tab=readme-ov-file#readme) - Docker Image Python
-
-## Actions Tools
-
-These are actions are using [actions-tools](https://github.com/cssnr/actions-tools):
-
-- Create Files Action: [cssnr/create-files-action](https://github.com/cssnr/create-files-action)
-- Python Action Template: [smashedr/test-action-py](https://github.com/smashedr/test-action-py)
-- Python UV Action Template: [smashedr/test-action-uv](https://github.com/smashedr/test-action-uv)
 
 !!! quote "Additional Information"
 
