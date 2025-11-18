@@ -5,7 +5,7 @@ icon: lucide/rocket
 [![PyPI Version](https://img.shields.io/pypi/v/actions-tools?logo=pypi&logoColor=white&label=pypi)](https://pypi.org/project/actions-tools/)
 [![GitHub Release Version](https://img.shields.io/github/v/release/cssnr/actions-tools?logo=github)](https://github.com/cssnr/actions-tools/releases)
 [![TOML Python Version](https://img.shields.io/badge/dynamic/toml?url=https%3A%2F%2Fraw.githubusercontent.com%2Fcssnr%2Factions-tools%2Frefs%2Fheads%2Fmaster%2Fpyproject.toml&query=%24.project.requires-python&logo=python&logoColor=white&label=python)](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme)
-[![PyPI Downloads](https://img.shields.io/pypi/dm/actions-tools?logo=pypi&logoColor=white)](https://pepy.tech/projects/actions-tools)
+[![PyPI Downloads](https://img.shields.io/pypi/dm/actions-tools?logo=pypi&logoColor=white)](https://pypistats.org/packages/actions-tools)
 [![Codecov](https://codecov.io/gh/cssnr/actions-tools/graph/badge.svg?token=A8NDHZ393X)](https://codecov.io/gh/cssnr/actions-tools)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=cssnr_actions-tools&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=cssnr_actions-tools)
 [![GitHub Top Language](https://img.shields.io/github/languages/top/cssnr/actions-tools?logo=htmx&logoColor=white)](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme)
@@ -95,11 +95,9 @@ Uninstall.
 python -m pip uninstall actions-tools
 ```
 
-&nbsp;
+## Quick Start
 
-<!-- TODO: Mirror README.md usage here and update Usage for the docs site -->
-
-[:lucide-notebook-pen: View the Usage](usage.md){ .md-button .md-button--primary }
+After [installing](#install) import the module and start [using](usage.md) the methods...
 
 ```python
 from actions import core, context
@@ -108,6 +106,7 @@ token = core.get_input("token", True)
 g = core.get_github(token)  # (1)!
 repo = g.get_repo(f"{context.repository}")
 core.info(f"repo.name: {repo.name}")
+core.set_output("name", repo.name)
 ```
 
 1.  To use `get_github` install with the github extra:
@@ -117,17 +116,19 @@ core.info(f"repo.name: {repo.name}")
 
 **Make sure to view the full [Usage](usage.md) guide.**
 
+[:lucide-notebook-pen: View the Usage Guide](usage.md){ .md-button .md-button--primary }
+
 &nbsp;
 
 !!! question
 
-    If you need help or run into issues, [support](support.md) is available!
+    If you need **help** or run into issues, [support](support.md) is available!
 
 !!! info
 
     This project is in active development.
     Please [let us know](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests)
-    what features you want to see.
+    what **features** you want.
 
 !!! example "Documentation"
 
