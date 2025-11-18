@@ -95,11 +95,9 @@ Uninstall.
 python -m pip uninstall actions-tools
 ```
 
-&nbsp;
+## Quick Start
 
-<!-- TODO: Mirror README.md usage here and update Usage for the docs site -->
-
-[:lucide-notebook-pen: View the Usage](usage.md){ .md-button .md-button--primary }
+After [installing](#install) import the module and start [using](usage.md) the methods...
 
 ```python
 from actions import core, context
@@ -108,6 +106,7 @@ token = core.get_input("token", True)
 g = core.get_github(token)  # (1)!
 repo = g.get_repo(f"{context.repository}")
 core.info(f"repo.name: {repo.name}")
+core.set_output("name", repo.name)
 ```
 
 1.  To use `get_github` install with the github extra:
@@ -117,17 +116,19 @@ core.info(f"repo.name: {repo.name}")
 
 **Make sure to view the full [Usage](usage.md) guide.**
 
+[:lucide-notebook-pen: View the Usage Guide](usage.md){ .md-button .md-button--primary }
+
 &nbsp;
 
 !!! question
 
-    If you need help or run into issues, [support](support.md) is available!
+    If you need **help** or run into issues, [support](support.md) is available!
 
 !!! info
 
     This project is in active development.
     Please [let us know](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests)
-    what features you want to see.
+    what **features** you want.
 
 !!! example "Documentation"
 

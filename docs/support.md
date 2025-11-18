@@ -5,12 +5,12 @@ icon: lucide/message-circle-question-mark
 # Support
 
 If you have any [issues](https://github.com/cssnr/actions-tools/issues) using the tools,
-or just want to see more [features](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests), please let us know...
+or want to see more [features](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests); please let us know...
 
 ## Get Help
 
 Feel free to ask for help with anything from basic to advanced usage.
-:material-information-outline:{ title="All issues will be resolved!" }
+:material-information-outline:{ title="All issues will be responded too!" }
 
 ### GitHub Discussions
 
