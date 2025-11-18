@@ -6,7 +6,9 @@ icon: simple/githubactions
 
 I have also developed quite a few [GitHub Actions](https://actions.cssnr.com/actions).
 
-Additionally, let me know you would like [a new action](https://github.com/cssnr/actions/discussions/categories/github-actions) created.
+- https://actions.cssnr.com/
+
+Additionally, if you would like [a new action](https://github.com/cssnr/actions/discussions/categories/github-actions) created, let us know...
 
 [:lucide-activity: Request New Action](https://github.com/cssnr/actions/discussions/categories/github-actions){ .md-button .md-button--primary }
 
@@ -22,6 +24,7 @@ All these actions are published on the Actions Marketplace.
 
 ### Vendor Specific
 
+- [Zensical Action](https://github.com/cssnr/zensical-action?tab=readme-ov-file#readme)
 - [VirusTotal Action](https://github.com/cssnr/virustotal-action?tab=readme-ov-file#readme)
 - [Algolia Crawler Action](https://github.com/cssnr/algolia-crawler-action?tab=readme-ov-file#readme)
 - [Cloudflare Purge Cache Action](https://github.com/cssnr/cloudflare-purge-cache-action?tab=readme-ov-file#readme)

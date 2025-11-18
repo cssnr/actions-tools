@@ -6,92 +6,21 @@ icon: lucide/notebook-pen
 
 After [installing](index.md) import the module and start using the methods...
 
-## From @actions/toolkit
+## From actions/core
+
+Full `core` reference: [/src/actions/core.py](https://github.com/cssnr/actions-tools/blob/master/src/actions/core.py)
+
+### Inputs
 
 ```python
-from actions import core, context
+from actions import core
 
-# Input
-# (1)!
 my_str = core.get_input("string")  # -> str
-my_req = core.get_input("string", True)  # required
+my_req = core.get_input("string", True)  # (1)!
 my_bool = core.get_bool("boolean")  # -> bool
 my_list = core.get_list("list")  # -> list
 my_dict = core.get_dict("dict")  # -> dict - from json or yaml
 my_data = core.get_data("data")  # -> Any - from json or yaml
-
-# Context
-# (2)!
-core.info(f"event_name: {context.event_name}")
-core.info(f"ref_name: {context.ref_name}")
-core.info(f"runner_temp: {context.runner_temp}")
-
-# Event
-# (3)!
-event = core.get_event()  # -> dict
-core.info(str(event))
-repository = event.get("repository")
-
-# Logging
-core.info("info")  # alias for print
-core.debug("debug")
-
-# Annotations
-# (4)!
-core.notice("notice")
-core.warn("warn")
-core.error("error", title="Title", file="File", col=1, endColumn=2, line=3, endLine=4)
-
-# Blocks
-core.start_group("Title")
-core.info("This is folded.")
-core.end_group()
-
-with core.group("Title") as p:
-    p("This is folded.")
-    core.info("Also folded.")
-
-# Environment
-core.set_env("NAME", "value")
-
-# State
-name = core.set_state("name", "value")
-value = core.get_state("name")
-
-# System Path
-core.add_path("/dev/null")
-
-# Set Secret
-core.mask("super-secret-string")
-
-# Outputs
-core.set_output("name", "cssnr")
-
-# Commands
-core.stop_commands()
-core.info("::error::log output with commands")
-core.start_commands()
-
-# Summary
-core.summary("## Test Action")
-
-# Abort
-core.set_failed("Mayday!")
-
-# Runner Debug
-core.is_debug()
-
-# PyGithub (Octokit)
-# (5)!
-token = core.get_input("token", True)
-g = core.get_github(token)
-repo = g.get_repo(f"{context.repository}")
-core.info(f"repo.name: {repo.name}")
-
-# OIDC Token
-# https://docs.github.com/en/actions/reference/security/oidc
-id_token = core.get_id_token()
-id_token_aud = core.get_id_token("audience")
 ```
 
 1.  All the `get_input` methods accept these args/kwargs:
@@ -109,28 +38,173 @@ id_token_aud = core.get_id_token("audience")
 
     Additional kwargs are passed directly to `print`.
 
-2.  Full `context` reference: [../src/actions/context.py](https://github.com/cssnr/actions-tools/blob/master/src/actions/context.py)
+### Context
 
-    Reference: https://docs.github.com/en/actions/reference/workflows-and-actions/variables
+This is a custom `object`: [/src/actions/context.py](https://github.com/cssnr/actions-tools/blob/master/src/actions/context.py)
 
-3.  The event payload depends on the event that triggered the workflow.
+```python
+from actions import core, context
 
-    Reference: https://docs.github.com/en/webhooks/webhook-events-and-payloads
+core.info(f"event_name: {context.event_name}")
+core.info(f"ref_name: {context.ref_name}")
+core.info(f"runner_temp: {context.runner_temp}")
+```
 
-4.  All annotation methods accept all kwargs shown below.
+Reference: https://docs.github.com/en/actions/reference/workflows-and-actions/variables
 
-    Reference: https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#setting-a-notice-message
+### Event
 
-5.  This requires PyGithub. Make sure to install with:
+The event payload depends on the event that triggered the workflow.
 
+```python
+from actions import core
+
+event = core.get_event()  # -> dict
+core.info(str(event))
+repository = event.get("repository")
+core.info(str(repository))
+```
+
+Reference: https://docs.github.com/en/webhooks/webhook-events-and-payloads
+
+### Logging
+
+```python
+from actions import core
+
+core.info("info")  # alias for print
+core.debug("debug")
+
+# Annotations
+core.notice("notice")
+core.warn("warn")
+core.error("error", title="Title", file="File", col=1, endColumn=2, line=3, endLine=4)
+
+# Blocks
+core.start_group("Title")
+core.info("This is folded.")
+core.end_group()
+
+with core.group("Title") as p:
+    p("This is folded.")  # (1)!
+    core.info("Also folded.")
+```
+
+1.  Any output in this context will be folded.
+
+Reference: https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands
+
+### Env/Path
+
+```python
+from actions import core
+
+# Environment
+core.set_env("NAME", "value")
+
+# System Path
+core.add_path("/dev/null")
+```
+
+### State
+
+```python
+from actions import core
+
+# Set State
+name = core.set_state("name", "value")
+
+# Get State
+value = core.get_state("name")
+```
+
+### Secret/Outputs
+
+```python
+from actions import core
+
+# Mask Secret
+core.mask("super-secret-string")
+
+# Set Output
+core.set_output("name", "cssnr")
+```
+
+### Summary
+
+```python
+from actions import core
+
+core.summary("# My Action")
+core.summary("Is really awesome.")
+core.summary("---")  # (1)!
+```
+
+1.  This can be any [GitHub flavored Markdown](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+
+### Commands
+
+```python
+from actions import core
+
+# Stop Commands
+core.stop_commands()
+core.info("::error::log output with commands")
+core.start_commands()
+
+# Custom Commands
+core.command("warning", "Warned!")  # core.warn()
+```
+
+### Debug/Set Failed
+
+```python
+from actions import core
+
+# Runner Debug
+debug_on = core.is_debug()  # -> bool
+core.info(f"debug_on: {debug_on}")
+
+# Exit with Failure
+core.set_failed("Mayday!")  # (1)!
+```
+
+1.  This is shorthand for:
+    ```python
+    core.error("Mayday!")
+    raise SystemExit
+    ```
+
+### PyGithub (Octokit)
+
+```python
+from actions import core, context
+
+token = core.get_input("token", True)
+
+g = core.get_github(token)  # (1)!
+
+repo = g.get_repo(f"{context.repository}")
+core.info(f"repo.name: {repo.name}")
+```
+
+1.  To use `get_github` install with the github extra:
     ```shell
     python -m pip install actions-tools[github]
     ```
 
-    Reference: https://pygithub.readthedocs.io/en/stable/
+Reference: https://pygithub.readthedocs.io/en/stable/
 
-Full `core` reference: [../src/actions/core.py](https://github.com/cssnr/actions-tools/blob/master/src/actions/core.py)  
-Full `context` reference: [../src/actions/context.py](https://github.com/cssnr/actions-tools/blob/master/src/actions/context.py)
+### OIDC Token
+
+```python
+from actions import core
+
+id_token = core.get_id_token()
+id_token_aud = core.get_id_token("audience")
+```
+
+Reference: https://docs.github.com/en/actions/reference/security/oidc
 
 ## New In actions-tools
 
@@ -139,9 +213,6 @@ from actions import core, context
 
 # Context
 core.info(f"repository_name: {context.repository_name}")
-
-# Commands
-core.command("warning", "Warned!")  # core.warn()
 
 # Action Version
 version = core.get_version()  # from GITHUB_WORKFLOW_REF
@@ -155,7 +226,7 @@ core.info("Indented")  # only works with core.info
 core.end_indent()
 ```
 
-Example Actions:
+## Example Actions
 
 - Create Files Action: [cssnr/create-files-action/src/main.py](https://github.com/cssnr/create-files-action/blob/master/src/main.py)
 - Python Action Template: [smashedr/test-action-py/src/main.py](https://github.com/smashedr/test-action-py/blob/master/src/main.py)
