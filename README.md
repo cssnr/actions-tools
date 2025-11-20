@@ -4,17 +4,18 @@
 [![PyPI Downloads](https://img.shields.io/pypi/dm/actions-tools?logo=pypi&logoColor=white)](https://pypistats.org/packages/actions-tools)
 [![Codecov](https://codecov.io/gh/cssnr/actions-tools/graph/badge.svg?token=A8NDHZ393X)](https://codecov.io/gh/cssnr/actions-tools)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=cssnr_actions-tools&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=cssnr_actions-tools)
-[![Release Workflow](https://img.shields.io/github/actions/workflow/status/cssnr/actions-tools/release.yaml?logo=github&logoColor=white&label=release)](https://github.com/cssnr/actions-tools/actions/workflows/release.yaml)
-[![Lint Workflow](https://img.shields.io/github/actions/workflow/status/cssnr/actions-tools/lint.yaml?logo=github&logoColor=white&label=lint)](https://github.com/cssnr/actions-tools/actions/workflows/lint.yaml)
-[![Test Workflow](https://img.shields.io/github/actions/workflow/status/cssnr/actions-tools/test.yaml?logo=github&logoColor=white&label=test)](https://github.com/cssnr/actions-tools/actions/workflows/test.yaml)
+[![Workflow Release](https://img.shields.io/github/actions/workflow/status/cssnr/actions-tools/release.yaml?logo=cachet&label=release)](https://github.com/cssnr/actions-tools/actions/workflows/release.yaml)
+[![Workflow Lint](https://img.shields.io/github/actions/workflow/status/cssnr/actions-tools/lint.yaml?logo=cachet&label=lint)](https://github.com/cssnr/actions-tools/actions/workflows/lint.yaml)
+[![Workflow Test](https://img.shields.io/github/actions/workflow/status/cssnr/actions-tools/test.yaml?logo=cachet&label=test)](https://github.com/cssnr/actions-tools/actions/workflows/test.yaml)
 [![GitHub Deployments](https://img.shields.io/github/deployments/cssnr/actions-tools/pypi?logo=pypi&logoColor=white&label=pypi)](https://pypi.org/project/actions-tools/)
 [![GitHub Deployments](https://img.shields.io/github/deployments/cssnr/actions-tools/docs?logo=materialformkdocs&logoColor=white&label=docs)](https://actions-tools.cssnr.com/)
-[![GitHub Top Language](https://img.shields.io/github/languages/top/cssnr/actions-tools?logo=htmx&logoColor=white)](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme)
-[![GitHub Last Commit](https://img.shields.io/github/last-commit/cssnr/actions-tools?logo=github&logoColor=white&label=updated)](https://github.com/cssnr/actions-tools/graphs/commit-activity)
-[![GitHub Contributors](https://img.shields.io/github/contributors-anon/cssnr/actions-tools?logo=github)](https://github.com/cssnr/actions-tools/graphs/contributors)
+[![GitHub Last Commit](https://img.shields.io/github/last-commit/cssnr/actions-tools?logo=github&label=updated)](https://github.com/cssnr/actions-tools/graphs/commit-activity)
 [![GitHub Repo Size](https://img.shields.io/github/repo-size/cssnr/actions-tools?logo=bookstack&logoColor=white&label=repo%20size)](https://github.com/cssnr/actions-tools)
+[![GitHub Top Language](https://img.shields.io/github/languages/top/cssnr/actions-tools?logo=htmx&logoColor=white)](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme)
+[![GitHub Contributors](https://img.shields.io/github/contributors-anon/cssnr/actions-tools?logo=github)](https://github.com/cssnr/actions-tools/graphs/contributors)
+[![GitHub Discussions](https://img.shields.io/github/discussions/cssnr/cloudflare-purge-cache-action?logo=github)](https://github.com/cssnr/cloudflare-purge-cache-action/discussions)
 [![GitHub Forks](https://img.shields.io/github/forks/cssnr/actions-tools?style=flat&logo=github)](https://github.com/cssnr/actions-tools/forks)
-[![GitHub Repo Stars](https://img.shields.io/github/stars/cssnr/actions-tools?style=flat&logo=github&logoColor=white)](https://github.com/cssnr/actions-tools/stargazers)
+[![GitHub Repo Stars](https://img.shields.io/github/stars/cssnr/actions-tools?style=flat&logo=github)](https://github.com/cssnr/actions-tools/stargazers)
 [![GitHub Org Stars](https://img.shields.io/github/stars/cssnr?style=flat&logo=github&label=org%20stars)](https://cssnr.github.io/)
 [![Discord](https://img.shields.io/discord/899171661457293343?logo=discord&logoColor=white&label=discord&color=7289da)](https://discord.gg/wXy6m2X8wY)
 [![Ko-fi](https://img.shields.io/badge/Ko--fi-72a5f2?logo=kofi&label=support)](https://ko-fi.com/cssnr)
@@ -36,9 +37,7 @@ A Typed Python GitHub Actions Tookit similar to [actions/toolkit](https://github
 
 > [!NOTE]  
 > This project is in active development.  
-> Please [let us know](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests)
-> what features you want to see.  
-> The [Documentation Site](https://actions-tools.cssnr.com/) is also a work in progress...
+> Please let us know [what features](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests) you want to see.
 
 ## Install
 
@@ -209,6 +208,8 @@ Please consider making a donation to support the development of this project
 and [additional](https://cssnr.com/) open source projects.
 
 [![Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/cssnr)
+
+[![Actions Tools](https://raw.githubusercontent.com/smashedr/repo-images/refs/heads/master/actions/actions-tools.png)](https://actions-tools.cssnr.com/)
 
 Additionally, you can support other [GitHub Actions](https://actions.cssnr.com/) I have published:
 

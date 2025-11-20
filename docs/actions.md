@@ -2,13 +2,13 @@
 icon: simple/githubactions
 ---
 
-# Actions
+# :simple-githubactions: Actions
 
 I have also developed quite a few [GitHub Actions](https://actions.cssnr.com/actions).
 
 - https://actions.cssnr.com/
 
-Additionally, if you would like [a new action](https://github.com/cssnr/actions/discussions/categories/github-actions) created, let us know...
+Additionally, if you would like a [new action](https://github.com/cssnr/actions/discussions/categories/github-actions) created, let us know...
 
 [:lucide-activity: Request New Action](https://github.com/cssnr/actions/discussions/categories/github-actions){ .md-button .md-button--primary }
 
@@ -87,6 +87,8 @@ These are basic action templates that I use for creating new actions.
 - [py-test-action](https://github.com/smashedr/py-test-action?tab=readme-ov-file#readme) - Dockerfile Python
 - [test-action-uv](https://github.com/smashedr/test-action-uv?tab=readme-ov-file#readme) - Dockerfile Python UV
 - [docker-test-action](https://github.com/smashedr/docker-test-action?tab=readme-ov-file#readme) - Docker Image Python
+
+&nbsp;
 
 !!! quote "Additional Information"
 

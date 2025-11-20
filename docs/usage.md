@@ -2,7 +2,7 @@
 icon: lucide/notebook-pen
 ---
 
-# Usage
+# :lucide-notebook-pen: Usage
 
 After [installing](index.md) import the module and start using the methods...
 
