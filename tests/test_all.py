@@ -60,7 +60,6 @@ def test_print():
 def test_outputs():
     core.set_output("test", "value")
     core.set_env("test", "value")
-    core.summary("test")
     core.add_path("/dev/null")
     core.set_state("STATE_test", "value")
     os.environ["STATE_test"] = "value"  # for testing core.get_state

@@ -1,11 +1,11 @@
 import os
-from typing import Union, List
-from warnings import deprecated
+import warnings
+from typing import List, Union
 
 
 class Summary:
-    @deprecated("Use core.summary.raw()")
     def __call__(self, text: str, newline: bool = True):
+        warnings.warn("Use core.summary.raw()", DeprecationWarning, stacklevel=2)
         self.add_raw(text, newline)
 
     # Methods
