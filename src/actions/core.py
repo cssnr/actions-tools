@@ -10,6 +10,8 @@ from urllib.request import Request, urlopen
 
 from yaml import Loader, YAMLError, load
 
+from actions._summary import Summary
+
 
 try:
     # noinspection PyUnresolvedReferences
@@ -29,6 +31,10 @@ _false = ["n", "no", "false", "off"]
 _indent = 0
 _end_token = ""
 
+
+# Summary
+
+summary = Summary()
 
 # Core
 
@@ -181,17 +187,17 @@ def get_state(name: str) -> str:
     return os.getenv(f"STATE_{name}", "")
 
 
-def summary(text: str, nlc: int = 1):
-    """
-    Write to the Job Summary file
-    https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#adding-a-job-summary
-    :param text:str: Raw Text
-    :param nlc:int: New Line Count
-    :return:
-    """
-    new_lines = os.linesep * nlc
-    with open(os.environ["GITHUB_STEP_SUMMARY"], "a") as f:
-        print(f"{text}{new_lines}", file=f)  # type: ignore
+# def summary(text: str, nlc: int = 1):
+#     """
+#     Write to the Job Summary file
+#     https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#adding-a-job-summary
+#     :param text:str: Raw Text
+#     :param nlc:int: New Line Count
+#     :return:
+#     """
+#     new_lines = os.linesep * nlc
+#     with open(os.environ["GITHUB_STEP_SUMMARY"], "a") as f:
+#         print(f"{text}{new_lines}", file=f)  # type: ignore
 
 
 # Inputs

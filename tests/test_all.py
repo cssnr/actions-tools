@@ -19,7 +19,7 @@ os.environ["GITHUB_OUTPUT"] = os.environ.get("GITHUB_OUTPUT") or os.path.join(cw
 os.environ["GITHUB_ENV"] = os.environ.get("GITHUB_ENV") or os.path.join(cwd, "output.txt")
 os.environ["GITHUB_PATH"] = os.environ.get("GITHUB_PATH") or os.path.join(cwd, "output.txt")
 os.environ["GITHUB_STATE"] = os.environ.get("GITHUB_STATE") or os.path.join(cwd, "output.txt")
-os.environ["GITHUB_STEP_SUMMARY"] = os.environ.get("GITHUB_STEP_SUMMARY") or os.path.join(cwd, "output.txt")
+os.environ["GITHUB_STEP_SUMMARY"] = os.environ.get("GITHUB_STEP_SUMMARY") or os.path.join(cwd, "output-summary.txt")
 os.environ["GITHUB_EVENT_PATH"] = os.environ.get("GITHUB_EVENT_PATH") or os.path.join(cwd, "event.json")
 
 
@@ -141,3 +141,75 @@ def test_github(monkeypatch):
     # importlib.reload(core)
     g = core.get_github("xxx")
     assert g
+
+
+def test_summary():
+    core.summary.clear()
+    assert core.summary.stringify() == ""
+    core.summary.add_eol()
+    core.summary("ralf broke", False)
+    assert_summary("\nralf broke")
+
+    core.summary.add_raw("ralf broke")
+    assert_summary("ralf broke\n")
+
+    core.summary.add_heading("ralf broke")
+    assert_summary("\n<h1>ralf broke</h1>\n\n")
+
+    core.summary.add_hr()
+    core.summary.add_br()
+    assert_summary("\n<hr>\n\n\n<br>\n\n")
+
+    core.summary.add_image("ralf", "broke")
+    assert_summary('\n<img src="ralf" alt="broke" width="100" height="auto">\n\n')
+
+    core.summary.add_link("ralf", "broke")
+    assert_summary('\n<a href="broke">ralf</a>\n\n')
+
+    core.summary.add_quote("ralf", "broke")
+    assert_summary('\n<blockquote cite="broke">ralf</blockquote>\n\n')
+
+    core.summary.clear()
+    core.summary.add_code("ralf", "broke")
+    assert_summary('\n<pre lang="ralf"><code>broke</code></pre>\n\n')
+
+    core.summary.clear()
+    core.summary.add_details("ralf", "broke")
+    assert_summary("\n<details><summary>ralf</summary>broke</details>\n\n")
+
+    core.summary.clear()
+    core.summary.add_list(["ralf", "broke"])
+    assert_summary("\n<ul><li>ralf</li>\n<li>broke</li></ul>\n\n")
+
+    core.summary.clear()
+    core.summary.add_table([["Who", "Did What"], ["ralf", "broke it"]])
+    assert_summary(
+        "\n<table><thead><tr><th>Who</th><th>Did What</th></tr></thead><tbody><tr><td>ralf</td><td>broke it</td></tr></tbody></table>\n\n"
+    )
+
+    core.summary.clear()
+    with core.summary.code() as p:
+        p("line 1")
+        p("line 2")
+    assert_summary('\n<pre lang="text"><code>line 1\nline 2</code></pre>\n\n')
+
+    core.summary.clear()
+    with core.summary.details() as p:
+        p("line 1")
+        p("line 2")
+    assert_summary("\n<details><summary>text</summary>\n\nline 1\nline 2\n\n</details>\n\n")
+
+    core.summary.clear()
+    with core.summary.list() as p:
+        p("line 1")
+        p("line 2")
+    assert_summary("\n<ul>\n<li>line 1</li>\n<li>line 2</li>\n</ul>\n\n")
+
+
+def assert_summary(result: str, clear: bool = True):
+    with open(os.environ["GITHUB_STEP_SUMMARY"], "r") as f:
+        text = f.read()
+        # print(f"repr: {repr(text)}")
+        assert text == result
+    if clear:
+        core.summary.clear()

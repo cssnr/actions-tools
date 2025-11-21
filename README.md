@@ -22,14 +22,13 @@
 
 # Actions Tools
 
+<a title="Actions Tools" href="https://actions-tools.cssnr.com/" target="_blank">
+<img alt="Zensical Action" align="right" width="128" height="auto" src="https://raw.githubusercontent.com/smashedr/repo-images/refs/heads/master/zensical-action/logo160.png"></a>
+
 - [Install](#Install)
 - [Usage](#Usage)
 - [Support](#Support)
 - [Contributing](#Contributing)
-
-<p align="center"><a title="Actions Tools Docs" href="https://actions-tools.cssnr.com/" target="_blank">
-<img alt="Actions Tools Docs" width="256" height="auto" src="https://raw.githubusercontent.com/smashedr/repo-images/refs/heads/master/actions-tools/logo256.png" />
-</a></p>
 
 A Typed Python GitHub Actions Tookit similar to [actions/toolkit](https://github.com/actions/toolkit).
 
@@ -154,6 +153,31 @@ core.info(f"repo.name: {repo.name}")
 # OIDC Token
 # https://docs.github.com/en/actions/reference/security/oidc
 id_token = core.get_id_token()
+
+# Summary
+
+core.summary.add_raw("text")
+# text\n
+core.summary.add_eol()
+# \n
+core.summary.add_code("python", "from actions import core")
+# \n<pre lang="python"><code>from actions import core</code></pre>\n\n
+core.summary.add_list(["item 1", "item 2"])
+# \n<ul><li>ralf</li>\n<li>broke</li></ul>\n\n
+core.summary.add_details("Summary", "Details...")
+# \n<details><summary>Summary</summary>Details...</details>\n\n
+core.summary.add_image("src", "alt", 100)
+# \n<img src="src" alt="alt" width="100" height="auto">\n\n
+core.summary.add_heading("Heading", 1)
+# \n<h1>Heading</h1>\n\n
+core.summary.add_hr()
+# \n<hr>\n\n
+core.summary.add_br()
+# \n<br>\n\n
+core.summary.add_quote("I broke it.", "ralf")
+# \n<blockquote cite="ralf">I broke it.</blockquote>\n\n
+core.summary.add_link("text", "href")
+# \n<a href="href">text</a>\n\n
 ```
 
 - Full `core` reference: [../src/actions/core.py](https://github.com/cssnr/actions-tools/blob/master/src/actions/core.py)
