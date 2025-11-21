@@ -41,8 +41,7 @@ jobs:
       - name: "Debug event.json"
         if: ${{ !github.event.act }}
         continue-on-error: true
-        run: |
-          cat "${GITHUB_EVENT_PATH}"
+        run: cat "${GITHUB_EVENT_PATH}"
 
       - name: "Debug CTX github"
         if: ${{ !github.event.act }}

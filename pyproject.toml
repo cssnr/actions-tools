@@ -5,7 +5,6 @@ description = "A Typed Python GitHub Actions Tookit similar to actions/toolkit."
 authors = [{ name="Shane" }]
 readme = "README.md"
 dynamic = ["version"]
-dependencies = ["PyYAML"]
 requires-python = ">=3.10"
 classifiers = [
     "Programming Language :: Python",
@@ -22,6 +21,8 @@ classifiers = [
 ]
 license = { text = "GPL-3.0" }
 #license = { file = "LICENSE" }
+
+dependencies = ["PyYAML"]
 
 [project.optional-dependencies]
 github = ["PyGithub>=2,<3"]
