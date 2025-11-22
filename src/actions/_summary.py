@@ -85,7 +85,7 @@ class Summary:
         return ContextBlock(start, "</code></pre>")
 
     @staticmethod
-    def details(summary: str = "text"):
+    def details(summary: str):
         start = f"<details><summary>{summary}</summary>\n\n"
         return ContextBlock(start, "\n\n</details>")
 

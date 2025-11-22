@@ -135,12 +135,52 @@ core.set_output("name", "cssnr")
 ```python
 from actions import core
 
-core.summary("# My Action")
-core.summary("Is really awesome.")
-core.summary("---")  # (1)!
+core.summary.add_raw("text")  # (1)!
+# text\n
+core.summary.add_eol()
+# \n
+core.summary.add_code("python", "from actions import core")
+# \n<pre lang="python"><code>from actions import core</code></pre>\n\n
+core.summary.add_list(["item 1", "item 2"])
+# \n<ul><li>ralf</li>\n<li>broke</li></ul>\n\n
+core.summary.add_details("Summary", "Details...")
+# \n<details><summary>Summary</summary>Details...</details>\n\n
+core.summary.add_image("src", "alt", 100)
+# \n<img src="src" alt="alt" width="100" height="auto">\n\n
+core.summary.add_heading("Heading", 1)
+# \n<h1>Heading</h1>\n\n
+core.summary.add_hr()
+# \n<hr>\n\n
+core.summary.add_br()
+# \n<br>\n\n
+core.summary.add_quote("I broke it.", "ralf")
+# \n<blockquote cite="ralf">I broke it.</blockquote>\n\n
+core.summary.add_link("text", "href")
+# \n<a href="href">text</a>\n\n
 ```
 
 1.  This can be any [GitHub flavored Markdown](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+
+Summary context handlers.
+
+```python
+from actions import core
+
+with core.summary.code() as add:
+    add("line 1")
+    add("line 2")
+# \n<pre lang="text"><code>line 1\nline 2</code></pre>\n\n
+
+with core.summary.list() as add:
+    add("line 1")
+    add("line 2")
+# \n<ul>\n<li>line 1</li>\n<li>line 2</li>\n</ul>\n\n
+
+with core.summary.details("Summary") as add:
+    add("line 1")
+    add("line 2")
+# \n<details><summary>Summary</summary>\n\nline 1\nline 2\n\n</details>\n\n
+```
 
 ### Commands
 

@@ -10,7 +10,7 @@ from urllib.request import Request, urlopen
 
 from yaml import Loader, YAMLError, load
 
-from actions._summary import Summary
+from ._summary import Summary
 
 
 try:

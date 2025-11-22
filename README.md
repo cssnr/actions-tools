@@ -134,9 +134,6 @@ core.stop_commands()
 core.info("::error::log output with commands")
 core.start_commands()
 
-# Summary
-core.summary("## Test Action")
-
 # Abort
 core.set_failed("Mayday!")
 

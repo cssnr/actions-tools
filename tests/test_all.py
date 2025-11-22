@@ -193,10 +193,10 @@ def test_summary():
     assert_summary('\n<pre lang="text"><code>line 1\nline 2</code></pre>\n\n')
 
     core.summary.clear()
-    with core.summary.details() as p:
+    with core.summary.details("Summary") as p:
         p("line 1")
         p("line 2")
-    assert_summary("\n<details><summary>text</summary>\n\nline 1\nline 2\n\n</details>\n\n")
+    assert_summary("\n<details><summary>Summary</summary>\n\nline 1\nline 2\n\n</details>\n\n")
 
     core.summary.clear()
     with core.summary.list() as p:
