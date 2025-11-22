@@ -23,7 +23,7 @@
 # Actions Tools
 
 <a title="Actions Tools" href="https://actions-tools.cssnr.com/" target="_blank">
-<img alt="Zensical Action" align="right" width="128" height="auto" src="https://raw.githubusercontent.com/smashedr/repo-images/refs/heads/master/zensical-action/logo160.png"></a>
+<img alt="Actions Tools" align="right" width="128" height="auto" src="https://raw.githubusercontent.com/smashedr/repo-images/refs/heads/master/actions-tools/logo128.png"></a>
 
 - [Install](#Install)
 - [Usage](#Usage)
