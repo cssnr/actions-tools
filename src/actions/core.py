@@ -34,7 +34,8 @@ _end_token = ""
 
 # Summary
 
-summary = Summary()
+summary = Summary()  # type: Summary
+
 
 # Core
 
