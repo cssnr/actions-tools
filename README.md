@@ -186,17 +186,17 @@ core.summary.add_table([["Head 1", "Head 2"], ["data 1", "data 2"]])
 # \n<table><thead><tr><th>Head 1</th><th>Head 2</th></tr></thead>
 # <tbody><tr><td>data 1</td><td>data 2</td></tr></tbody></table>\n\n
 
-with core.summary.code("text") as add:
+with core.summary.with_code("text") as add:
     add("line 1")
     add("line 2")
 # \n<pre lang="text"><code>line 1\nline 2</code></pre>\n\n
 
-with core.summary.list() as add:
+with core.summary.with_list() as add:
     add("line 1")
     add("line 2")
 # \n<ul>\n<li>line 1</li>\n<li>line 2</li>\n</ul>\n\n
 
-with core.summary.details("Summary") as add:
+with core.summary.with_details("Summary") as add:
     add("line 1")
     add("line 2")
 # \n<details><summary>Summary</summary>\n\nline 1\nline 2\n\n</details>\n\n

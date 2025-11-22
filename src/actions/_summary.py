@@ -81,17 +81,17 @@ class Summary:
     # Context Managers
 
     @staticmethod
-    def code(language: str = "text"):
+    def with_code(language: str = "text"):
         start = f'<pre lang="{language}"><code>'
         return ContextBlock(start, "</code></pre>")
 
     @staticmethod
-    def details(summary: str):
+    def with_details(summary: str):
         start = f"<details><summary>{summary}</summary>\n\n"
         return ContextBlock(start, "\n\n</details>")
 
     @staticmethod
-    def list(ordered: bool = False):
+    def with_list(ordered: bool = False):
         tag = "ol" if ordered else "ul"
         return ContextBlock(f"<{tag}>\n", f"\n</{tag}>", "<li>{0}</li>")
 
