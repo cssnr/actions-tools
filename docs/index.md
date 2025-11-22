@@ -4,6 +4,8 @@ icon: lucide/rocket
 
 # :lucide-rocket: Get Started
 
+[![Image title](https://raw.githubusercontent.com/smashedr/repo-images/refs/heads/master/actions-tools/logo128.png){ align=right }](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme)
+
 [![PyPI Version](https://img.shields.io/pypi/v/actions-tools?logo=pypi&logoColor=white&label=pypi)](https://pypi.org/project/actions-tools/)
 [![GitHub Release Version](https://img.shields.io/github/v/release/cssnr/actions-tools?logo=github)](https://github.com/cssnr/actions-tools/releases)
 [![TOML Python Version](https://img.shields.io/badge/dynamic/toml?url=https%3A%2F%2Fraw.githubusercontent.com%2Fcssnr%2Factions-tools%2Frefs%2Fheads%2Fmaster%2Fpyproject.toml&query=%24.project.requires-python&logo=python&logoColor=white&label=python)](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme)
@@ -18,8 +20,6 @@ icon: lucide/rocket
 [![GitHub Org Stars](https://img.shields.io/github/stars/cssnr?style=flat&logo=github&label=org%20stars)](https://cssnr.github.io/)
 [![Discord](https://img.shields.io/discord/899171661457293343?logo=discord&logoColor=white&label=discord&color=7289da)](https://discord.gg/wXy6m2X8wY)
 [![Ko-fi](https://img.shields.io/badge/Ko--fi-72a5f2?logo=kofi&label=support)](https://ko-fi.com/cssnr)
-
-[![Image title](https://raw.githubusercontent.com/smashedr/repo-images/refs/heads/master/actions-tools/logo128.png){ align=right }](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme)
 
 A Typed Python GitHub Actions Tookit similar to [actions/toolkit](https://github.com/actions/toolkit).
 
@@ -81,6 +81,20 @@ With [PyGithub](https://github.com/PyGithub/PyGithub) (for GitHub API access).
     dependencies = ["actions-tools[github]"]
     ```
 
+Install from GitHub.
+
+=== "pip"
+
+    ```shell
+    python -m pip install git+https://github.com/cssnr/actions-tools.git
+    ```
+
+=== "uv"
+
+    ```shell
+    uv pip install git+https://github.com/cssnr/actions-tools.git
+    ```
+
 Install from source.
 
 ```shell
@@ -90,13 +104,27 @@ python -m pip install actions-tools
 
 Uninstall.
 
-```shell
-python -m pip uninstall actions-tools
-```
+=== "pip"
+
+    ```shell
+    python -m pip uninstall actions-tools
+    ```
+
+=== "uv"
+
+    ```shell
+    uv remove actions-tools
+    ```
 
 ## Quick Start
 
-After [installing](#install) import the module and start [using](usage.md) the methods...
+[Install](#install) the tools.
+
+```shell
+pip install actions-tools
+```
+
+[Use](usage.md) the modules.
 
 ```python
 from actions import core, context
@@ -106,9 +134,10 @@ g = core.get_github(token)  # (1)!
 repo = g.get_repo(f"{context.repository}")
 core.info(f"repo.name: {repo.name}")
 core.set_output("name", repo.name)
+core.summary.add_raw("🚀 We Did It!")
 ```
 
-1.  To use `get_github` install with the github extra:
+1.  To use `get_github` install with the `github` extra:
     ```shell
     python -m pip install actions-tools[github]
     ```

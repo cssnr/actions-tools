@@ -108,27 +108,28 @@ jobs:
           echo "github.event.release.prerelease: ${{ github.event.release.prerelease }}"
 
       - name: "Debug event.json"
-        if: ${{ !github.event.act }}
         continue-on-error: true
-        run: |
-          cat "${GITHUB_EVENT_PATH}"
+        run: cat "${GITHUB_EVENT_PATH}"
 
       - name: "Debug CTX github"
-        if: ${{ !github.event.act }}
         continue-on-error: true
         env:
           GITHUB_CTX: ${{ toJSON(github) }}
         run: echo "$GITHUB_CTX"
 
-      - name: "Update Latest Tag"
-        if: ${{ !github.event.release.prerelease }}
-        uses: cssnr/update-version-tags-action@latest
-        continue-on-error: true
-        with:
-          major: false
-          minor: false
-          tags: latest
-          #tag: ${{ github.ref_name }}
+      #- name: "Debug Environment"
+      #  continue-on-error: true
+      #  run: env
+
+      #- name: "Update Latest Tag"
+      #  if: ${{ !github.event.release.prerelease }}
+      #  uses: cssnr/update-version-tags-action@latest
+      #  continue-on-error: true
+      #  with:
+      #    major: false
+      #    minor: false
+      #    tags: latest
+      #    #tag: ${{ github.ref_name }}
 
       - name: "Download Artifact"
         uses: actions/download-artifact@v6
