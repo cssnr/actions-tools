@@ -159,7 +159,7 @@ core.summary.add_eol()
 core.summary.add_code("from actions import core", "python")
 # \n<pre lang="python"><code>from actions import core</code></pre>\n\n
 core.summary.add_list(["item 1", "item 2"])
-# \n<ul><li>ralf</li>\n<li>broke</li></ul>\n\n
+# \n<ul><li>item 1</li>\n<li>item 2</li></ul>\n\n
 core.summary.add_details("Summary", "Details...")
 # \n<details><summary>Summary</summary>Details...</details>\n\n
 core.summary.add_image("src", "alt", 100)

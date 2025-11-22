@@ -189,10 +189,10 @@ def test_summary():
     )
 
     core.summary.clear()
-    with core.summary.code() as p:
+    with core.summary.code("nottext") as p:
         p("line 1")
         p("line 2")
-    assert_summary('\n<pre lang="text"><code>line 1\nline 2</code></pre>\n\n')
+    assert_summary('\n<pre lang="nottext"><code>line 1\nline 2</code></pre>\n\n')
 
     core.summary.clear()
     with core.summary.details("Summary") as p:

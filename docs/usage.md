@@ -169,7 +169,7 @@ Summary context handlers.
 ```python
 from actions import core
 
-with core.summary.code() as add:
+with core.summary.code("text") as add:
     add("line 1")
     add("line 2")
 # \n<pre lang="text"><code>line 1\nline 2</code></pre>\n\n
