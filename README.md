@@ -74,7 +74,7 @@ python -m pip uninstall actions-tools
 ## Usage
 
 > [!TIP]  
-> View the [Usage Guide]([usage guide](https://actions-tools.cssnr.com/usage/)) online.
+> View the [Usage Guide](https://actions-tools.cssnr.com/usage/) online.
 
 Functionality from @actions/toolkit
 
