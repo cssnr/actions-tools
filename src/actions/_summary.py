@@ -5,7 +5,7 @@ from typing import List, Union
 
 class Summary:
     def __call__(self, text: str, newline: bool = True):
-        warnings.warn("Use core.summary.raw()", DeprecationWarning, stacklevel=2)
+        warnings.warn("Deprecated in 0.3.0. Use core.summary.raw()", DeprecationWarning, stacklevel=2)
         self.add_raw(text, newline)
 
     # Methods
