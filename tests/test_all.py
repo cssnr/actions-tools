@@ -19,7 +19,7 @@ os.environ["GITHUB_OUTPUT"] = os.environ.get("GITHUB_OUTPUT") or os.path.join(cw
 os.environ["GITHUB_ENV"] = os.environ.get("GITHUB_ENV") or os.path.join(cwd, "output.txt")
 os.environ["GITHUB_PATH"] = os.environ.get("GITHUB_PATH") or os.path.join(cwd, "output.txt")
 os.environ["GITHUB_STATE"] = os.environ.get("GITHUB_STATE") or os.path.join(cwd, "output.txt")
-os.environ["GITHUB_STEP_SUMMARY"] = os.environ.get("GITHUB_STEP_SUMMARY") or os.path.join(cwd, "output-summary.txt")
+os.environ["GITHUB_STEP_SUMMARY"] = os.environ.get("GITHUB_STEP_SUMMARY") or os.path.join(cwd, "output.txt")
 os.environ["GITHUB_EVENT_PATH"] = os.environ.get("GITHUB_EVENT_PATH") or os.path.join(cwd, "event.json")
 
 

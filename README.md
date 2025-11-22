@@ -52,6 +52,12 @@ With [PyGithub](https://github.com/PyGithub/PyGithub) (for GitHub API access).
 python -m pip install actions-tools[github]
 ```
 
+Install from GitHub.
+
+```shell
+python -m pip install git+https://github.com/cssnr/actions-tools.git
+```
+
 Install from source.
 
 ```shell
@@ -178,6 +184,21 @@ core.summary.add_link("text", "href")
 core.summary.add_table([["Head 1", "Head 2"], ["data 1", "data 2"]])
 # \n<table><thead><tr><th>Head 1</th><th>Head 2</th></tr></thead>
 # <tbody><tr><td>data 1</td><td>data 2</td></tr></tbody></table>\n\n
+
+with core.summary.code("text") as add:
+    add("line 1")
+    add("line 2")
+# \n<pre lang="text"><code>line 1\nline 2</code></pre>\n\n
+
+with core.summary.list() as add:
+    add("line 1")
+    add("line 2")
+# \n<ul>\n<li>line 1</li>\n<li>line 2</li>\n</ul>\n\n
+
+with core.summary.details("Summary") as add:
+    add("line 1")
+    add("line 2")
+# \n<details><summary>Summary</summary>\n\nline 1\nline 2\n\n</details>\n\n
 ```
 
 - Full `core` reference: [../src/actions/core.py](https://github.com/cssnr/actions-tools/blob/master/src/actions/core.py)
@@ -205,6 +226,8 @@ core.start_indent(4)
 core.info("Indented")  # only works with core.info
 core.end_indent()
 ```
+
+Example Actions.
 
 - Create Files Action: [cssnr/create-files-action](https://github.com/cssnr/create-files-action)
 - Python Action Template: [smashedr/test-action-py](https://github.com/smashedr/test-action-py)

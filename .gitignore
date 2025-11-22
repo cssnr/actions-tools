@@ -12,4 +12,4 @@ dist/
 coverage.xml
 site/
 .cache/
-output*.txt
+output.txt
