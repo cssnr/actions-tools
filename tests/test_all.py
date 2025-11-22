@@ -165,11 +165,13 @@ def test_summary():
     core.summary.add_link("ralf", "broke")
     assert_summary('\n<a href="broke">ralf</a>\n\n')
 
-    core.summary.add_quote("ralf", "broke")
-    assert_summary('\n<blockquote cite="broke">ralf</blockquote>\n\n')
+    core.summary.add_quote("i broke this")
+    assert_summary("\n<blockquote>i broke this</blockquote>\n\n")
+    core.summary.add_quote("i broke this", "ralf")
+    assert_summary('\n<blockquote cite="ralf">i broke this</blockquote>\n\n')
 
     core.summary.clear()
-    core.summary.add_code("ralf", "broke")
+    core.summary.add_code("broke", "ralf")
     assert_summary('\n<pre lang="ralf"><code>broke</code></pre>\n\n')
 
     core.summary.clear()

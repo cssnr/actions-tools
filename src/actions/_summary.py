@@ -28,7 +28,7 @@ class Summary:
 
     @staticmethod
     # Has Context Manager
-    def add_code(language: str, code: str):
+    def add_code(code: str, language: str = "text"):
         write_summary(f'\n<pre lang="{language}"><code>{code}</code></pre>\n')
 
     @staticmethod
@@ -64,8 +64,9 @@ class Summary:
         write_summary(f"\n<{tag}>{text}</{tag}>\n")
 
     @staticmethod
-    def add_quote(text: str, cite: str):
-        write_summary(f'\n<blockquote cite="{cite}">{text}</blockquote>\n')
+    def add_quote(text: str, cite: str = ""):
+        tag = f' cite="{cite}"' if cite else ""
+        write_summary(f"\n<blockquote{tag}>{text}</blockquote>\n")
 
     @staticmethod
     def add_raw(text: str, newline: bool = True):

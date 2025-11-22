@@ -152,12 +152,11 @@ core.info(f"repo.name: {repo.name}")
 id_token = core.get_id_token()
 
 # Summary
-
 core.summary.add_raw("text")
 # text\n
 core.summary.add_eol()
 # \n
-core.summary.add_code("python", "from actions import core")
+core.summary.add_code("from actions import core", "python")
 # \n<pre lang="python"><code>from actions import core</code></pre>\n\n
 core.summary.add_list(["item 1", "item 2"])
 # \n<ul><li>ralf</li>\n<li>broke</li></ul>\n\n
@@ -175,6 +174,10 @@ core.summary.add_quote("I broke it.", "ralf")
 # \n<blockquote cite="ralf">I broke it.</blockquote>\n\n
 core.summary.add_link("text", "href")
 # \n<a href="href">text</a>\n\n
+# \n<a href="href">text</a>\n\n
+core.summary.add_table([["Head 1", "Head 2"], ["data 1", "data 2"]])
+# \n<table><thead><tr><th>Head 1</th><th>Head 2</th></tr></thead>
+# <tbody><tr><td>data 1</td><td>data 2</td></tr></tbody></table>\n\n
 ```
 
 - Full `core` reference: [../src/actions/core.py](https://github.com/cssnr/actions-tools/blob/master/src/actions/core.py)
