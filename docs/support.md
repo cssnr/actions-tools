@@ -4,7 +4,9 @@ icon: lucide/message-circle-question-mark
 
 # :lucide-message-circle-question-mark: Support
 
-If you run into any [issues](https://github.com/cssnr/actions-tools/issues),
+[![Actions Tools](https://raw.githubusercontent.com/smashedr/repo-images/refs/heads/master/actions-tools/logo128.png){ align=right width=96 }](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme)
+
+If you run into any [issues](https://github.com/cssnr/actions-tools/issues)
 want to see more [features](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests)
 or just have a [question](https://github.com/cssnr/actions-tools/discussions/categories/q-a)
 please let us know.

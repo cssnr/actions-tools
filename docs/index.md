@@ -4,17 +4,18 @@ icon: lucide/rocket
 
 # :lucide-rocket: Get Started
 
-[![Image title](https://raw.githubusercontent.com/smashedr/repo-images/refs/heads/master/actions-tools/logo128.png){ align=right }](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme)
+[![Actions Tools](https://raw.githubusercontent.com/smashedr/repo-images/refs/heads/master/actions-tools/logo128.png){ align=right width=96 }](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme)
 
 [![PyPI Version](https://img.shields.io/pypi/v/actions-tools?logo=pypi&logoColor=white&label=pypi)](https://pypi.org/project/actions-tools/)
-[![GitHub Release Version](https://img.shields.io/github/v/release/cssnr/actions-tools?logo=github)](https://github.com/cssnr/actions-tools/releases)
 [![TOML Python Version](https://img.shields.io/badge/dynamic/toml?url=https%3A%2F%2Fraw.githubusercontent.com%2Fcssnr%2Factions-tools%2Frefs%2Fheads%2Fmaster%2Fpyproject.toml&query=%24.project.requires-python&logo=python&logoColor=white&label=python)](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme)
 [![PyPI Downloads](https://img.shields.io/pypi/dm/actions-tools?logo=pypi&logoColor=white)](https://pypistats.org/packages/actions-tools)
+[![Pepy Total Downloads](https://img.shields.io/pepy/dt/actions-tools?logo=pypi&logoColor=white&label=total)](https://clickpy.clickhouse.com/dashboard/actions-tools)
+[![Workflow Test](https://img.shields.io/github/actions/workflow/status/cssnr/actions-tools/test.yaml?logo=cachet&label=test)](https://github.com/cssnr/actions-tools/actions/workflows/test.yaml)
 [![Codecov](https://codecov.io/gh/cssnr/actions-tools/graph/badge.svg?token=A8NDHZ393X)](https://codecov.io/gh/cssnr/actions-tools)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=cssnr_actions-tools&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=cssnr_actions-tools)
-[![GitHub Top Language](https://img.shields.io/github/languages/top/cssnr/actions-tools?logo=htmx&logoColor=white)](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme)
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/cssnr/actions-tools?logo=github&logoColor=white&label=updated)](https://github.com/cssnr/actions-tools/graphs/commit-activity)
-[![GitHub Repo Size](https://img.shields.io/github/repo-size/cssnr/actions-tools?logo=bookstack&logoColor=white&label=repo%20size)](https://github.com/cssnr/actions-tools)
+[![GitHub Issues](https://img.shields.io/github/issues/cssnr/actions-tools?logo=github)](https://github.com/cssnr/actions-tools/issues)
+[![GitHub Discussions](https://img.shields.io/github/discussions/cssnr/actions-tools?logo=github)](https://github.com/cssnr/actions-tools/discussions)
 [![GitHub Forks](https://img.shields.io/github/forks/cssnr/actions-tools?style=flat&logo=github)](https://github.com/cssnr/actions-tools/forks)
 [![GitHub Repo Stars](https://img.shields.io/github/stars/cssnr/actions-tools?style=flat&logo=github&logoColor=white)](https://github.com/cssnr/actions-tools/stargazers)
 [![GitHub Org Stars](https://img.shields.io/github/stars/cssnr?style=flat&logo=github&label=org%20stars)](https://cssnr.github.io/)
@@ -131,7 +132,7 @@ from actions import core, context
 
 token = core.get_input("token", True)
 g = core.get_github(token)  # (1)!
-repo = g.get_repo(f"{context.repository}")
+repo = g.get_repo(context.repository)
 core.info(f"repo.name: {repo.name}")
 core.set_output("name", repo.name)
 core.summary.add_raw("🚀 We Did It!")

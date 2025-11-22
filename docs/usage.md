@@ -4,9 +4,13 @@ icon: lucide/notebook-pen
 
 # :lucide-notebook-pen: Usage
 
+[![Actions Tools](https://raw.githubusercontent.com/smashedr/repo-images/refs/heads/master/actions-tools/logo128.png){ align=right width=96 }](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme)
+
 After [installing](index.md) import the module and start using the methods...
 
 ## From actions/core
+
+These methods are similar to the JavaScript [actions/core](https://github.com/actions/toolkit/tree/main/packages/core#usage) Toolkit.
 
 Full `core` reference: [/src/actions/core.py](https://github.com/cssnr/actions-tools/blob/master/src/actions/core.py)
 
@@ -40,7 +44,7 @@ my_data = core.get_data("data")  # -> Any - from json or yaml
 
 ### Context
 
-This is a custom `object`: [/src/actions/context.py](https://github.com/cssnr/actions-tools/blob/master/src/actions/context.py)
+Full `context` reference: [/src/actions/context.py](https://github.com/cssnr/actions-tools/blob/master/src/actions/context.py)
 
 ```python
 from actions import core, context
@@ -227,7 +231,7 @@ token = core.get_input("token", True)
 
 g = core.get_github(token)  # (1)!
 
-repo = g.get_repo(f"{context.repository}")
+repo = g.get_repo(context.repository)
 core.info(f"repo.name: {repo.name}")
 ```
 
@@ -251,6 +255,8 @@ Reference: https://docs.github.com/en/actions/reference/security/oidc
 
 ## New In actions-tools
 
+These methods are new in actions-tools.
+
 ```python
 from actions import core, context
 
@@ -269,7 +275,11 @@ core.info("Indented")  # only works with core.info
 core.end_indent()
 ```
 
+Please [let us know](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests) what **features** you want.
+
 ## Example Actions
+
+Example and Template Actions using [actions-tools](https://github.com/cssnr/actions-tools?tab=contributing-ov-file#readme).
 
 - Create Files Action: [cssnr/create-files-action/src/main.py](https://github.com/cssnr/create-files-action/blob/master/src/main.py)
 - Python Action Template: [smashedr/test-action-py/src/main.py](https://github.com/smashedr/test-action-py/blob/master/src/main.py)
