@@ -134,7 +134,11 @@ token = core.get_input("token", True)
 g = core.get_github(token)  # (1)!
 repo = g.get_repo(context.repository)
 core.info(f"repo.name: {repo.name}")
-core.set_output("name", repo.name)
+
+event = core.get_event()
+core.info(event["repository"])
+
+core.set_output("repo", repo.name)
 core.summary.add_raw("🚀 We Did It!")
 ```
 
