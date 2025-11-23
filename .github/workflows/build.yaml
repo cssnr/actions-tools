@@ -32,9 +32,9 @@ jobs:
           GITHUB_CTX: ${{ toJSON(github) }}
         run: echo "$GITHUB_CTX"
 
-      - name: "Debug Environment"
-        continue-on-error: true
-        run: env
+      #- name: "Debug Environment"
+      #  continue-on-error: true
+      #  run: env
 
       - name: "Setup Python 3.13"
         uses: actions/setup-python@v6
