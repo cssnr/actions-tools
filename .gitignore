@@ -1,3 +1,4 @@
+# Generic
 .idea/
 *.iml
 .vscode/
@@ -11,6 +12,8 @@ dist/
 *.pyc
 .coverage
 coverage.xml
+# Zensical
 site/
 .cache/
+# App
 output.txt

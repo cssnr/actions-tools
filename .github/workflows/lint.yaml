@@ -4,6 +4,12 @@ on:
   workflow_dispatch:
   push:
     branches: [master]
+    paths-ignore:
+      - ".gitignore"
+      - ".prettierignore"
+      - "build.ps1"
+      - "MANIFEST.in"
+      - "pyproject.toml"
   pull_request:
 
 concurrency:
@@ -24,19 +30,16 @@ jobs:
         uses: actions/checkout@v5
 
       - name: "Debug event.json"
-        if: ${{ !github.event.act }}
         continue-on-error: true
         run: cat "${GITHUB_EVENT_PATH}"
 
       - name: "Debug CTX github"
-        if: ${{ !github.event.act }}
         continue-on-error: true
         env:
           GITHUB_CTX: ${{ toJSON(github) }}
         run: echo "$GITHUB_CTX"
 
       - name: "Debug Environment"
-        if: ${{ !github.event.act }}
         continue-on-error: true
         run: env
 
