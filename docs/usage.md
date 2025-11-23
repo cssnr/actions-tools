@@ -4,9 +4,9 @@ icon: lucide/notebook-pen
 
 # :lucide-notebook-pen: Usage
 
-[![Actions Tools](https://raw.githubusercontent.com/smashedr/repo-images/refs/heads/master/actions-tools/logo128.png){ align=right width=96 }](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme)
+[![Actions Tools](https://raw.githubusercontent.com/smashedr/repo-images/refs/heads/master/actions-tools/logo128.png){ align=right width=96 }](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme){target=\_blank}
 
-After [installing](index.md) import the module and start using the methods...
+After [installing](index.md#install) import the module and start using the methods...
 
 ## From actions/core
 
@@ -54,7 +54,7 @@ core.info(f"ref_name: {context.ref_name}")
 core.info(f"runner_temp: {context.runner_temp}")
 ```
 
-Reference: https://docs.github.com/en/actions/reference/workflows-and-actions/variables
+Reference: [https://docs.github.com/en/actions/reference/workflows-and-actions/variables](https://docs.github.com/en/actions/reference/workflows-and-actions/variables)
 
 ### Event
 
@@ -69,7 +69,7 @@ repository = event.get("repository")
 core.info(str(repository))
 ```
 
-Reference: https://docs.github.com/en/webhooks/webhook-events-and-payloads
+Reference: [https://docs.github.com/en/webhooks/webhook-events-and-payloads](https://docs.github.com/en/webhooks/webhook-events-and-payloads)
 
 ### Logging
 
@@ -96,7 +96,7 @@ with core.group("Title") as p:
 
 1.  Any output in this context will be folded.
 
-Reference: https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands
+Reference: [https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands)
 
 ### Env/Path
 
@@ -166,7 +166,7 @@ core.summary.add_table([["Head 1", "Head 2"], ["data 1", "data 2"]])
 # <tbody><tr><td>data 1</td><td>data 2</td></tr></tbody></table>\n\n
 ```
 
-1.  This can be any [GitHub flavored Markdown](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+1.  This can be any [GitHub flavored Markdown](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax){target=\_blank}.
 
 Summary context handlers.
 
@@ -240,7 +240,7 @@ core.info(f"repo.name: {repo.name}")
     python -m pip install actions-tools[github]
     ```
 
-Reference: https://pygithub.readthedocs.io/en/stable/
+Reference: [https://pygithub.readthedocs.io/en/stable/](https://pygithub.readthedocs.io/en/stable/)
 
 ### OIDC Token
 
@@ -251,7 +251,7 @@ id_token = core.get_id_token()
 id_token_aud = core.get_id_token("audience")
 ```
 
-Reference: https://docs.github.com/en/actions/reference/security/oidc
+Reference: [https://docs.github.com/en/actions/reference/security/oidc](https://docs.github.com/en/actions/reference/security/oidc)
 
 ## New In actions-tools
 
@@ -281,9 +281,9 @@ Please [let us know](https://github.com/cssnr/actions-tools/discussions/categori
 
 Example and Template Actions using [actions-tools](https://github.com/cssnr/actions-tools?tab=contributing-ov-file#readme).
 
-- Create Files Action: [cssnr/create-files-action/src/main.py](https://github.com/cssnr/create-files-action/blob/master/src/main.py)
-- Python Action Template: [smashedr/test-action-py/src/main.py](https://github.com/smashedr/test-action-py/blob/master/src/main.py)
-- Python UV Action Template: [smashedr/test-action-uv/src/main.py](https://github.com/smashedr/test-action-uv/blob/master/src/main.py)
+- Create Files Action: [cssnr/create-files-action](https://github.com/cssnr/create-files-action) - [src/main.py](https://github.com/cssnr/create-files-action/blob/master/src/main.py)
+- Python Action Template: [smashedr/test-action-py](https://github.com/smashedr/test-action-py) - [src/main.py](https://github.com/smashedr/test-action-py/blob/master/src/main.py)
+- Python UV Action Template: [smashedr/test-action-uv](https://github.com/smashedr/test-action-uv) - [src/main.py](https://github.com/smashedr/test-action-uv/blob/master/src/main.py)
 
 &nbsp;
 

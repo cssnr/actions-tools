@@ -4,7 +4,7 @@ icon: simple/githubactions
 
 # :simple-githubactions: Actions
 
-[![Actions Tools](https://raw.githubusercontent.com/smashedr/repo-images/refs/heads/master/actions-tools/logo128.png){ align=right width=96 }](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme)
+[![Actions Tools](https://raw.githubusercontent.com/smashedr/repo-images/refs/heads/master/actions-tools/logo128.png){ align=right width=96 }](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme){target=\_blank}
 
 I have also developed quite a few [GitHub Actions](https://actions.cssnr.com/actions).
 
