@@ -4,7 +4,7 @@ icon: lucide/notebook-pen
 
 # :lucide-notebook-pen: Usage
 
-[![Actions Tools](https://raw.githubusercontent.com/smashedr/repo-images/refs/heads/master/actions-tools/logo128.png){ align=right width=96 }](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme){target=\_blank}
+[![Actions Tools](https://raw.githubusercontent.com/smashedr/repo-images/refs/heads/master/actions-tools/logo128.png){ align=right width=96 }](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme)
 
 After [installing](index.md#install) import the module and start using the methods...
 
@@ -166,7 +166,7 @@ core.summary.add_table([["Head 1", "Head 2"], ["data 1", "data 2"]])
 # <tbody><tr><td>data 1</td><td>data 2</td></tr></tbody></table>\n\n
 ```
 
-1.  This can be any [GitHub flavored Markdown](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax){target=\_blank}.
+1.  This can be any [GitHub flavored Markdown](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
 
 Summary context handlers.
 

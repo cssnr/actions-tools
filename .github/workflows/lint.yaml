@@ -27,7 +27,7 @@ jobs:
 
     steps:
       - name: "Checkout"
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: "Debug event.json"
         continue-on-error: true
@@ -67,7 +67,6 @@ jobs:
           python -m pip list
 
       - name: "Debug"
-        if: ${{ !github.event.act }}
         continue-on-error: true
         run: |
           python -V

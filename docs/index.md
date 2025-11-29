@@ -4,7 +4,7 @@ icon: lucide/rocket
 
 # :lucide-rocket: Get Started
 
-[![Actions Tools](https://raw.githubusercontent.com/smashedr/repo-images/refs/heads/master/actions-tools/logo128.png){ align=right width=96 }](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme){target=\_blank}
+[![Actions Tools](https://raw.githubusercontent.com/smashedr/repo-images/refs/heads/master/actions-tools/logo128.png){ align=right width=96 }](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme)
 
 [![PyPI Version](https://img.shields.io/pypi/v/actions-tools?logo=pypi&logoColor=white&label=pypi)](https://pypi.org/project/actions-tools/)
 [![TOML Python Version](https://img.shields.io/badge/dynamic/toml?url=https%3A%2F%2Fraw.githubusercontent.com%2Fcssnr%2Factions-tools%2Frefs%2Fheads%2Fmaster%2Fpyproject.toml&query=%24.project.requires-python&logo=python&logoColor=white&label=python)](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme)

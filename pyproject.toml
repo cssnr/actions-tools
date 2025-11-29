@@ -51,7 +51,12 @@ Homepage = "https://cssnr.com/"
 Documentation = "https://actions-tools.cssnr.com/"
 Source = "https://github.com/cssnr/actions-tools"
 Issues = "https://github.com/cssnr/actions-tools/issues"
+Changelog = "https://github.com/cssnr/actions-tools/releases"
 Funding = "https://ko-fi.com/cssnr"
+Discord = "https://discord.gg/wXy6m2X8wY"
+
+Test = "https://github.com/cssnr/actions-tools/actions/workflows/test.yaml"
+Coverage = "https://codecov.io/gh/cssnr/actions-tools"
 
 # Setup Tools
 [tool.setuptools.package-data]
