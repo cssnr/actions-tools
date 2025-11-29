@@ -12,9 +12,9 @@ site_url = "https://actions-tools.cssnr.com/"
 
 # https://zensical.org/docs/setup/basics/#copyright
 copyright = """
-<a href="https://github.com/cssnr/actions-tools" target="_blank">Actions Tools</a>
+<a href="https://github.com/cssnr/actions-tools">Actions Tools</a>
 <br>
-Built with <a href="https://github.com/zensical/zensical" target="_blank">Zensical</a>
+Built with <a href="https://github.com/zensical/zensical">Zensical</a>
 """
 
 # https://zensical.org/docs/setup/navigation/
@@ -25,23 +25,11 @@ nav = [
     {"Actions" = "actions.md"},
 ]
 
-# With the "extra_css" option you can add your own CSS styling to customize
-# your Zensical project according to your needs. You can add any number of
-# CSS files.
-#
-# The path provided should be relative to the "docs_dir".
-#
 # https://zensical.org/docs/customization/#additional-css
-#
 #extra_css = ["assets/stylesheets/extra.css"]
 
-# With the `extra_javascript` option you can add your own JavaScript to your
-# project to customize the behavior according to your needs.
-#
-# The path provided should be relative to the "docs_dir".
-#
 # https://zensical.org/docs/customization/#additional-javascript
-#extra_javascript = ["assets/javascript/extra.js"]
+extra_javascript = ["javascripts/external-links.js"]
 
 # ----------------------------------------------------------------------------
 # Section for configuring theme options
@@ -61,8 +49,6 @@ logo = "https://raw.githubusercontent.com/smashedr/repo-images/refs/heads/master
 # https://zensical.org/docs/setup/language/
 language = "en"
 
-# Zensical provides a number of feature toggles that change the behavior
-# of the documentation site.
 features = [
     # https://zensical.org/docs/setup/header/#announcement-bar
     "announce.dismiss",
@@ -235,6 +221,3 @@ name = "Website"
 
 [project.extra]
 generator = false
-
-#[project.markdown_extensions.toc]
-#permalink =  true

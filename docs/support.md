@@ -4,7 +4,7 @@ icon: lucide/message-circle-question-mark
 
 # :lucide-message-circle-question-mark: Support
 
-[![Actions Tools](https://raw.githubusercontent.com/smashedr/repo-images/refs/heads/master/actions-tools/logo128.png){ align=right width=96 }](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme){target=\_blank}
+[![Actions Tools](https://raw.githubusercontent.com/smashedr/repo-images/refs/heads/master/actions-tools/logo128.png){ align=right width=96 }](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme)
 
 If you run into any [issues](https://github.com/cssnr/actions-tools/issues)
 want to see more [features](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests)
@@ -25,7 +25,7 @@ or [Q&A](https://github.com/cssnr/actions-tools/discussions/categories/q-a).
 If you want to see a new feature, start a discussion in
 the [Feature Requests](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests) section.
 
-[:fontawesome-brands-github: Start A Discussion](https://github.com/cssnr/actions-tools/discussions){ .md-button .md-button--primary target=\_blank }
+[:fontawesome-brands-github: Start A Discussion](https://github.com/cssnr/actions-tools/discussions){ .md-button .md-button--primary }
 
 ### GitHub Issues
 
@@ -33,7 +33,7 @@ If you run into any problems or find a bug, please [open an issue](https://githu
 
 **These reports are treated with the highest priority.**
 
-[:lucide-circle-alert: Report an Issue](https://github.com/cssnr/actions-tools/issues){ .md-button .md-button--primary target=\_blank }
+[:lucide-circle-alert: Report an Issue](https://github.com/cssnr/actions-tools/issues){ .md-button .md-button--primary }
 
 ### Discord Chat
 
@@ -41,7 +41,7 @@ You can chat with us about anything [on discord](https://discord.gg/wXy6m2X8wY).
 
 From here you can contact me directly, `Shane@111150265075298304`.
 
-[:fontawesome-brands-discord: Chat on Discord](https://discord.gg/wXy6m2X8wY){ .md-button .md-button--primary target=\_blank }
+[:fontawesome-brands-discord: Chat on Discord](https://discord.gg/wXy6m2X8wY){ .md-button .md-button--primary }
 
 ### General Feedback
 
@@ -49,7 +49,7 @@ You can submit general feedback via the [web form](https://cssnr.github.io/feedb
 
 _This method is not recommended to [report issues](https://github.com/cssnr/actions-tools/issues) or [request features](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests)._
 
-[:lucide-send: Send Feedback](https://cssnr.github.io/feedback/?app=actions-tools){ .md-button .md-button--primary target=\_blank }
+[:lucide-send: Send Feedback](https://cssnr.github.io/feedback/?app=actions-tools){ .md-button .md-button--primary }
 
 ## Additional Links
 
@@ -79,4 +79,4 @@ on [GitHub](https://github.com/cssnr/actions-tools?tab=readme-ov-file#contributi
 
 &nbsp;
 
-[![Support on Ko-fi](https://cdn.prod.website-files.com/5c14e387dab576fe667689cf/670f5a01c01ea9191809398c_support_me_on_kofi_blue.png){ width=360 }](https://ko-fi.com/cssnr){target=\_blank}
+[![Support on Ko-fi](https://cdn.prod.website-files.com/5c14e387dab576fe667689cf/670f5a01c01ea9191809398c_support_me_on_kofi_blue.png){ width=360 }](https://ko-fi.com/cssnr)
