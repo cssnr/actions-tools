@@ -10,7 +10,7 @@ After [installing](index.md#install) import the module and start using the metho
 
 ## From actions/core
 
-These methods are similar to the JavaScript [actions/core](https://github.com/actions/toolkit/tree/main/packages/core#usage) Toolkit.
+These methods are similar to the JavaScript [actions/core :lucide-arrow-up-right:](https://github.com/actions/toolkit/tree/main/packages/core#usage) Toolkit.
 
 Full `core` reference: [/src/actions/core.py](https://github.com/cssnr/actions-tools/blob/master/src/actions/core.py)
 
@@ -275,11 +275,11 @@ core.info("Indented")  # only works with core.info
 core.end_indent()
 ```
 
-Please [let us know](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests) what **features** you want.
+Please [let us know :lucide-arrow-up-right:](https://github.com/cssnr/actions-tools/issues/new?template=1-feature.yaml) what **features** you want.
 
 ## Example Actions
 
-Example and Template Actions using [actions-tools](https://github.com/cssnr/actions-tools?tab=contributing-ov-file#readme).
+Example and Template Actions using [actions-tools](https://github.com/cssnr/actions-tools?tab=contributing-ov-file#readme):
 
 - Create Files Action: [cssnr/create-files-action](https://github.com/cssnr/create-files-action) - [src/main.py](https://github.com/cssnr/create-files-action/blob/master/src/main.py)
 - Python Action Template: [smashedr/test-action-py](https://github.com/smashedr/test-action-py) - [src/main.py](https://github.com/smashedr/test-action-py/blob/master/src/main.py)

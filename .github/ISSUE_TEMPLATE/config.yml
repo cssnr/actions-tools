@@ -1,17 +1,13 @@
 blank_issues_enabled: true
 contact_links:
-  - name: "💡 Request a Feature"
-    about: Request a New Feature or Enhancement in the Discussions.
-    url: https://github.com/cssnr/actions-tools/discussions/new?category=feature-requests
-
-  - name: "❔ Ask a Question"
-    about: Ask a General Question or start a Discussions.
+  - name: "❔ Start a Discussion"
+    about: Ask a general question or start a discussion
     url: https://github.com/cssnr/actions-tools/discussions/new?category=q-a
 
   - name: "💬 Join Discord"
-    about: Chat with us about Issues, Features, Questions and More.
+    about: Chat with us about anything
     url: https://discord.gg/wXy6m2X8wY
 
-  - name: "📝 Submit Feedback"
-    about: Send General Feedback.
-    url: https://cssnr.github.io/feedback
+  - name: "📝 View Documentation"
+    about: Review the documentation
+    url: https://actions-tools.cssnr.com/

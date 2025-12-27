@@ -22,102 +22,96 @@ icon: lucide/rocket
 [![Discord](https://img.shields.io/discord/899171661457293343?logo=discord&logoColor=white&label=discord&color=7289da)](https://discord.gg/wXy6m2X8wY)
 [![Ko-fi](https://img.shields.io/badge/Ko--fi-72a5f2?logo=kofi&label=support)](https://ko-fi.com/cssnr)
 
-A Typed Python GitHub Actions Tookit similar to [actions/toolkit](https://github.com/actions/toolkit).
+A Typed Python GitHub Actions Tookit similar to [actions/toolkit :lucide-arrow-up-right:](https://github.com/actions/toolkit).
 
 **To get started [install](#install) the tools and view the [usage](usage.md).**
 
 If you run into any issues, [support](support.md) is available.
 
-## Install
+## :simple-pypi: Install
 
-From PyPI: [https://pypi.org/p/actions-tools](https://pypi.org/p/actions-tools)
-
-=== "pip"
-
-    ```shell
-    python -m pip install actions-tools
-    ```
+From PyPI: <https://pypi.org/p/actions-tools>  
+GitHub: [https://github.com/cssnr/actions-tools](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme)
 
 === "uv"
 
     ```shell
-    uv add actions-tools
+    uv tool install actions-tools
     ```
 
-=== "requirements.txt"
+=== "uv + dev"
 
-    ``` text
-    actions-tools
+    ```shell
+    uv add --dev actions-tools
     ```
-
-=== "pyproject.toml"
-
-    ``` toml
-    dependencies = ["actions-tools"]
-    ```
-
-With [PyGithub](https://github.com/PyGithub/PyGithub) (for GitHub API access).
 
 === "pip"
 
     ```shell
-    python -m pip install actions-tools[github]
+    pip install actions-tools
     ```
+
+=== "pip + dev"
+
+    ```shell
+    pip install --group dev actions-tools
+    ```
+
+Upgrade.
 
 === "uv"
 
     ```shell
-    uv add actions-tools[github]
+    uv tool upgrade actions-tools
     ```
 
-=== "requirements.txt"
+=== "uv + dev"
 
-    ``` text
-    actions-tools[github]
+    ```shell
+    uv sync --upgrade-package actions-tools
     ```
-
-=== "pyproject.toml"
-
-    ``` toml
-    dependencies = ["actions-tools[github]"]
-    ```
-
-Install from GitHub.
 
 === "pip"
 
     ```shell
-    python -m pip install git+https://github.com/cssnr/actions-tools.git
+    pip install -U actions-tools
     ```
 
-=== "uv"
+=== "pip + dev"
 
     ```shell
-    uv pip install git+https://github.com/cssnr/actions-tools.git
+    pip install -U actions-tools
     ```
-
-Install from source.
-
-```shell
-git clone https://github.com/cssnr/actions-tools
-python -m pip install actions-tools
-```
 
 Uninstall.
 
-=== "pip"
-
-    ```shell
-    python -m pip uninstall actions-tools
-    ```
-
 === "uv"
 
     ```shell
-    uv remove actions-tools
+    uv tool uninstall actions-tools
     ```
 
-## Quick Start
+=== "uv + dev"
+
+    ```shell
+    uv remove --group dev actions-tools
+    ```
+
+=== "pip"
+
+    ```shell
+    pip uninstall actions-tools
+    ```
+
+=== "pip + dev"
+
+    ```shell
+    pip uninstall actions-tools
+    ```
+
+Next, see the [Usage](usage.md) guide.
+
+## :lucide-plane-takeoff: Quick Start
 
 [Install](#install) the tools.
 
@@ -160,10 +154,10 @@ core.summary.add_raw("🚀 We Did It!")
 !!! info
 
     This project is in active development.
-    Please [let us know](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests)
+    Please [let us know :lucide-arrow-up-right:](https://github.com/cssnr/actions-tools/issues/new?template=1-feature.yaml)
     what **features** you want.
 
 !!! example "Documentation"
 
     This documentation site is a work in progress.
-    See the [README.md](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme) for more details.
+    See the [README.md :lucide-arrow-up-right:](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme) for more details.

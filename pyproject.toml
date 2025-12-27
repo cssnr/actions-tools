@@ -1,70 +1,54 @@
-# Project
 [project]
 name = "actions-tools"
 description = "A Typed Python GitHub Actions Tookit similar to actions/toolkit."
-authors = [{ name="Shane" }]
 readme = "README.md"
-dynamic = ["version"]
 requires-python = ">=3.10"
+license = { text = "MIT License" }
+authors = [{ name = "Shane" }]
 classifiers = [
-    "Programming Language :: Python",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-    "Programming Language :: Python :: 3.12",
-    "Programming Language :: Python :: 3.13",
-    "Programming Language :: Python :: 3.14",
-    "Operating System :: OS Independent",
-    "License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)",
-    "Natural Language :: English",
+  "License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)",
+  "Natural Language :: English",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Typing :: Typed",
 ]
-license = { text = "GPL-3.0" }
-#license = { file = "LICENSE" }
-
 dependencies = ["PyYAML"]
+dynamic = ["version"]
+
+[project.urls]
+Changelog = "https://github.com/cssnr/actions-tools/releases"
+Discord = "https://discord.gg/wXy6m2X8wY"
+Documentation = "https://actions-tools.cssnr.com/"
+Funding = "https://ko-fi.com/cssnr"
+GitHub = "https://github.com/cssnr/actions-tools"
+Homepage = "https://cssnr.com/"
+Issues = "https://github.com/cssnr/actions-tools/issues"
 
 [project.optional-dependencies]
 github = ["PyGithub>=2,<3"]
 
 [dependency-groups]
 dev = [
-    "bandit",
-    "black",
-    "build",
-    "coverage",
-    "isort",
-    "mypy",
-    "PyGithub>=2,<3",
-    "pytest",
-    "PyYAML>=6,<7",
-    "ruff",
-    "setuptools",
-    "twine",
-    "ty",
-    "types-PyYAML",
-    "yamllint",
+  "PyGithub>=2,<3",
+  "bandit>=1.9.2",
+  "black>=25.12.0",
+  "build>=1.3.0",
+  "coverage>=7.13.0",
+  "isort>=7.0.0",
+  "mypy>=1.19.1",
+  "pytest>=9.0.2",
+  "ruff>=0.14.10",
+  "setuptools>=80.9.0",
+  "tombi>=0.7.11",
+  "toml-run>=0.0.2",
+  "ty>=0.0.7",
+  "types-PyYAML>=0.0.1",
+  "validate-pyproject[all]>=0.24.1",
+  "yamllint>=1.37.1",
 ]
 
-[project.urls]
-Homepage = "https://cssnr.com/"
-Documentation = "https://actions-tools.cssnr.com/"
-Source = "https://github.com/cssnr/actions-tools"
-Issues = "https://github.com/cssnr/actions-tools/issues"
-Changelog = "https://github.com/cssnr/actions-tools/releases"
-Funding = "https://ko-fi.com/cssnr"
-Discord = "https://discord.gg/wXy6m2X8wY"
-
-Test = "https://github.com/cssnr/actions-tools/actions/workflows/test.yaml"
-Coverage = "https://codecov.io/gh/cssnr/actions-tools"
-
-# Setup Tools
-[tool.setuptools.package-data]
-actions = ["py.typed"]
-[tool.setuptools.dynamic]
-version = { attr = "actions.__version__" }
-
-# Build System
 [build-system]
 requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
@@ -72,8 +56,9 @@ build-backend = "setuptools.build_meta"
 # Bandit
 # https://bandit.readthedocs.io/en/latest/config.html
 [tool.bandit]
-exclude_dirs = ["venv"]
+exclude_dirs = [".venv"]
 skips = ["B105", "B107"]
+assert_used = { skips = ["*test_*.py"] }
 
 # Black
 # https://black.readthedocs.io/en/stable/usage_and_configuration/
@@ -84,7 +69,7 @@ extend-exclude = '(\.github)'
 # Coverage
 # https://coverage.readthedocs.io/en/latest/
 [tool.coverage.run]
-omit = ["*.egg-info/*", ".github/*"]
+omit = ["_version.py"]
 source = ["src"]
 
 # Isort
@@ -93,13 +78,13 @@ source = ["src"]
 profile = "black"
 lines_after_imports = 2
 src_paths = ["src", "test"]
-skip = ["venv", ".github"]
+skip = [".venv", ".github"]
 
 # Mypy
 # https://mypy.readthedocs.io/en/stable/config_file.html
 [tool.mypy]
-#ignore_missing_imports = true
-exclude = ["venv"]
+# ignore_missing_imports = true
+exclude = [".venv"]
 
 # Ruff
 # https://docs.astral.sh/ruff/configuration/
@@ -110,3 +95,36 @@ extend-exclude = [".github"]
 
 [tool.ruff.lint]
 select = ["E4", "E7", "E9", "F", "B", "Q"]
+
+# Setup Tools
+[tool.setuptools.package-data]
+actions = ["py.typed"]
+
+[tool.setuptools.dynamic]
+version = { attr = "actions.__version__" }
+
+# Scripts
+# https://github.com/cssnr/toml-run
+[tool.toml-run]
+test = ["uv run coverage run -m pytest", "uv run coverage report -m"]
+build = "uv run build"
+predocs = "rm -rf .cache site"
+docs = "zensical serve --open"
+docs-build = "zensical build --clean"
+format = ["uv run black .", "uv run tombi format .", "uv run ruff format ."]
+lint = """
+uv run black --check .
+run bandit
+run mypy
+run ruff
+run validate
+run yamllint
+uv run tombi lint .
+uv run ty check -v .
+uv lock --check
+"""
+bandit = "uv run bandit -c pyproject.toml -r ."
+mypy = "uv run mypy ."
+ruff = "uv run ruff check ."
+validate = "uv run validate-pyproject pyproject.toml"
+yamllint = "uv run yamllint -c .github/yamllint.yaml ."

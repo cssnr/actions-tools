@@ -9,8 +9,14 @@ on:
       - "src/**"
       - "tests/**"
       - "pyproject.toml"
+      - "uv.lock"
   pull_request:
+    branches: [master]
     paths: *paths
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -18,65 +24,58 @@ jobs:
     if: ${{ !contains(github.event.head_commit.message, '#notest') }}
     uses: ./.github/workflows/build.yaml
     with:
-      name: test
+      version: ${{ github.ref_name }}
+      version-file: ""
 
   test:
-    runs-on: ubuntu-latest
+    name: "Test"
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 5
     needs: [build]
     strategy:
       fail-fast: false
       matrix:
+        os: ["ubuntu-22.04"]
         version: ["3.10", "3.11", "3.12", "3.13", "3.14"]
-    name: "Test ${{ matrix.version }}"
-    permissions:
-      contents: read
 
     steps:
       - name: "Checkout"
         uses: actions/checkout@v6
 
       - name: "Debug event.json"
-        if: ${{ !github.event.act }}
         continue-on-error: true
         run: cat "${GITHUB_EVENT_PATH}"
-
       - name: "Debug CTX github"
-        if: ${{ !github.event.act }}
         continue-on-error: true
         env:
           GITHUB_CTX: ${{ toJSON(github) }}
         run: echo "$GITHUB_CTX"
-
       - name: "Debug Environment"
-        if: ${{ !github.event.act }}
         continue-on-error: true
         run: env
 
       - name: "Download Artifact"
         uses: actions/download-artifact@v6
         with:
-          name: test
+          name: dist
           path: dist
 
-      - name: "Setup Python ${{ matrix.version }}"
-        uses: actions/setup-python@v6
-        with:
-          python-version: ${{ matrix.version }}
-          cache: "pip"
+      - name: "Install UV"
+        uses: astral-sh/setup-uv@681c641aba71e4a1c380be3ab5e12ad51f415867 # v7.1.6
+
+      - name: "Install Python ${{ matrix.version }}"
+        run: |
+          uv python install ${{ matrix.version }}
+          uv venv --no-project --no-config
 
       - name: "Install ${{ matrix.version }}"
         run: |
-          python -V
-          python -m pip install -U pip pytest
-          python -m pip install dist/*.whl
-          python -m pip install actions-tools[github]
-
-      #- name: "Debug ${{ matrix.version }}"
-      #  run: |
-      #    ls -lAhR dist/
+          uv pip install --no-config pytest
+          uv pip install --no-config dist/*.whl
+          #uv pip install actions-tools[github]
+          uv pip install 'PyGithub>=2,<3'
 
       - name: "Test ${{ matrix.version }}"
-        #continue-on-error: ${{ contains('dev', matrix.version) }}
         run: |
+          source .venv/bin/activate
           pytest -s
