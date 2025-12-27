@@ -17,4 +17,3 @@ site/
 .cache/
 # App
 output.txt
-test*.*

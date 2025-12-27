@@ -10,7 +10,7 @@ on:
       version-file:
         description: "Version File"
         type: string
-        #default: "src/*/_version.py"
+        default: "src/*/_version.py"
       name:
         description: "Artifact Name"
         type: string
