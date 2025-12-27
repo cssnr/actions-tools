@@ -275,7 +275,7 @@ core.info("Indented")  # only works with core.info
 core.end_indent()
 ```
 
-Please [let us know](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests) what **features** you want.
+Please [let us know](https://github.com/cssnr/actions-tools/issues/new?template=1-feature.yaml) what **features** you want.
 
 ## Example Actions
 

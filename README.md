@@ -26,10 +26,10 @@
 <a title="Actions Tools" href="https://actions-tools.cssnr.com/" target="_blank">
 <img alt="Actions Tools" align="right" width="128" height="auto" src="https://raw.githubusercontent.com/smashedr/repo-images/refs/heads/master/actions-tools/logo128.png"></a>
 
-- [Install](#Install)
-- [Usage](#Usage)
-- [Support](#Support)
-- [Contributing](#Contributing)
+- [Install](#install)
+- [Usage](#usage)
+- [Support](#support)
+- [Contributing](#contributing)
 
 A Typed Python GitHub Actions Tookit similar to [actions/toolkit](https://github.com/actions/toolkit).
 
@@ -37,9 +37,9 @@ A Typed Python GitHub Actions Tookit similar to [actions/toolkit](https://github
 
 > [!NOTE]  
 > This project is in active development.  
-> Please let us know [what features](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests) you want to see.
+> Please let us know [what features](https://github.com/cssnr/actions-tools/issues/new?template=1-feature.yaml) you want to see.
 
-## Install
+## Install<a id="install"></a>
 
 From PyPI: https://pypi.org/p/actions-tools
 
@@ -72,7 +72,7 @@ Uninstall.
 python -m pip uninstall actions-tools
 ```
 
-## Usage
+## Usage<a id="usage"></a>
 
 > [!TIP]  
 > View the [Usage Guide](https://actions-tools.cssnr.com/usage/) online.
@@ -235,21 +235,21 @@ Example Actions.
 - Python Action Template: [smashedr/test-action-py](https://github.com/smashedr/test-action-py)
 - Python UV Action Template: [smashedr/test-action-uv](https://github.com/smashedr/test-action-uv)
 
-# Support
+## Support<a id="support"></a>
 
-For general help or to request a feature, see:
+If you run into any issues or need help getting started, please do one of the following:
 
-- Q&A Discussion: https://github.com/cssnr/actions-tools/discussions/categories/q-a
-- Request a Feature: https://github.com/cssnr/actions-tools/discussions/categories/feature-requests
-- Chat with us on Discord: https://discord.gg/wXy6m2X8wY
+- Report an Issue: <https://github.com/cssnr/actions-tools/issues>
+- Q&A Discussion: <https://github.com/cssnr/actions-tools/discussions/categories/q-a>
+- Request a Feature: <https://github.com/cssnr/actions-tools/issues/new?template=1-feature.yaml>
+- Chat with us on Discord: <https://discord.gg/wXy6m2X8wY>
 
-If you are experiencing an issue/bug or getting unexpected results, you can:
+[![Features](https://img.shields.io/badge/features-brightgreen?style=for-the-badge&logo=googleanalytics&logoColor=white)](https://github.com/cssnr/actions-tools/issues/new?template=1-feature.yaml)
+[![Issues](https://img.shields.io/badge/issues-red?style=for-the-badge&logo=southwestairlines&logoColor=white)](https://github.com/cssnr/actions-tools/issues)
+[![Discussions](https://img.shields.io/badge/discussions-blue?style=for-the-badge&logo=rocketdotchat&logoColor=white)](https://github.com/cssnr/actions-tools/discussions)
+[![Discord](https://img.shields.io/badge/discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/wXy6m2X8wY)
 
-- Report an Issue: https://github.com/cssnr/actions-tools/issues
-- Provide General Feedback: [https://cssnr.github.io/feedback/](https://cssnr.github.io/feedback/?app=actions-tools)
-- Chat with us on Discord: https://discord.gg/wXy6m2X8wY
-
-# Contributing
+## Contributing<a id="contributing"></a>
 
 If you would like to submit a PR, please review the [CONTRIBUTING.md](#contributing-ov-file).
 
@@ -266,6 +266,7 @@ Additionally, you can support other [GitHub Actions](https://actions.cssnr.com/)
 - [Portainer Stack Deploy Action](https://github.com/cssnr/portainer-stack-deploy-action?tab=readme-ov-file#readme)
 - [Docker Context Action](https://github.com/cssnr/docker-context-action?tab=readme-ov-file#readme)
 - [Actions Up Action](https://github.com/cssnr/actions-up-action?tab=readme-ov-file#readme)
+- [Rhysd Actionlint Action](https://github.com/cssnr/actionlint-action?tab=readme-ov-file#readme)
 - [Zensical Action](https://github.com/cssnr/zensical-action?tab=readme-ov-file#readme)
 - [VirusTotal Action](https://github.com/cssnr/virustotal-action?tab=readme-ov-file#readme)
 - [Mirror Repository Action](https://github.com/cssnr/mirror-repository-action?tab=readme-ov-file#readme)

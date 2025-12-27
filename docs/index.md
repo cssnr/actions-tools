@@ -30,91 +30,83 @@ If you run into any issues, [support](support.md) is available.
 
 ## Install
 
-From PyPI: [https://pypi.org/p/actions-tools](https://pypi.org/p/actions-tools)
-
-=== "pip"
-
-    ```shell
-    python -m pip install actions-tools
-    ```
+From PyPI: <https://pypi.org/p/actions-tools>  
+GitHub: [https://github.com/cssnr/actions-tools](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme)
 
 === "uv"
 
     ```shell
-    uv add actions-tools
+    uv tool install actions-tools
     ```
 
-=== "requirements.txt"
+=== "uv + dev"
 
-    ``` text
-    actions-tools
+    ```shell
+    uv add --dev actions-tools
     ```
-
-=== "pyproject.toml"
-
-    ``` toml
-    dependencies = ["actions-tools"]
-    ```
-
-With [PyGithub](https://github.com/PyGithub/PyGithub) (for GitHub API access).
 
 === "pip"
 
     ```shell
-    python -m pip install actions-tools[github]
+    pip install actions-tools
     ```
+
+=== "pip + dev"
+
+    ```shell
+    pip install --group dev actions-tools
+    ```
+
+Upgrade.
 
 === "uv"
 
     ```shell
-    uv add actions-tools[github]
+    uv tool upgrade actions-tools
     ```
 
-=== "requirements.txt"
+=== "uv + dev"
 
-    ``` text
-    actions-tools[github]
+    ```shell
+    uv sync --upgrade-package actions-tools
     ```
-
-=== "pyproject.toml"
-
-    ``` toml
-    dependencies = ["actions-tools[github]"]
-    ```
-
-Install from GitHub.
 
 === "pip"
 
     ```shell
-    python -m pip install git+https://github.com/cssnr/actions-tools.git
+    pip install -U actions-tools
     ```
 
-=== "uv"
+=== "pip + dev"
 
     ```shell
-    uv pip install git+https://github.com/cssnr/actions-tools.git
+    pip install -U actions-tools
     ```
-
-Install from source.
-
-```shell
-git clone https://github.com/cssnr/actions-tools
-python -m pip install actions-tools
-```
 
 Uninstall.
 
-=== "pip"
-
-    ```shell
-    python -m pip uninstall actions-tools
-    ```
-
 === "uv"
 
     ```shell
-    uv remove actions-tools
+    uv tool uninstall actions-tools
+    ```
+
+=== "uv + dev"
+
+    ```shell
+    uv remove --group dev actions-tools
+    ```
+
+=== "pip"
+
+    ```shell
+    pip uninstall actions-tools
+    ```
+
+=== "pip + dev"
+
+    ```shell
+    pip uninstall actions-tools
     ```
 
 ## Quick Start
@@ -160,7 +152,7 @@ core.summary.add_raw("🚀 We Did It!")
 !!! info
 
     This project is in active development.
-    Please [let us know](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests)
+    Please [let us know](https://github.com/cssnr/actions-tools/issues/new?template=1-feature.yaml)
     what **features** you want.
 
 !!! example "Documentation"

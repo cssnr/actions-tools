@@ -7,10 +7,8 @@ dist/
 node_modules/
 
 # Tools
-.ruff_cache/
-.mypy_cache/
-.pytest_cache/
+.*cache*/
+package-lock.json
 
 # Files
-package-lock.json
 *.html

@@ -1,11 +1,11 @@
-name: "Dev"
+name: "Preview"
 
 on:
   workflow_dispatch:
   push:
     branches-ignore: [master]
     paths:
-      - ".github/workflows/dev.yaml"
+      - ".github/workflows/preview.yaml"
       - "zensical.toml"
       - "docs/**"
 
@@ -28,9 +28,9 @@ jobs:
   deploy:
     name: "Deploy"
     uses: cssnr/workflows/.github/workflows/deploy-static.yaml@master
-    needs: build
+    needs: [build]
     with:
-      name: "dev"
+      name: "preview"
       url: "https://dev-static.cssnr.com/"
       robots: true
     secrets:

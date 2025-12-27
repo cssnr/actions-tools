@@ -2,34 +2,28 @@
 site_name = "Actions Tools"
 site_description = "GitHub Actions Tools for Python similar to actions/toolkit."
 site_author = "Shane"
-
 repo_name = "cssnr/actions-tools"
 repo_url = "https://github.com/cssnr/actions-tools"
 edit_uri = "blob/master/docs/"
-
 # https://zensical.org/docs/setup/basics/#site_url
 site_url = "https://actions-tools.cssnr.com/"
-
 # https://zensical.org/docs/setup/basics/#copyright
 copyright = """
 <a href="https://github.com/cssnr/actions-tools">Actions Tools</a>
 <br>
 Built with <a href="https://github.com/zensical/zensical">Zensical</a>
 """
-
 # https://zensical.org/docs/setup/navigation/
 nav = [
-    {"Get Started" = "index.md"},
-    {"Usage" = "usage.md"},
-    {"Support" = "support.md"},
-    {"Actions" = "actions.md"},
+  { "Get Started" = "index.md" },
+  { "Usage" = "usage.md" },
+  { "Support" = "support.md" },
+  { "Actions" = "actions.md" },
 ]
-
 # https://zensical.org/docs/customization/#additional-css
-#extra_css = ["assets/stylesheets/extra.css"]
-
+extra_css = ["assets/css/extra.css"]
 # https://zensical.org/docs/customization/#additional-javascript
-extra_javascript = ["javascripts/external-links.js"]
+extra_javascript = ["assets/js/extra.js"]
 
 # ----------------------------------------------------------------------------
 # Section for configuring theme options
@@ -37,96 +31,68 @@ extra_javascript = ["javascripts/external-links.js"]
 
 [project.theme]
 # https://zensical.org/docs/setup/basics/?h=theme#theme-variant
-#variant = "classic"
+# variant = "classic"
 
 # https://zensical.org/docs/customization/#extending-the-theme
 custom_dir = "docs/overrides"
-
 favicon = "favicon.ico"
-#logo = "assets/images/logo.png"
+# logo = "assets/images/logo.png"
 logo = "https://raw.githubusercontent.com/smashedr/repo-images/refs/heads/master/actions-tools/logo256.png"
-
 # https://zensical.org/docs/setup/language/
 language = "en"
-
 features = [
-    # https://zensical.org/docs/setup/header/#announcement-bar
-    "announce.dismiss",
-
-    # https://zensical.org/docs/setup/repository/#code-actions
-    "content.action.edit",
-
-    # https://zensical.org/docs/setup/repository/#code-actions
-    #"content.action.view",
-
-    # https://zensical.org/docs/authoring/code-blocks/#code-annotations
-    "content.code.annotate",
-
-    # https://zensical.org/docs/authoring/code-blocks/#code-copy-button
-    "content.code.copy",
-
-    # https://zensical.org/docs/authoring/code-blocks/#code-selection-button
-    #"content.code.select",
-
-    # https://zensical.org/docs/authoring/footnotes/#footnote-tooltips
-    "content.footnote.tooltips",
-
-    # https://zensical.org/docs/authoring/content-tabs/#linked-content-tabs
-    "content.tabs.link",
-
-    # https://zensical.org/docs/authoring/tooltips/#improved-tooltips
-    "content.tooltips",
-
-    # https://zensical.org/docs/setup/header/#automatic-hiding
-    #"header.autohide",
-
-    # https://zensical.org/docs/setup/navigation/#navigation-expansion
-    #"navigation.expand",
-
-    # https://zensical.org/docs/setup/footer/#navigation
-    "navigation.footer",
-
-    # https://zensical.org/docs/setup/navigation/#section-index-pages
-    "navigation.indexes",
-
-    # https://zensical.org/docs/setup/navigation/#instant-navigation
-    "navigation.instant",
-
-    # https://zensical.org/docs/setup/navigation/#instant-prefetching
-    "navigation.instant.prefetch",
-
-    # https://zensical.org/docs/setup/navigation/#progress-indicator
-    #"navigation.instant.progress",
-
-    # https://zensical.org/docs/setup/navigation/#navigation-path
-    "navigation.path",
-
-    # https://zensical.org/docs/setup/navigation/#navigation-pruning
-    #"navigation.prune",
-
-    # https://zensical.org/docs/setup/navigation/#navigation-sections
-    "navigation.sections",
-
-    # https://zensical.org/docs/setup/navigation/#navigation-tabs
-    #"navigation.tabs",
-
-    # https://zensical.org/docs/setup/navigation/#sticky-navigation-tabs
-    #"navigation.tabs.sticky",
-
-    # https://zensical.org/docs/setup/navigation/#back-to-top-button
-    "navigation.top",
-
-    # https://zensical.org/docs/setup/navigation/#anchor-tracking
-    "navigation.tracking",
-
-    # https://zensical.org/docs/setup/search/#search-highlighting
-    "search.highlight",
-
-    # https://zensical.org/docs/setup/navigation/#anchor-following
-    #"toc.follow",
-
-    # https://zensical.org/docs/setup/navigation/#navigation-integration
-    "toc.integrate",
+  # https://zensical.org/docs/setup/header/#announcement-bar
+  "announce.dismiss",
+  # https://zensical.org/docs/setup/repository/#code-actions
+  "content.action.edit",
+  # https://zensical.org/docs/setup/repository/#code-actions
+  # "content.action.view",
+  # https://zensical.org/docs/authoring/code-blocks/#code-annotations
+  "content.code.annotate",
+  # https://zensical.org/docs/authoring/code-blocks/#code-copy-button
+  "content.code.copy",
+  # https://zensical.org/docs/authoring/code-blocks/#code-selection-button
+  # "content.code.select",
+  # https://zensical.org/docs/authoring/footnotes/#footnote-tooltips
+  "content.footnote.tooltips",
+  # https://zensical.org/docs/authoring/content-tabs/#linked-content-tabs
+  "content.tabs.link",
+  # https://zensical.org/docs/authoring/tooltips/#improved-tooltips
+  "content.tooltips",
+  # https://zensical.org/docs/setup/header/#automatic-hiding
+  # "header.autohide",
+  # https://zensical.org/docs/setup/navigation/#navigation-expansion
+  # "navigation.expand",
+  # https://zensical.org/docs/setup/footer/#navigation
+  "navigation.footer",
+  # https://zensical.org/docs/setup/navigation/#section-index-pages
+  "navigation.indexes",
+  # https://zensical.org/docs/setup/navigation/#instant-navigation
+  "navigation.instant",
+  # https://zensical.org/docs/setup/navigation/#instant-prefetching
+  "navigation.instant.prefetch",
+  # https://zensical.org/docs/setup/navigation/#progress-indicator
+  # "navigation.instant.progress",
+  # https://zensical.org/docs/setup/navigation/#navigation-path
+  "navigation.path",
+  # https://zensical.org/docs/setup/navigation/#navigation-pruning
+  # "navigation.prune",
+  # https://zensical.org/docs/setup/navigation/#navigation-sections
+  "navigation.sections",
+  # https://zensical.org/docs/setup/navigation/#navigation-tabs
+  # "navigation.tabs",
+  # https://zensical.org/docs/setup/navigation/#sticky-navigation-tabs
+  # "navigation.tabs.sticky",
+  # https://zensical.org/docs/setup/navigation/#back-to-top-button
+  "navigation.top",
+  # https://zensical.org/docs/setup/navigation/#anchor-tracking
+  "navigation.tracking",
+  # https://zensical.org/docs/setup/search/#search-highlighting
+  "search.highlight",
+  # https://zensical.org/docs/setup/navigation/#anchor-following
+  # "toc.follow",
+  # https://zensical.org/docs/setup/navigation/#navigation-integration
+  "toc.integrate",
 ]
 
 # ----------------------------------------------------------------------------
@@ -148,7 +114,7 @@ toggle.name = "Switch to light mode"
 [[project.theme.palette]]
 media = "(prefers-color-scheme: light)"
 scheme = "default"
-primary  = "amber"
+primary = "amber"
 accent = "indigo"
 toggle.icon = "lucide/sun"
 toggle.name = "Switch to dark mode"
@@ -157,7 +123,7 @@ toggle.name = "Switch to dark mode"
 [[project.theme.palette]]
 media = "(prefers-color-scheme: dark)"
 scheme = "slate"
-primary  = "indigo"
+primary = "indigo"
 accent = "yellow"
 toggle.icon = "lucide/moon"
 toggle.name = "Switch to system preference"
@@ -168,9 +134,9 @@ toggle.name = "Switch to system preference"
 # of suitably licensed fonts. There are options for a normal text font and for
 # a monospaced font used in code blocks.
 # ----------------------------------------------------------------------------
-#[project.theme.font]
-#text = "Inter"
-#code = "Jetbrains Mono"
+# [project.theme.font]
+# text = "Inter"
+# code = "Jetbrains Mono"
 
 # ----------------------------------------------------------------------------
 # You can configure your own logo to be shown in the header using the "logo"
@@ -194,30 +160,35 @@ repo = "fontawesome/brands/github"
 # The "extra" section contains miscellaneous settings.
 # ----------------------------------------------------------------------------
 
+[project.extra]
+generator = false
+
 [[project.extra.social]]
 icon = "fontawesome/brands/github"
 link = "https://github.com/cssnr/actions-tools"
 name = "GitHub"
+
 [[project.extra.social]]
 icon = "fontawesome/brands/python"
 link = "https://pypi.org/project/actions-tools/"
 name = "PyPi"
+
 [[project.extra.social]]
 icon = "simple/githubactions"
 link = "https://actions.cssnr.com/"
 name = "Actions"
+
 [[project.extra.social]]
 icon = "fontawesome/brands/discord"
 link = "https://discord.gg/wXy6m2X8wY"
 name = "Discord"
+
 [[project.extra.social]]
 icon = "simple/kofi"
 link = "https://ko-fi.com/cssnr"
 name = "Ko-fi"
+
 [[project.extra.social]]
 icon = "fontawesome/solid/house-laptop"
 link = "https://cssnr.github.io/"
 name = "Website"
-
-[project.extra]
-generator = false

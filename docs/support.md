@@ -7,7 +7,7 @@ icon: lucide/message-circle-question-mark
 [![Actions Tools](https://raw.githubusercontent.com/smashedr/repo-images/refs/heads/master/actions-tools/logo128.png){ align=right width=96 }](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme)
 
 If you run into any [issues](https://github.com/cssnr/actions-tools/issues)
-want to see more [features](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests)
+want to see more [features](https://github.com/cssnr/actions-tools/issues/new?template=1-feature.yaml)
 or just have a [question](https://github.com/cssnr/actions-tools/discussions/categories/q-a)
 please let us know.
 
@@ -23,7 +23,7 @@ start a discussion in [General](https://github.com/cssnr/actions-tools/discussio
 or [Q&A](https://github.com/cssnr/actions-tools/discussions/categories/q-a).
 
 If you want to see a new feature, start a discussion in
-the [Feature Requests](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests) section.
+the [Feature Requests](https://github.com/cssnr/actions-tools/issues/new?template=1-feature.yaml) section.
 
 [:fontawesome-brands-github: Start A Discussion](https://github.com/cssnr/actions-tools/discussions){ .md-button .md-button--primary }
 
@@ -47,7 +47,7 @@ From here you can contact me directly, `Shane@111150265075298304`.
 
 You can submit general feedback via the [web form](https://cssnr.github.io/feedback/?app=actions-tools).
 
-_This method is not recommended to [report issues](https://github.com/cssnr/actions-tools/issues) or [request features](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests)._
+_This method is not recommended to [report issues](https://github.com/cssnr/actions-tools/issues) or [request features](https://github.com/cssnr/actions-tools/issues/new?template=1-feature.yaml)._
 
 [:lucide-send: Send Feedback](https://cssnr.github.io/feedback/?app=actions-tools){ .md-button .md-button--primary }
 
@@ -66,12 +66,12 @@ _This method is not recommended to [report issues](https://github.com/cssnr/acti
 ## Contributing
 
 All contributions are welcome; including [bug reports](https://github.com/cssnr/actions-tools/issues),
-[feature requests](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests),
+[feature requests](https://github.com/cssnr/actions-tools/issues/new?template=1-feature.yaml),
 and [pull requests](https://github.com/cssnr/actions-tools?tab=contributing-ov-file#readme).
 
 [![Star](https://badges.cssnr.com/static/star?lucide=star&style=for-the-badge&color=ffcc3e&iconColor=black)](https://github.com/cssnr/actions-tools)
 [![Fork](https://badges.cssnr.com/static/fork?lucide=git-fork&style=for-the-badge&color=3674a7)](https://github.com/cssnr/actions-tools/fork)
-[![Features](https://badges.cssnr.com/static/features?icon=github&style=for-the-badge&color=brightgreen)](https://github.com/cssnr/actions-tools/discussions/categories/feature-requests)
+[![Features](https://badges.cssnr.com/static/features?icon=github&style=for-the-badge&color=brightgreen)](https://github.com/cssnr/actions-tools/issues/new?template=1-feature.yaml)
 [![Issues](https://badges.cssnr.com/static/issues?lucide=bug&style=for-the-badge&color=red)](https://github.com/cssnr/actions-tools/issues)
 
 For more details see the [CONTRIBUTING.md](https://github.com/cssnr/actions-tools?tab=contributing-ov-file#readme)
