@@ -22,13 +22,13 @@ icon: lucide/rocket
 [![Discord](https://img.shields.io/discord/899171661457293343?logo=discord&logoColor=white&label=discord&color=7289da)](https://discord.gg/wXy6m2X8wY)
 [![Ko-fi](https://img.shields.io/badge/Ko--fi-72a5f2?logo=kofi&label=support)](https://ko-fi.com/cssnr)
 
-A Typed Python GitHub Actions Tookit similar to [actions/toolkit](https://github.com/actions/toolkit).
+A Typed Python GitHub Actions Tookit similar to [actions/toolkit :lucide-arrow-up-right:](https://github.com/actions/toolkit).
 
 **To get started [install](#install) the tools and view the [usage](usage.md).**
 
 If you run into any issues, [support](support.md) is available.
 
-## Install
+## :simple-pypi: Install
 
 From PyPI: <https://pypi.org/p/actions-tools>  
 GitHub: [https://github.com/cssnr/actions-tools](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme)
@@ -109,7 +109,9 @@ Uninstall.
     pip uninstall actions-tools
     ```
 
-## Quick Start
+Next, see the [Usage](usage.md) guide.
+
+## :lucide-plane-takeoff: Quick Start
 
 [Install](#install) the tools.
 
@@ -152,10 +154,10 @@ core.summary.add_raw("🚀 We Did It!")
 !!! info
 
     This project is in active development.
-    Please [let us know](https://github.com/cssnr/actions-tools/issues/new?template=1-feature.yaml)
+    Please [let us know :lucide-arrow-up-right:](https://github.com/cssnr/actions-tools/issues/new?template=1-feature.yaml)
     what **features** you want.
 
 !!! example "Documentation"
 
     This documentation site is a work in progress.
-    See the [README.md](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme) for more details.
+    See the [README.md :lucide-arrow-up-right:](https://github.com/cssnr/actions-tools?tab=readme-ov-file#readme) for more details.
