@@ -72,6 +72,8 @@ jobs:
         run: |
           uv pip install --no-config pytest
           uv pip install --no-config dist/*.whl
+          #uv pip install actions-tools[github]
+          uv pip install 'PyGithub>=2,<3'
 
       - name: "Test ${{ matrix.version }}"
         run: |
