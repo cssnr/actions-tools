@@ -9,6 +9,7 @@ on:
       - "src/**"
       - "tests/**"
       - "pyproject.toml"
+      - "uv.lock"
   pull_request:
     branches: [master]
     paths: *paths
