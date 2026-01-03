@@ -107,18 +107,27 @@ version = { attr = "actions.__version__" }
 # https://github.com/cssnr/toml-run
 [tool.toml-run]
 test = ["uv run coverage run -m pytest", "uv run coverage report -m"]
-build = "uv run build"
+clean = "rm -rf dist"
+build = "uv run python -m build"
 predocs = "rm -rf .cache site"
-docs = "zensical serve --open"
+docs = "zensical serve --open --dev-addr 0.0.0.0:8000"
 docs-build = "zensical build --clean"
-format = ["uv run black .", "uv run tombi format .", "uv run ruff format ."]
+format = """
+uv run black .
+uv run isort -c .
+uv run ruff format
+uv run tombi format .
+which prettier && prettier --write . || echo missing prettier
+"""
 lint = """
-uv run black --check .
 run bandit
 run mypy
 run ruff
 run validate
 run yamllint
+which prettier && prettier --check . || echo missing prettier
+uv run black --check .
+uv run isort -c .
 uv run tombi lint .
 uv run ty check -v .
 uv lock --check

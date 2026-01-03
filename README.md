@@ -44,32 +44,41 @@ A Typed Python GitHub Actions Tookit similar to [actions/toolkit](https://github
 From PyPI: https://pypi.org/p/actions-tools
 
 ```shell
-python -m pip install actions-tools
+pip install actions-tools
 ```
 
 With [PyGithub](https://github.com/PyGithub/PyGithub) (for GitHub API access).
 
 ```shell
-python -m pip install actions-tools[github]
+pip install actions-tools[github]
+```
+
+Add to your pyproject.toml.
+
+```shell
+pip install --group dev actions-tools
+pip install --group dev actions-tools[github]
+uv add --dev toml-run
+uv add --dev toml-run[github]
 ```
 
 Install from GitHub.
 
 ```shell
-python -m pip install git+https://github.com/cssnr/actions-tools.git
+pip install git+https://github.com/cssnr/actions-tools.git
 ```
 
 Install from source.
 
 ```shell
 git clone https://github.com/cssnr/actions-tools
-python -m pip install actions-tools
+pip install actions-tools
 ```
 
 Uninstall.
 
 ```shell
-python -m pip uninstall actions-tools
+pip uninstall actions-tools
 ```
 
 ## Usage<a id="usage"></a>
