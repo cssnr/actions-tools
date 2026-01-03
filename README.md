@@ -33,9 +33,9 @@
 
 A Typed Python GitHub Actions Tookit similar to [actions/toolkit](https://github.com/actions/toolkit).
 
-- http://actions-tools.cssnr.com
+[![View Documentation](https://img.shields.io/badge/view_documentation-blue?style=for-the-badge&logo=googledocs&logoColor=white)](http://actions-tools.cssnr.com/)
 
-> [!NOTE]  
+> [!TIP]  
 > This project is in active development.  
 > Please let us know [what features](https://github.com/cssnr/actions-tools/issues/new?template=1-feature.yaml) you want to see.
 
@@ -83,8 +83,7 @@ pip uninstall actions-tools
 
 ## Usage<a id="usage"></a>
 
-> [!TIP]  
-> View the [Usage Guide](https://actions-tools.cssnr.com/usage/) online.
+[![View Usage Guide](https://img.shields.io/badge/view_usage_guide-blue?style=for-the-badge&logo=googledocs&logoColor=white)](http://actions-tools.cssnr.com/usage/)
 
 Functionality from @actions/toolkit
 
@@ -243,6 +242,8 @@ Example Actions.
 - Create Files Action: [cssnr/create-files-action](https://github.com/cssnr/create-files-action)
 - Python Action Template: [smashedr/test-action-py](https://github.com/smashedr/test-action-py)
 - Python UV Action Template: [smashedr/test-action-uv](https://github.com/smashedr/test-action-uv)
+
+[![View Usage Guide](https://img.shields.io/badge/view_usage_guide-blue?style=for-the-badge&logo=googledocs&logoColor=white)](http://actions-tools.cssnr.com/usage/)
 
 ## Support<a id="support"></a>
 
