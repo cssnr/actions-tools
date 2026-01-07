@@ -83,7 +83,7 @@ jobs:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           description: |
             - ${{ format('https://pypi.org/p/{0}/{1}', env.name, github.ref_name) }}
-            - ${{ github.event.repository.html_url }}/actions/runs/${{ github.run_id }}
+            - ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
   release:
     name: "Release"
@@ -128,4 +128,4 @@ jobs:
         uses: sarisia/actions-status-discord@b8381b25576cb341b2af39926ab42c5056cc44ed # v1.15.5
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          description: ${{ github.event.repository.html_url }}/actions/runs/${{ github.run_id }}
+          description: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
